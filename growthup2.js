@@ -1,7 +1,6 @@
   if (window.location.href.indexOf('thank_you') > 0) {
     debugger; 
-    const orgId = new URLSearchParams(window.location.search);
-    const name = urlParams.get('orgId');
+    console.log(orgId);
     debugger; 
     var html = `
       <div class="gu-modal" id="gu-modal">
