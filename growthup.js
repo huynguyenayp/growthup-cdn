@@ -1,5 +1,8 @@
   if (window.location.href.indexOf('thank_you') > 0) {
     debugger; 
+    const orgId = new URLSearchParams(window.location.search);
+    const name = urlParams.get('orgId');
+    debugger; 
     var html = `
       <div class="gu-modal" id="gu-modal">
        <div class="gu-modal-body">
@@ -19,7 +22,6 @@
     document.querySelector('body').insertAdjacentHTML("beforeend", html);
 
     var camId;
-    const orgId = "63ebab522c2fbdb15c491447";
     const modal = document.getElementById("gu-modal");
     const btnShare = document.getElementById("gu-button-share");
     const modalTitle = document.getElementById("gu-modal-title");
