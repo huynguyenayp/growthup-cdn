@@ -1,3 +1,4 @@
+// Copyright 2023 Growth-up. All rights reserved.
 if (window.location.href.indexOf('thank_you') > 0) {
   const orgId = `63ebab522c2fbdb15c491447`;
   const html = `
