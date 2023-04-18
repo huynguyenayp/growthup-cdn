@@ -82,7 +82,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
   }`;
 
   document.querySelector('body').insertAdjacentHTML("beforeend", html);
-  document.querySelector('body').innerHTML("beforeend", css);
+  document.querySelector('body').insertAdjacentHTML("beforeend", `<style>${css}</style>`);
 
   var camId;
   const modal = document.getElementById("gu-modal");
