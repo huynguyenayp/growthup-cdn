@@ -14,16 +14,16 @@ if (window.location.href.indexOf('thank_you') > 0) {
                 {Họ và tên} sẽ nhận được 100k khi có bạn bè mua hàng thông qua liên kết giới thiệu của bạn.</p>
             </div>
             <div id="gu-modal-box">
-                <button id="gu-button-share" class="gu-button" onclick="submit()">
+                <button id="gu-button-share" class="gu-button">
                 <span class='gu-button-label' id="gu-button-share-label">Lấy link giới thiệu</span>
             </button>
-                <button id="gu-button-cancel" class="gu-button-cancel" onclick="closePopup()">
+                <button id="gu-button-cancel" class="gu-button-cancel">
                <span class='gu-button-cancel-label' id="gu-button-cancel-label">Không, cảm ơn nhé!</span>
                </button>
             </div>
             <div id="gu-modal-box-success" class="gu-modal-box-success">
                 <input type='text' id='gu-input-copy' class='gu-input-copy' name='gu-input-copy' value='https://domainshop.com?ref=ma_gioi_thieu' readonly>
-                <button id="gu-button-copy" class="gu-button" onclick="copy()">
+                <button id="gu-button-copy" class="gu-button">
                     <span class='gu-button-label' id="gu-button-copy-label">Sao chép</span>
                 </button>
                 <div class="gu-guide-check-mail">Kiểm tra email {email_partner} để lấy thông tin đăng nhập trang quản lý đơn hàng do bạn giới thiệu.</div>
@@ -158,21 +158,32 @@ if (window.location.href.indexOf('thank_you') > 0) {
     document.querySelector('body').insertAdjacentHTML('beforeend', html);
     document.querySelector('body').insertAdjacentHTML('beforeend', css);
 
- var camId;
+    var camId;
     const orgId = "63b8fbd354443de43956e95b";
     const modal = document.getElementById("gu-modal");
     const btnShare = document.getElementById("gu-button-share");
     const modalTitle = document.getElementById("gu-modal-title");
     const modalDescription = document.getElementById("gu-modal-description");
     const btnContent = document.getElementById("gu-button-share-label");
-    const guClose = document.getElementById("gu-close");
-
+    const btnClose = document.getElementById("gu-close");
+    const btnCopy = document.getElementById("gu-button-copy");
+    const btnSubmit = document.getElementById("gu-button-share");
+    
     const email = "test@gmail.com";
     const billing_address = "thanh toan";
 
-    guClose.onclick = function() {
+    btnClose.onclick = function() {
         closePopup();
     }
+    
+    btnCopy.onclick = function() {
+        copy();
+    }
+    
+    btnSubmit.onclick = function() {
+        submit();
+    }
+    
     window.onclick = function(event) {
         if (event.target === modal)
             closePopup();
@@ -269,5 +280,11 @@ if (window.location.href.indexOf('thank_you') > 0) {
         }
     };
 
+    var button = document.getElementById("submitButton");
+
+    button.addEventListener("click", function() {
+      form.submit();
+    });
+    
     fetchPopupReferral();
 }
