@@ -88,8 +88,7 @@ const css=`
     }
     
     .gu-widget-content {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
+        border-radius: 6px;
         background-color: #fff;
         box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .05);
         overflow: hidden;
