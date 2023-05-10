@@ -257,12 +257,12 @@ const css=`
 document.querySelector('body').insertAdjacentHTML('beforeend', html);
 document.querySelector('body').insertAdjacentHTML('beforeend', css);
 
-const apiDomain='https://api.growthup.work/api';
-const orgId='63b8fbd354443de43956e95b';
-const refLogin='https://growthup.work/partner-authentication/login';
+const apiDomain = "{apiDomain}";
+const orgId = "{orgId}";
+const refLogin = "{refLogin}";
 const domainCurrent=location.hostname;
 const refPoweredGrowthup=`https: //app.growthup.vn?utm_campaign=growthup-link&utm_content=Powered+by+GrowthUP&utm_medium=widget&utm_referrer=${domainCurrent}`;
-let camId='63b8fc6a41159d51834f41a5';
+let camId = "{camId}";
 const widgetEl=document.getElementById('gu-widget-bubble');
 const widgetForm=document.querySelector('.gu-widget-form form');
 const emailEl=document.getElementById('gu-email');
