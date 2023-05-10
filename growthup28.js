@@ -254,15 +254,16 @@ const css=`
 	}
 @media only screen and (max-width: 600px) {
         .gu-widget-bubble {
-            right : 30px !important;
-            bottom: 90px !important;
+            right : 30px;
+            bottom: 90px;
+	    border-radius: 50%;
         }
 	
-	.gu-label-btn-bubble, gu-widget-arrow{
-	 dislay : none;
+	.gu-label-btn-bubble, .gu-widget-arrow{
+	 display : none;
 	}
 	.gu-widget-box {
-	right: 0 !important;
+	right: 0;
 	}	
     }
 </style>`;
