@@ -169,9 +169,10 @@ if (window.location.href.indexOf('thank_you') > 0) {
     const btnCopy = document.getElementById("gu-button-copy");
     const btnSubmit = document.getElementById("gu-button-share");
     
-    const email = "test@gmail.com";
-    const billing_address = "thanh toan";
-
+    const { email, billing_address } = Haravan.checkout ?? {};
+    const { full_name } = billing_address ?? {};
+    
+    debugger;
     btnClose.onclick = function() {
         closePopup();
     }
