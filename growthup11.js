@@ -9,7 +9,7 @@ const html=`
         <div class='gu-widget-note text-center' id='gu-widget-info'><span>Thông tin abc </span></div>
         <form onsubmit='submitForm(); return false;'><label for='gu-email'>Email (*):</label><input type='email' id='gu-email' name='email' required><label for='gu-fullName'>Họ và tên (*):</label><input type='text' id='gu-fullName' name='fullName' required><label for='phone'>Số điện thoại:</label>
             <input
-                type='tel' pattern='/(84|0[3|5|7|8|9])+([0-9]{8})\b/gm' id='gu-phone' name='gu-phone'><input type='submit' id='gu-label-btn-submit' value='Đăng ký cộng tác viên' name='gu-label-btn-submit'></form>
+                type='tel' pattern='/(84|0[3|5|7|8|9])+([0-9]{8})\b/' id='gu-phone' name='gu-phone'><input type='submit' id='gu-label-btn-submit' value='Đăng ký cộng tác viên' name='gu-label-btn-submit'></form>
         <div class='gu-widget-check-mail'><input type='text' id='gu-input-copy' class='gu-input-copy' name='gu-input-copy' value='https://domainshop.com?ref=ma_gioi_thieu' readonly><input type='button' id='gu-btn-copy' class='gu-btn-copy' value='Sao chép' name='gu-btn-copy'><span></span></div>
         <div
             class='text-right'><a class='gu-signin' id='gu-signin' href='https://google.com' target='_blank'>Đăng nhập</a></div>
