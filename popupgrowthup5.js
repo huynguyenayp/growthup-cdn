@@ -1,7 +1,7 @@
 if (window.location.href.indexOf('thank_you') > 0) {
     debugger;
     var html = `
-    <div class="gu-modal" id="gu-modal">
+ <div class="gu-modal" id="gu-modal">
     <div class="gu-modal-body">
         <span class="gu-close" id="gu-close">&times;</span>
         <div class="gu-modal-content">
@@ -37,12 +37,6 @@ if (window.location.href.indexOf('thank_you') > 0) {
     `;
     const css = `
     <style>
-    .gu-modal-body {
-    position: relative;
-    margin: auto;
-    top: 10%;
-    background: #FFFFFF;
-    border-radius: 6px;<style>
     .gu-modal {
         position: fixed;
         visibility: hidden;
@@ -158,12 +152,13 @@ if (window.location.href.indexOf('thank_you') > 0) {
         color: #3B82F6;
         font-weight: 700;
     }
-</style>`;
+</style>
+ `;
 
     document.querySelector('body').insertAdjacentHTML('beforeend', html);
     document.querySelector('body').insertAdjacentHTML('beforeend', css);
 
-      var camId;
+ var camId;
     const orgId = "63b8fbd354443de43956e95b";
     const modal = document.getElementById("gu-modal");
     const btnShare = document.getElementById("gu-button-share");
