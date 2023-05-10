@@ -139,7 +139,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
         opacity: 0.6;
         border: 1px solid #CED4DA;
         border-radius: 6px;
-        padding: 10px;
+        margin-top: 10px;
     }
     
     .gu-modal-box-success {
