@@ -156,7 +156,15 @@ if (window.location.href.indexOf('thank_you') > 0) {
  `;
     
     document.querySelector('body').insertAdjacentHTML('beforeend', css);
-
+    
+    const { email, billing_address } = Haravan.checkout ?? {};
+    const { full_name } = billing_address ?? {};
+    html.replace("{full_name}", full_name);
+    html.replace("{email_partner}", email);
+    
+    document.querySelector('body').insertAdjacentHTML('beforeend', html);
+    debugger;
+    
     var camId;
     const orgId = "63b8fbd354443de43956e95b";
     const modal = document.getElementById("gu-modal");
@@ -167,14 +175,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
     const btnClose = document.getElementById("gu-close");
     const btnCopy = document.getElementById("gu-button-copy");
     const btnSubmit = document.getElementById("gu-button-share");
-    
-    const { email, billing_address } = Haravan.checkout ?? {};
-    const { full_name } = billing_address ?? {};
-    html.replace("{full_name}", full_name);
-    html.replace("{email_partner}", email);
-    
-    document.querySelector('body').insertAdjacentHTML('beforeend', html);
-    debugger;
+
     btnClose.onclick = function() {
         closePopup();
     }
