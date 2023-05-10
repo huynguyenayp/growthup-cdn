@@ -37,7 +37,7 @@ const html=`
         </div>
     </div>
     <div class='gu-widget-footer text-center'>
-        <div class='gu-widget-powerred'><a href='' id='gu-powered-by-growthup' target='_blank'>Powered by GrowthUP </a></div>
+        <div class='gu-widget-powerred' id='gu-widget-box-powerred'><a href='' id='gu-powered-by-growthup' target='_blank'>Powered by GrowthUP </a></div>
     </div>
 </div>
 `;
@@ -257,7 +257,7 @@ const css=`
 
 document.querySelector('body').insertAdjacentHTML('beforeend', html);
 document.querySelector('body').insertAdjacentHTML('beforeend', css);
-debugger;
+
 const apiDomain='https://api.growthup.work/api';
 const orgId='63b8fbd354443de43956e95b';
 const refLogin='https://growthup.work/partner-authentication/login';
@@ -273,10 +273,16 @@ const btnSubmitEl=document.getElementById('gu-label-btn-submit');
 const checkMailEl=document.querySelector('.gu-widget-check-mail');
 const labelCheckMailEl=document.querySelector('.gu-widget-check-mail span');
 const btnCopyEl=document.getElementById('gu-btn-copy');
-const signIn=document.getElementById('gu-signin');
-const poweredGrowthup=document.getElementById('gu-powered-by-growthup');
-signIn.href=refLogin;
-poweredGrowthup.href=refPoweredGrowthup;
+const signInEl=document.getElementById('gu-signin');
+const poweredGrowthupEl=document.getElementById('gu-powered-by-growthup');
+const boxPoweredGrowthupEl=document.getElementById('gu-widget-box-powerred');
+
+const showPowered = true;
+if (showPowered)
+    boxPoweredGrowthupEl.style.display = 'none';
+
+signInEl.href=refLogin;
+poweredGrowthupEl.href=refPoweredGrowthup;
 phoneEl.addEventListener('input', function(event) {
     if (phoneEl.validity.patternMismatch) {
         phoneEl.setCustomValidity('Số điện thoại không hợp lệ. Vui lòng nhập đúng định dạng.');
