@@ -194,7 +194,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
     }
 
 
-    const fetchPopupReferral = async() => {
+    async function fetchPopupReferral () {
         try {
             const resPopup = await fetch(`https://api.growthup.work/api/popup/public?orgId=${orgId}&type=1`);
             const {
@@ -219,7 +219,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
         }
     };
 
-    const submit = async() => {
+    async function submit() {
         btnContent.innerHTML = "Đang tạo tài khoản...";
         // await createPartnerAccount();
         const guModalBoxEl = document.getElementById('gu-modal-box');
@@ -229,7 +229,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
         guModalBoxSuccessEl.style.display = 'block'
     }
 
-    const createPartnerAccount = async() => {
+    async function createPartnerAccount () {
 
         const {
             full_name,
