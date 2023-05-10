@@ -16,6 +16,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
        </div>
      </div>`;
     const css = `
+    <style>
     .gu-modal {
     position: fixed;
     display: none;
