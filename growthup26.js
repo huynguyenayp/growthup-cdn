@@ -252,7 +252,7 @@ const css=`
 		color: red;
 		line-height: 24px
 	}
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
         .gu-widget-bubble {
             right : 30px !important;
             bottom: 90px !important;
