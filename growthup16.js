@@ -280,7 +280,16 @@ async function createPartnerAccount(email, fullName, phone) {
     }
 }
 
-;
+function copy() {
+    const inputCopy=document.getElementById('gu-input-copy');
+    if (inputCopy) {
+        inputCopy.select();
+        document.execCommand("copy");
+        btnCopyEl.value='Đã sao chép';
+        btnCopyEl.style.backgroundColor='#22C55E';
+    }
+}
+
 async function submitForm() {
     btnSubmitEl.value='Đang tạo tài khoản...';
     const email=emailEl.value;
