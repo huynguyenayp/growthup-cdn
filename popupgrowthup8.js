@@ -1,5 +1,4 @@
 if (window.location.href.indexOf('thank_you') > 0) {
-    debugger;
     var html = `
  <div class="gu-modal" id="gu-modal">
     <div class="gu-modal-body">
@@ -280,11 +279,5 @@ if (window.location.href.indexOf('thank_you') > 0) {
         }
     };
 
-    var button = document.getElementById("submitButton");
-
-    button.addEventListener("click", function() {
-      form.submit();
-    });
-    
     fetchPopupReferral();
 }
