@@ -35,9 +35,9 @@ const html=`
             <div class='gu-widget-check-mail'><input type='text' id='gu-input-copy' class='gu-input-copy' name='gu-input-copy' value='https://domainshop.com?ref=ma_gioi_thieu' readonly><input type='button' id='gu-btn-copy' class='gu-btn-copy' value='Sao chép' name='gu-btn-copy'><span></span></div>
             <div class='text-right'><a class='gu-signin' id='gu-signin' href='https://google.com' target='_blank'>Đăng nhập</a></div>
         </div>
-    </div>
-    <div class='gu-widget-footer text-center'>
-        <div class='gu-widget-powerred' id='gu-widget-box-powerred'><a href='' id='gu-powered-by-growthup' target='_blank'>Powered by GrowthUP </a></div>
+        <div class='gu-widget-footer text-center'>
+            <div class='gu-widget-powerred' id='gu-widget-box-powerred'><a href='' id='gu-powered-by-growthup' target='_blank'>Powered by GrowthUP </a></div>
+        </div>
     </div>
 </div>
 `;
