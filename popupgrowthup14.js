@@ -159,8 +159,8 @@ if (window.location.href.indexOf('thank_you') > 0) {
     
     const { email, billing_address } = Haravan.checkout ?? {};
     const { full_name } = billing_address ?? {};
-    html.replace("{full_name}", full_name);
-    html.replace("{email_partner}", email);
+    html = html.replace("{full_name}", full_name);
+    html = html.replace("{email_partner}", email);
     
     document.querySelector('body').insertAdjacentHTML('beforeend', html);
     debugger;
