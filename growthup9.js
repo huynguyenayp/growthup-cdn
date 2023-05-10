@@ -245,10 +245,7 @@ async function createPartnerAccount(email, fullName, phone) {
     }
     ;
     try {
-        const response=await fetch(`$ {
-            apiDomain
-        }
-        /partner`, {
+        const response=await fetch(`${apiDomain}/partner`, {
             method: 'POST', headers: {
                 Accept: 'application/json', 'Content-Type': 'application/json',
             }
