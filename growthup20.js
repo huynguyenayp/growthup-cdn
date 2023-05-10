@@ -64,7 +64,7 @@ const css=`
         right: var(--gu-bottom-position-right);
         border-radius: 8px;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
-        z-index: 99999999999;
+        z-index: 99999;
         overflow: hidden;
         align-items: center;
         justify-content: center;
@@ -81,7 +81,7 @@ const css=`
         max-width: var(--gu-widget-width);
         -webkit-transition: all .2s ease-out;
         transition: all .2s ease-out;
-        z-index: 99999999999;
+        z-index: 99999;
         opacity: 0;
         visibility: hidden;
         line-height: normal;
