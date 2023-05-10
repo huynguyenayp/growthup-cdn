@@ -4,13 +4,13 @@ if (window.location.href.indexOf('thank_you') > 0) {
     <div class="gu-modal-body">
         <span class="gu-close" id="gu-close">&times;</span>
         <div class="gu-modal-content">
-            <div class="gu-modal-header-title">Cảm ơn {Họ và tên} đã mua hàng </div>
+            <div class="gu-modal-header-title">Cảm ơn {full_name} đã mua hàng </div>
             <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
              <path d="M101.875 28.4375H93.125C95.625 25.4375 97.1875 21.6875 97.1875 17.5C97.1875 8 89.5 0.3125 80 0.3125C69.5 0.3125 60.25 5.875 55 14.125C49.75 5.875 40.5 0.3125 30 0.3125C20.5 0.3125 12.8125 8 12.8125 17.5C12.8125 21.6875 14.375 25.4375 16.875 28.4375H8.125C3.8125 28.4375 0.3125 31.9375 0.3125 36.25V51.875C0.3125 55.625 3 58.625 6.5625 59.375V101.875C6.5625 106.188 10.0625 109.688 14.375 109.688H95.625C99.9375 109.688 103.438 106.188 103.438 101.875V59.375C107 58.625 109.688 55.625 109.688 51.875V36.25C109.688 31.9375 106.188 28.4375 101.875 28.4375ZM100.312 50.3125H59.6875V37.8125H100.312V50.3125ZM80 9.6875C84.3125 9.6875 87.8125 13.1875 87.8125 17.5C87.8125 21.8125 84.3125 25.3125 80 25.3125H60.25C62.375 16.375 70.4375 9.6875 80 9.6875ZM30 9.6875C39.5625 9.6875 47.625 16.375 49.75 25.3125H30C25.6875 25.3125 22.1875 21.8125 22.1875 17.5C22.1875 13.1875 25.6875 9.6875 30 9.6875ZM9.6875 37.8125H50.3125V50.3125H9.6875V37.8125ZM15.9375 59.6875H50.3125V100.312H15.9375V59.6875ZM94.0625 100.312H59.6875V59.6875H94.0625V100.312Z" fill="#326FD1"/>
           </svg>
             <div class="gu-modal-title" id="gu-modal-title">Giới thiệu bạn bè, nhận hoa hồng 100k</div>
             <div class="gu-modal-description" id="gu-modal-description">
-                {Họ và tên} sẽ nhận được 100k khi có bạn bè mua hàng thông qua liên kết giới thiệu của bạn.</p>
+                {full_name} sẽ nhận được 100k khi có bạn bè mua hàng thông qua liên kết giới thiệu của bạn.</p>
             </div>
             <div id="gu-modal-box">
                 <button id="gu-button-share" class="gu-button">
@@ -154,8 +154,7 @@ if (window.location.href.indexOf('thank_you') > 0) {
     }
 </style>
  `;
-
-    document.querySelector('body').insertAdjacentHTML('beforeend', html);
+    
     document.querySelector('body').insertAdjacentHTML('beforeend', css);
 
     var camId;
@@ -171,7 +170,10 @@ if (window.location.href.indexOf('thank_you') > 0) {
     
     const { email, billing_address } = Haravan.checkout ?? {};
     const { full_name } = billing_address ?? {};
+    html.replace("{full_name}", full_name);
+    html.replace("{email_partner}", email);
     
+    document.querySelector('body').insertAdjacentHTML('beforeend', html);
     debugger;
     btnClose.onclick = function() {
         closePopup();
