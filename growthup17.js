@@ -12,7 +12,7 @@ const html=`
                 <label for='gu-fullName'>Họ và tên (*):</label>
                 <input type='text' id='gu-fullName' name='fullName' required>
                 <label for='phone'>Số điện thoại:</label>
-                <input type='tel' pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" id='gu-phone' name='gu-phone'>
+                <input type='tel' pattern='(84|0[3|5|7|8|9])+([0-9]{8})&#x5c;b' id='gu-phone' name='gu-phone'>
                 <input type='submit' id='gu-label-btn-submit' value='Lấy link giới thiệu' name='gu-label-btn-submit'>
             </form>
             <div class='gu-widget-check-mail'><input type='text' id='gu-input-copy' class='gu-input-copy' name='gu-input-copy' value='https://domainshop.com?ref=ma_gioi_thieu' readonly><input type='button' id='gu-btn-copy' class='gu-btn-copy' value='Sao chép' name='gu-btn-copy'><span></span></div>
