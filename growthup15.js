@@ -289,10 +289,7 @@ async function submitForm() {
     const success=await createPartnerAccount(email, fullName, phone);
     if (success) {
         widgetForm.style.display='none';
-        labelCheckMailEl.innerHTML=`Kiểm tra email $ {
-            email
-        }
-        để kích hoạt tài khoản và lấy thông tin đăng nhập trang quản lý đơn hàng do bạn giới thiệu.`;
+        labelCheckMailEl.innerHTML=`Kiểm tra email ${email} để kích hoạt tài khoản và lấy thông tin đăng nhập trang quản lý đơn hàng do bạn giới thiệu.`;
         btnCopyEl.onclick=copy;
         checkMailEl.style.display='flex';
     }
@@ -303,6 +300,7 @@ async function fetchWidget() {
         widgetEl.style.display='block';
     }
     catch (error) {
+        console.log(error)
         return;
     }
 }
