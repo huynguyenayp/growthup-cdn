@@ -290,7 +290,7 @@ const signInEl=document.getElementById('gu-signin');
 const poweredGrowthupEl=document.getElementById('gu-powered-by-growthup');
 const boxPoweredGrowthupEl=document.getElementById('gu-widget-box-powerred');
 
-const showPowered = false;
+const showPowered = true;
 if (showPowered)
     boxPoweredGrowthupEl.style.display = 'none';
 
