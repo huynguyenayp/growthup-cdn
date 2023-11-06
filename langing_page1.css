@@ -517,70 +517,106 @@ input:focus {
 }
 
 
+details{
+  max-width: 960px;
+  margin: 1rem auto;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 .25rem 1rem rgba(0, 0, 0, 0.1);
+  
+  &:not([open]){
+    animation-name: fold-in;
+    animation-duration: .2s;
+  }
+  
+  summary{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    padding: 1.5rem;
+  }
+  
+  summary::-webkit-details-marker,
+  summary::marker{
+    content: "";
+    display: none;
+  }
+  
+  summary::after{
+    content: "+";
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  
+  .content{
+    padding: 0 1.5rem 1.5rem;
+  }
+}
+
+details[open]{
+  
+  summary::after{
+    content: "−";
+  }
+  
+  .content{
+    animation-name: fold-out;
+    animation-duration: .2s;
+  }
+}
+
+@keyframes fold-out {
+  0% {
+    opacity: 0;
+    margin-top: -1rem;
+  }
+  
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+
+@keyframes fold-in {
+  0% {
+    padding-bottom: 1rem;
+  }
+  
+  100% {
+    padding-bottom: 0;
+  }
+}
+
+
 /*
  CSS for the main interaction
 */
-.gu-accordion>input[type="checkbox"] {
-  position: absolute;
-  left: -100vw;
+
+.accordionTitle {
+	cursor: pointer;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.gu-accordion .content {
-  overflow-y: hidden;
-  height: 0;
-  transition: height 0.3s ease;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+.accordionTitle + .accordionContent {
+	display: none;
 }
 
-.gu-accordion>input[type="checkbox"]:checked~.content {
-  height: auto;
-  overflow: visible;
-  padding: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.gu-accordion>input[type="checkbox"]:checked~div>label {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.gu-accordion .handle {
-  margin: 0px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.gu-accordion label {
-  display: block;
-  color: #333;
-  cursor: pointer;
-  padding: 15px;
-  background: #F8F9FA;
-  border-radius: 6px;
-}
-
-.gu-accordion label:hover,
-.gu-accordion label:focus {
-  background: #d8d8d8;
-}
-
-.gu-accordion .handle label:before {
-  font-family: 'fontawesome';
-  content: '\f054';
-  display: inline-block;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.gu-accordion>input[type="checkbox"]:checked~.handle label:before {
-  content: '\f078';
+.accordionTitle.is-open + .accordionContent {
+	display: block;
 }
 
 .gu-progress-bar {
   width: 100%;
   background-color: #DEE2E6;
   border-radius: 3px;
+  height: 6px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
 }
 
