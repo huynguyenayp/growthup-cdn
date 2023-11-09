@@ -1,4 +1,5 @@
-$(function() {
+$(document).ready(function(){
+  $(function() {
     getProgress();
 getRank();
 getCampaign();
@@ -208,3 +209,6 @@ function renderRewardSettings(items) {
 }
 
 });
+
+});
+
