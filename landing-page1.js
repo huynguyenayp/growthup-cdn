@@ -1,4 +1,5 @@
-getProgress();
+$(function() {
+    getProgress();
 getRank();
 getCampaign();
 getCoupon();
@@ -205,3 +206,5 @@ function renderRewardSettings(items) {
 	}
 
 }
+
+});
