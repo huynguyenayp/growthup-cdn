@@ -24,7 +24,7 @@ function getCookie(name) {
 
 	let guCustomerName = getCookie("");
 	let guCustomerEmail = getCookie("email_portal");
-	console.log("email_portal", guCustomerEmail);
+	console.log("email_portal" +  guCustomerEmail);
 	
 	$("#gu-customer-name").text(guCustomerName);
 	$(".accordionTitle").click(function () {
