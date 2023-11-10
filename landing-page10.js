@@ -1,5 +1,5 @@
-$(document).ready(function () {
-	debugger;
+document.addEventListener("DOMContentLoaded", function(event) { 
+ debugger;
 	loadCss();
 	getProgress();
 	getRank();
@@ -461,5 +461,4 @@ $(document).ready(function () {
                         class="gu-w-100"></textarea>
                     </div>
 `);
-
 });
