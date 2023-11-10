@@ -1,9 +1,5 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
+document.addEventListener("DOMContentLoaded", function (event) {
+
 	loadCss();
 	getProgress();
 	getRank();
@@ -13,9 +9,9 @@ function getCookie(name) {
 	getRewardSettings();
 
 	function loadCss() {
-		var cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
-		var cssFontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
-		var font = "https://fonts.googleapis.com/css?family=Inter";
+		let cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
+		let cssFontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+		let font = "https://fonts.googleapis.com/css?family=Inter";
 		// Thêm phần tử <link> vào phần head của tài liệu HTML
 		$("head").append(font);
 		$("head").append(cssLink);
@@ -24,8 +20,7 @@ function getCookie(name) {
 
 	let guCustomerName = getCookie("");
 	let guCustomerEmail = getCookie("email_portal");
-	debugger;
-	
+
 	$("#gu-customer-name").text(guCustomerName);
 	$(".accordionTitle").click(function () {
 		if ($(this).hasClass("is-open")) {
@@ -39,7 +34,7 @@ function getCookie(name) {
 	function getProgress() {
 		$.ajax({
 			url:
-				"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
+				"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email="  + guCustomerEmail,
 			method: "GET",
 			success: function (response) {
 				// Handle the response data
@@ -54,7 +49,7 @@ function getCookie(name) {
 	function getRank() {
 		$.ajax({
 			url:
-				"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com",
+				"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=" + guCustomerEmail,
 			method: "GET",
 			success: function (response) {
 				// Handle the response data
@@ -69,7 +64,7 @@ function getCookie(name) {
 	function getCampaign() {
 		$.ajax({
 			url:
-				"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
+				"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=" + guCustomerEmail,
 			method: "GET",
 			success: function (response) {
 				// Handle the response data
@@ -84,7 +79,7 @@ function getCookie(name) {
 	function getCoupon() {
 		$.ajax({
 			url:
-				"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com",
+				"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=" + guCustomerEmail,
 			method: "GET",
 			success: function (response) {
 				// Handle the response data
@@ -130,9 +125,9 @@ function getCookie(name) {
 	}
 
 	function generateGUID() {
-		var currentDate = new Date().getTime().toString(16);
-		var randomPart = Math.random().toString(16).substring(2);
-		var guid = currentDate + randomPart;
+		let currentDate = new Date().getTime().toString(16);
+		let randomPart = Math.random().toString(16).substring(2);
+		let guid = currentDate + randomPart;
 		return guid;
 	}
 
@@ -269,6 +264,12 @@ function getCookie(name) {
 				</div>
 			</div>`;
 		rewardSetting.append(signupElm);
+	}
+
+	function getCookie(name) {
+		const value = `; ${document.cookie}`;
+		const parts = value.split(`; ${name}=`);
+		if (parts.length === 2) return parts.pop().split(';').shift();
 	}
 
 	function renderGift2(item) {
@@ -426,11 +427,11 @@ function getCookie(name) {
 		return number.toLocaleString("en");
 	}
 
-	var modal = $("#modalGetCoupon");
-	var modal2 = $("#modal2");
-	var btnGetCoupon = $("#btn-get-coupon");
-	var btnSendInfo = $("#btn-send-info");
-	var btnClose = $(".gu-modal-close");
+	let modal = $("#modalGetCoupon");
+	let modal2 = $("#modal2");
+	let btnGetCoupon = $("#btn-get-coupon");
+	let btnSendInfo = $("#btn-send-info");
+	let btnClose = $(".gu-modal-close");
 
 	btnGetCoupon.click(function () {
 		modal.show();
