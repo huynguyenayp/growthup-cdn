@@ -10,26 +10,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	function loadCss() {
 		let cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
-		let cssFontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
-		let font = "https://fonts.googleapis.com/css?family=Inter";
+		let cssFontAwesome = "<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'>";
+		let font = "<link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Inter'>";
 		// Thêm phần tử <link> vào phần head của tài liệu HTML
-		$("head").append(font);
-		$("head").append(cssLink);
-		$("head").append(cssFontAwesome);
+		
+		  let head = document.head || document.getElementsByTagName("head")[0];
+		
+		  // Thêm các phần tử link vào phần head
+		  head.appendChild(font);
+		  head.appendChild(cssLink);
+		  head.appendChild(cssFontAwesome);
+			
 	}
 
-	let guCustomerName = getCookie("");
-	let guCustomerEmail = getCookie("email_portal");
+	var guCustomerName = "Name";
+	var guCustomerEmail = getCookie("email_portal");
 
-	$("#gu-customer-name").text(guCustomerName);
-	$(".accordionTitle").click(function () {
-		if ($(this).hasClass("is-open")) {
-			$(this).removeClass("is-open");
-		} else {
-			$(".is-open").removeClass("is-open");
-			$(this).addClass("is-open");
-		}
-	});
+	let guCustomerNameElement = document.getElementById("gu-customer-name");
+	guCustomerNameElement.textContent = guCustomerName;
+	
+	let accordionTitles = document.querySelectorAll(".accordionTitle");
+
+accordionTitles.forEach(function (accordionTitle) {
+  accordionTitle.addEventListener("click", function () {
+    if (this.classList.contains("is-open")) {
+      this.classList.remove("is-open");
+    } else {
+      let openAccordion = document.querySelector(".is-open");
+      if (openAccordion) {
+        openAccordion.classList.remove("is-open");
+      }
+      this.classList.add("is-open");
+    }
+  });
+});
 
 	function getProgress() {
 		debugger;
