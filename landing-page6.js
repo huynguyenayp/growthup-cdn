@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 loadCss();
 getProgress();
 getRank();
@@ -8,11 +7,14 @@ getCoupon();
 getPointSettings();
 getRewardSettings();
 
-function loadCss(){
+function loadCss() {
 	  var cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
-
+		var cssFontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+		var font = "https://fonts.googleapis.com/css?family=Inter";
       // Thêm phần tử <link> vào phần head của tài liệu HTML
+			$("head").append(font);
       $("head").append(cssLink);
+      $("head").append(cssFontAwesome);
 }
 
 let guCustomerName = "Ten Ne";
@@ -450,6 +452,5 @@ $("#gu-form-info").append(`
                     </div>
 `);
 
-	
 });
 
