@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
- debugger;
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 	loadCss();
 	getProgress();
 	getRank();
@@ -18,8 +22,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		$("head").append(cssFontAwesome);
 	}
 
-	let guCustomerName = "Ten Ne";
-	let guCustomerEmail = "partner-a1-4@yopmail.com";
+	let guCustomerName = getCookie("");
+	let guCustomerEmail = getCookie("email_portal");
+	console.log("email_portal", guCustomerEmail);
+	
 	$("#gu-customer-name").text(guCustomerName);
 	$(".accordionTitle").click(function () {
 		if ($(this).hasClass("is-open")) {
