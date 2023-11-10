@@ -1,5 +1,4 @@
-$(document).ready(function () {
-	debugger;
+
 	loadCss();
 	getProgress();
 	getRank();
@@ -461,5 +460,3 @@ $(document).ready(function () {
                         class="gu-w-100"></textarea>
                     </div>
 `);
-
-});
