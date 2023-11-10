@@ -1,155 +1,159 @@
-$(document).ready(function(){
-loadCss();
-getProgress();
-getRank();
-getCampaign();
-getCoupon();
-getPointSettings();
-getRewardSettings();
+$(document).ready(function () {
+	debugger;
+	loadCss();
+	getProgress();
+	getRank();
+	getCampaign();
+	getCoupon();
+	getPointSettings();
+	getRewardSettings();
 
-function loadCss() {
-	  var cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
+	function loadCss() {
+		var cssLink = "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page5.css'>";
 		var cssFontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
 		var font = "https://fonts.googleapis.com/css?family=Inter";
-      // Thêm phần tử <link> vào phần head của tài liệu HTML
-			$("head").append(font);
-      $("head").append(cssLink);
-      $("head").append(cssFontAwesome);
-}
-
-let guCustomerName = "Ten Ne";
-let guCustomerEmail = "partner-a1-4@yopmail.com";
-$("#gu-customer-name").text(guCustomerName);
-$(".accordionTitle").click(function () {
-	if ($(this).hasClass("is-open")) {
-		$(this).removeClass("is-open");
-	} else {
-		$(".is-open").removeClass("is-open");
-		$(this).addClass("is-open");
+		// Thêm phần tử <link> vào phần head của tài liệu HTML
+		$("head").append(font);
+		$("head").append(cssLink);
+		$("head").append(cssFontAwesome);
 	}
-});
 
-function getProgress() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderGift(response.data.items);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
+	let guCustomerName = "Ten Ne";
+	let guCustomerEmail = "partner-a1-4@yopmail.com";
+	$("#gu-customer-name").text(guCustomerName);
+	$(".accordionTitle").click(function () {
+		if ($(this).hasClass("is-open")) {
+			$(this).removeClass("is-open");
+		} else {
+			$(".is-open").removeClass("is-open");
+			$(this).addClass("is-open");
 		}
 	});
-}
-function getRank() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderRank(response.data);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
-		}
-	});
-}
-function getCampaign() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderCampaign(response.data);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
-		}
-	});
-}
-function getCoupon() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderCoupon(response.data);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
-		}
-	});
-}
 
-function getPointSettings() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/point-setting/public?domain=https://org-prod.myharavan.com/",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderPointSettings(response.data.items);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
-		}
-	});
-}
+	function getProgress() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderGift(response.data.items);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
+	function getRank() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderRank(response.data);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
+	function getCampaign() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderCampaign(response.data);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
+	function getCoupon() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderCoupon(response.data);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
 
-function getRewardSettings() {
-	$.ajax({
-		url:
-			"https://api.growthup.work/api/reward-setting/public?domain=https://org-prod.myharavan.com/",
-		method: "GET",
-		success: function (response) {
-			// Handle the response data
-			renderRewardSettings(response.data.items);
-		},
-		error: function (xhr, status, error) {
-			// Handle errors
-			console.log("Request failed:", error);
-		}
-	});
-}
+	function getPointSettings() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/point-setting/public?domain=https://org-prod.myharavan.com/",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderPointSettings(response.data.items);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
 
-function generateGUID() {
-	var currentDate = new Date().getTime().toString(16);
-	var randomPart = Math.random().toString(16).substring(2);
-	var guid = currentDate + randomPart;
-	return guid;
-}
-function renderRank(data) {
-	$("#gu-rank-name").text(data.rank);
-	$("#gu-amount-approved").text(formatNumber(data.amountApproved));
-	$("#gu-amount-need-approve").text(formatNumber(data.amountNeedApprove));
-	$("#gu-point").text(formatNumber(data.point));
-}
-function renderCampaign(data) {
-	$("#gu-campaign-description").text(data.description);
-}
-function renderGift(items) {
-	console.log("renderGift", items);
-	let container = $("#gu-gift-container");
-	for (let i = 0; i < items.length; i++) {
-		let itemGift = items[i];
-		let percent = itemGift.percent;
-		let rewardTypeStr = itemGift.rewardType === 1 ? " đ" : "";
-		let reward = `${itemGift.strReward}  ${formatNumber(
-			itemGift.reward
-		)}${rewardTypeStr}`;
-		let remind = `${formatNumber(itemGift.valueRemind)} đ ${itemGift.strType}`;
-		let newGUID = generateGUID();
-		let itemElement = `
+	function getRewardSettings() {
+		$.ajax({
+			url:
+				"https://api.growthup.work/api/reward-setting/public?domain=https://org-prod.myharavan.com/",
+			method: "GET",
+			success: function (response) {
+				// Handle the response data
+				renderRewardSettings(response.data.items);
+			},
+			error: function (xhr, status, error) {
+				// Handle errors
+				console.log("Request failed:", error);
+			}
+		});
+	}
+
+	function generateGUID() {
+		var currentDate = new Date().getTime().toString(16);
+		var randomPart = Math.random().toString(16).substring(2);
+		var guid = currentDate + randomPart;
+		return guid;
+	}
+
+	function renderRank(data) {
+		$("#gu-rank-name").text(data.rank);
+		$("#gu-amount-approved").text(formatNumber(data.amountApproved));
+		$("#gu-amount-need-approve").text(formatNumber(data.amountNeedApprove));
+		$("#gu-point").text(formatNumber(data.point));
+	}
+
+	function renderCampaign(data) {
+		$("#gu-campaign-description").text(data.description);
+	}
+
+	function renderGift(items) {
+		console.log("renderGift", items);
+		let container = $("#gu-gift-container");
+		for (let i = 0; i < items.length; i++) {
+			let itemGift = items[i];
+			let percent = itemGift.percent;
+			let rewardTypeStr = itemGift.rewardType === 1 ? " đ" : "";
+			let reward = `${itemGift.strReward}  ${formatNumber(
+				itemGift.reward
+			)}${rewardTypeStr}`;
+			let remind = `${formatNumber(itemGift.valueRemind)} đ ${itemGift.strType}`;
+			let newGUID = generateGUID();
+			let itemElement = `
             <div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
         <div class="gu__card gu-bg-white gu__card-border-radius gu__card-border-primary gu__card-gift">
           <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg" />
@@ -165,57 +169,58 @@ function renderGift(items) {
       </div>
     `;
 
-		container.append(itemElement);
-		if (itemGift.endCycle) {
-			let targetDate = new Date(itemGift.endCycle);
+			container.append(itemElement);
+			if (itemGift.endCycle) {
+				let targetDate = new Date(itemGift.endCycle);
 
-			let countdownInterval = setInterval(function () {
-				let currentDate = new Date();
-				let timeRemaining = targetDate - currentDate;
+				let countdownInterval = setInterval(function () {
+					let currentDate = new Date();
+					let timeRemaining = targetDate - currentDate;
 
-				if (timeRemaining <= 0) {
-					clearInterval(countdownInterval);
-				} else {
-					let days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-					let hours = Math.floor(
-						(timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-					);
-					let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-					let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+					if (timeRemaining <= 0) {
+						clearInterval(countdownInterval);
+					} else {
+						let days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+						let hours = Math.floor(
+							(timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+						);
+						let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+						let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-					$("#" + newGUID).text(
-						days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây"
-					);
-				}
-			}, 1000);
+						$("#" + newGUID).text(
+							days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây"
+						);
+					}
+				}, 1000);
+			}
 		}
 	}
-}
-function renderCoupon(items) {}
 
-function renderPointSettings(items) {
-	let giftSetting1 = items.find((obj) => obj.type === 13);
+	function renderCoupon(items) { }
 
-	renderGift1(giftSetting1);
-	let giftSetting2 = items.find((obj) => obj.type === 9);
+	function renderPointSettings(items) {
+		let giftSetting1 = items.find((obj) => obj.type === 13);
 
-	renderGift2(giftSetting2);
-	let giftSetting3 = items.find((obj) => obj.type === 1);
-	renderGift3(giftSetting3);
-	renderGift4(giftSetting3);
-	let giftSetting5 = items.find((obj) => obj.type === 5);
-	renderGift5(giftSetting5);
-	let giftSetting6 = items.find((obj) => obj.type === 3);
-	renderGift6(giftSetting6);
-}
+		renderGift1(giftSetting1);
+		let giftSetting2 = items.find((obj) => obj.type === 9);
 
-function renderRewardSettings(items) {
-	let container = $("#gu-rewards");
-	for (let i = 0; i < items.length; i++) {
-		let item = items[i];
-		let giftPoint = item.point;
-		let giftName = item.nameGift;
-		let itemElement = `
+		renderGift2(giftSetting2);
+		let giftSetting3 = items.find((obj) => obj.type === 1);
+		renderGift3(giftSetting3);
+		renderGift4(giftSetting3);
+		let giftSetting5 = items.find((obj) => obj.type === 5);
+		renderGift5(giftSetting5);
+		let giftSetting6 = items.find((obj) => obj.type === 3);
+		renderGift6(giftSetting6);
+	}
+
+	function renderRewardSettings(items) {
+		let container = $("#gu-rewards");
+		for (let i = 0; i < items.length; i++) {
+			let item = items[i];
+			let giftPoint = item.point;
+			let giftName = item.nameGift;
+			let itemElement = `
            <div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border-radius gu-bg-white">
 					<img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
@@ -229,19 +234,19 @@ function renderRewardSettings(items) {
 			</div>
     `;
 
-		container.append(itemElement);
+			container.append(itemElement);
+		}
 	}
-}
 
-function renderGift1(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let iconUser = `<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
+	function renderGift1(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let iconUser = `<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M31.4028 36.7878C33.3556 38.0926 35.6515 38.7891 38.0002 38.7891C41.1496 38.7891 44.1701 37.538 46.3971 35.311C48.6241 33.084 49.8752 30.0635 49.8752 26.9141C49.8752 24.5654 49.1787 22.2695 47.8739 20.3167C46.569 18.3638 44.7144 16.8418 42.5445 15.943C40.3747 15.0442 37.987 14.809 35.6835 15.2672C33.3799 15.7254 31.264 16.8564 29.6033 18.5172C27.9425 20.1779 26.8115 22.2938 26.3533 24.5974C25.8951 26.9009 26.1303 29.2886 27.0291 31.4584C27.9279 33.6283 29.4499 35.4829 31.4028 36.7878ZM34.0417 20.9898C35.2134 20.2069 36.591 19.7891 38.0002 19.7891C39.8898 19.7891 41.7021 20.5397 43.0383 21.8759C44.3745 23.2121 45.1252 25.0244 45.1252 26.9141C45.1252 28.3233 44.7073 29.7008 43.9244 30.8725C43.1415 32.0442 42.0287 32.9574 40.7268 33.4967C39.4249 34.036 37.9923 34.1771 36.6101 33.9022C35.228 33.6272 33.9585 32.9487 32.962 31.9522C31.9656 30.9558 31.287 29.6862 31.0121 28.3041C30.7371 26.922 30.8782 25.4894 31.4175 24.1874C31.9568 22.8855 32.87 21.7728 34.0417 20.9898ZM58.4965 60.251C58.9402 60.6947 59.5395 60.9475 60.1668 60.9557C60.7942 60.9475 61.3935 60.6947 61.8371 60.251C62.2808 59.8074 62.5336 59.2081 62.5418 58.5807C62.5418 43.5391 45.3468 43.5391 38.0002 43.5391C30.6535 43.5391 13.4585 43.5391 13.4585 58.5807C13.4585 59.2106 13.7087 59.8147 14.1541 60.2601C14.5995 60.7055 15.2036 60.9557 15.8335 60.9557C16.4634 60.9557 17.0675 60.7055 17.5129 60.2601C17.9583 59.8147 18.2085 59.2106 18.2085 58.5807C18.2085 52.4057 21.5652 48.2891 38.0002 48.2891C54.4352 48.2891 57.7918 52.4057 57.7918 58.5807C57.8 59.2081 58.0529 59.8074 58.4965 60.251Z" fill="#212121" />
 						</svg>`;
 
-	let signupElm = `<div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
+		let signupElm = `<div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border gu-position-relative">
 					<div>
 						${iconUser}
@@ -257,14 +262,15 @@ function renderGift1(item) {
 					</div>
 				</div>
 			</div>`;
-	rewardSetting.append(signupElm);
-}
-function renderGift2(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let point = formatNumber(item.point);
-	let bodElement = `
+		rewardSetting.append(signupElm);
+	}
+
+	function renderGift2(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let point = formatNumber(item.point);
+		let bodElement = `
 <div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -288,14 +294,15 @@ function renderGift2(item) {
 				</div>
 			</div>
 `;
-	rewardSetting.append(bodElement);
-}
-function renderGift3(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let point = formatNumber(item.point);
-	let referralBuyElement = `
+		rewardSetting.append(bodElement);
+	}
+
+	function renderGift3(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let point = formatNumber(item.point);
+		let referralBuyElement = `
 	<div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 					<div class="gu__card gu__card-border gu-position-relative">
 						<div>
@@ -316,14 +323,15 @@ function renderGift3(item) {
 					</div>
 				</div>
 	`;
-	rewardSetting.append(referralBuyElement);
-}
-function renderGift4(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let point = formatNumber(item.point);
-	let donHangBanGioiThieu = `
+		rewardSetting.append(referralBuyElement);
+	}
+
+	function renderGift4(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let point = formatNumber(item.point);
+		let donHangBanGioiThieu = `
 	<div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -345,15 +353,16 @@ function renderGift4(item) {
 			</div>
 			
 `;
-	rewardSetting.append(donHangBanGioiThieu);
-}
-function renderGift5(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let point = formatNumber(item.point);
+		rewardSetting.append(donHangBanGioiThieu);
+	}
 
-	let khimoicongtacvienmoi = `
+	function renderGift5(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let point = formatNumber(item.point);
+
+		let khimoicongtacvienmoi = `
 <div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -374,15 +383,16 @@ function renderGift5(item) {
 				</div>
 			</div>
 `;
-	rewardSetting.append(khimoicongtacvienmoi);
-}
-function renderGift6(item) {
-	let rewardSetting = $("#reward-settings");
-	let strPoint = item.strPoint;
-	let strType = item.strType;
-	let point = formatNumber(item.point);
+		rewardSetting.append(khimoicongtacvienmoi);
+	}
 
-	let type3Elm = `
+	function renderGift6(item) {
+		let rewardSetting = $("#reward-settings");
+		let strPoint = item.strPoint;
+		let strType = item.strType;
+		let point = formatNumber(item.point);
+
+		let type3Elm = `
 <div class="gu-col-4 gu-col-md-6 gu-col-s-12 gu-text-center">
 				<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -403,40 +413,40 @@ function renderGift6(item) {
 				</div>
 			</div>
 `;
-	rewardSetting.append(type3Elm);
-}
+		rewardSetting.append(type3Elm);
+	}
 
-function formatNumber(number) {
-	return number.toLocaleString("en");
-}
+	function formatNumber(number) {
+		return number.toLocaleString("en");
+	}
 
-var modal = $("#modalGetCoupon");
-var modal2 = $("#modal2");
-var btnGetCoupon = $("#btn-get-coupon");
-var btnSendInfo = $("#btn-send-info");
-var btnClose = $(".gu-modal-close");
+	var modal = $("#modalGetCoupon");
+	var modal2 = $("#modal2");
+	var btnGetCoupon = $("#btn-get-coupon");
+	var btnSendInfo = $("#btn-send-info");
+	var btnClose = $(".gu-modal-close");
 
-btnGetCoupon.click(function () {
-	modal.show();
-});
+	btnGetCoupon.click(function () {
+		modal.show();
+	});
 
-btnSendInfo.click(function () {
-	modal2.show();
-});
+	btnSendInfo.click(function () {
+		modal2.show();
+	});
 
-btnClose.click(function () {
-	modal.hide();
-	modal2.hide();
-});
-
-$(window).on("click", function (e) {
-	if ($(e.target).is(".modal")) {
+	btnClose.click(function () {
 		modal.hide();
 		modal2.hide();
-	}
-});
+	});
 
-$("#gu-form-info").append(`
+	$(window).on("click", function (e) {
+		if ($(e.target).is(".modal")) {
+			modal.hide();
+			modal2.hide();
+		}
+	});
+
+	$("#gu-form-info").append(`
                     <div class="gu-d-flex gu-d-flex-column gu-mt-20">
                       <label for="">Số điện thoại*:</label>
                       <input type="text" class="gu-w-100">
@@ -453,4 +463,3 @@ $("#gu-form-info").append(`
 `);
 
 });
-
