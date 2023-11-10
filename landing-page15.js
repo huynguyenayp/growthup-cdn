@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	});
 
 	function getProgress() {
+		debugger;
 		$.ajax({
 			url:
 				"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email="  + guCustomerEmail,
