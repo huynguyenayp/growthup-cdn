@@ -12,7 +12,6 @@ body.gu-body {
 	resize: vertical;
 	color: #6c757d;
 	resize: none;
-	height: 38px;
 }
 
 .gu-body textarea {
@@ -148,11 +147,16 @@ input:focus {
 	font-weight: 700;
 	padding: 10px;
 	border: none;
-	height: 38px;
+	cursor: pointer;
+	display: block;
 }
 
 .gu-button__primary {
 	background-color: #3b82f6;
+}
+
+.gu-button__primary-text {
+	color: #3b82f6;
 }
 
 .gu-button__secondary {
@@ -197,6 +201,10 @@ input:focus {
 
 .gu-flex-jc-sb {
 	justify-content: space-between;
+}
+
+.gu-flex-jc-end {
+	justify-content: end;
 }
 
 .gu-d-flex-row {
@@ -370,11 +378,11 @@ input:focus {
 	}
 
 	.gu-col-s-3 {
-		width: 25%;
+		width: 24%;
 	}
 
 	.gu-col-s-4 {
-		width: 33.33%;
+		width: 32%;
 	}
 
 	.gu-col-s-5 {
@@ -643,184 +651,6 @@ details[open] {
 	transition: width 500ms ease-in-out;
 }
 
-.gu-modal-container {
-	position: relative;
-}
-
-.gu-modal-container .gu-modal-backdrop {
-	height: 0;
-	width: 0;
-	opacity: 0;
-	overflow: hidden;
-	transition: opacity 0.1s ease-in;
-}
-
-.gu-modal-container #modal-toggle {
-	position: absolute;
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	width: 120px;
-	margin-top: 20px;
-}
-
-.gu-modal-container #modal-toggle:checked {
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 9;
-	opacity: 0;
-}
-
-.gu-modal-container #modal-toggle:checked ~ .gu-modal-backdrop {
-	background-color: rgba(0, 0, 0, 0.6);
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 9;
-	pointer-events: none;
-	opacity: 1;
-}
-
-.gu-modal-container
-	#modal-toggle:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content {
-	background-color: #fff;
-	padding: 30px;
-	width: 90%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 6px;
-	z-index: 999;
-	pointer-events: auto;
-	cursor: auto;
-	max-width: 900px;
-	text-align: left;
-}
-
-@media (max-width: 400px) {
-	.gu-modal-container
-		#modal-toggle:checked
-		~ .gu-modal-backdrop
-		.gu-modal-content {
-		width: 100%;
-	}
-}
-
-.gu-modal-container
-	#modal-toggle:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content
-	.modal-close {
-	color: #666;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-	background: #fff;
-	text-align: center;
-	cursor: pointer;
-}
-
-.gu-modal-container
-	#modal-toggle:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content
-	.modal-close.button {
-	top: initial;
-	bottom: 20px;
-	color: #3b82f6;
-}
-
-.gu-modal-container #modal-toggle-2 {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	width: 100px;
-	margin-top: 20px;
-}
-
-.gu-modal-container #modal-toggle-2:checked {
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 9;
-	opacity: 0;
-}
-
-.gu-modal-container #modal-toggle-2:checked ~ .gu-modal-backdrop {
-	background-color: rgba(0, 0, 0, 0.6);
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 9;
-	pointer-events: none;
-	opacity: 1;
-}
-
-.gu-modal-container
-	#modal-toggle-2:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content {
-	background-color: #fff;
-	max-width: 90%;
-	max-width: 560px;
-	padding: 30px 20px 50px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 6px;
-	z-index: 999;
-	pointer-events: auto;
-	cursor: auto;
-	max-width: 900px;
-	text-align: left;
-}
-
-@media (max-width: 400px) {
-	.gu-modal-container
-		#modal-toggle-2:checked
-		~ .gu-modal-backdrop
-		.gu-modal-content {
-		max-width: 100%;
-	}
-}
-
-.gu-modal-container
-	#modal-toggle-2:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content
-	.modal-close {
-	color: #666;
-	position: absolute;
-	right: 20px;
-	top: 20px;
-	background: #fff;
-	text-align: center;
-	cursor: pointer;
-}
-
-.gu-modal-container
-	#modal-toggle-2:checked
-	~ .gu-modal-backdrop
-	.gu-modal-content
-	.modal-close.button {
-	top: initial;
-	bottom: 20px;
-	color: #3b82f6;
-}
-
 table {
 	border-collapse: collapse;
 	margin: 20px 0 40px 0;
@@ -842,4 +672,47 @@ th {
 
 tr:hover {
 	background-color: #f5f5f5;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+	text-align : left;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	width: 80%;
+	border-radius: 6px;
+	position: relative;
+}
+
+.gu-modal-icon-close {
+	color: #aaaaaa;
+	font-size: 28px;
+	right: 20px;
+	position: absolute;
+	top: 10px;
+}
+
+.gu-modal-close:hover,
+.gu-modal-close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.gu-modal-close.button {
+	width: fit-content;
 }
