@@ -4,7 +4,7 @@ let link = document.createElement("link");
 link.rel = "stylesheet";
 link.type = "text/css";
 link.href =
-	"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css";
+	"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page8.css";
 head.appendChild(link);
 
 getProgress();
