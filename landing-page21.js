@@ -4,8 +4,23 @@ let link = document.createElement("link");
 link.rel = "stylesheet";
 link.type = "text/css";
 link.href =
-	"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page8.css";
+"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page10.css";
 head.appendChild(link);
+
+let link2 = document.createElement("link");
+link2.rel = "stylesheet";
+link2.type = "text/css";
+link2.href =
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+head.appendChild(link2);
+
+let link3 = document.createElement("link");
+link3.rel = "stylesheet";
+link3.type = "text/css";
+link3.href =
+"https://fonts.googleapis.com/css?family=Inter";
+
+head.appendChild(link3);
 
 getProgress();
 getRank();
