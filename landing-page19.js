@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-let head = document.getElementsByTagName('head')[0];
-  let link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = 'https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css';
-  head.appendChild(link);
+let head = document.getElementsByTagName("head")[0];
+let link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
+link.href =
+	"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css";
+head.appendChild(link);
 
 getProgress();
 getRank();
@@ -16,8 +17,8 @@ getRewardSettings();
 let guCustomerEmail = "partner-a1-4@yopmail.com";
 
 var guCustomerName = "Ten Ne";
-var guCustomerNameElement = document.querySelector("#gu-customer-name");
-guCustomerNameElement.textContent = guCustomerName;
+
+document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
 
 let accordionTitles = document.querySelectorAll(".accordionTitle");
 
@@ -36,73 +37,99 @@ accordionTitles.forEach(function (accordionTitle) {
 });
 
 function getProgress() {
-	fetch('https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com')
-		.then(response => response.json())
-		.then(data => renderGift(data.data.items))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com"
+	)
+		.then((response) => response.json())
+		.then((data) => renderGift(data.data.items))
+		.catch((err) => console.error(err));
 }
 
 function getRank() {
-	fetch('https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com')
-		.then(response => response.json())
-		.then(data => renderRank(data.data))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com"
+	)
+		.then((response) => response.json())
+		.then((data) => renderRank(data.data))
+		.catch((err) => console.error(err));
 }
 
 function getCampaign() {
-	fetch('https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com')
-		.then(response => response.json())
-		.then(data => renderCampaign(data.data))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com"
+	)
+		.then((response) => response.json())
+		.then((data) => renderCampaign(data.data))
+		.catch((err) => console.error(err));
 }
 
 function getCoupon() {
-	fetch('https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com')
-		.then(response => response.json())
-		.then(data => renderCoupon(data.data))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com"
+	)
+		.then((response) => response.json())
+		.then((data) => renderCoupon(data.data))
+		.catch((err) => console.error(err));
 }
 
 function getPointSettings() {
-	fetch('https://api.growthup.work/api/point-setting/public?domain=https://org-prod.myharavan.com/')
-		.then(response => response.json())
-		.then(data => renderPointSettings(data.data.items))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/point-setting/public?domain=https://org-prod.myharavan.com/"
+	)
+		.then((response) => response.json())
+		.then((data) => renderPointSettings(data.data.items))
+		.catch((err) => console.error(err));
 }
 
 function getRewardSettings() {
-	fetch('https://api.growthup.work/api/reward-setting/public?domain=https://org-prod.myharavan.com/')
-		.then(response => response.json())
-		.then(data => renderRewardSettings(data.data.items))
-		.catch(err => console.error(err));
+	fetch(
+		"https://api.growthup.work/api/reward-setting/public?domain=https://org-prod.myharavan.com/"
+	)
+		.then((response) => response.json())
+		.then((data) => renderRewardSettings(data.data.items))
+		.catch((err) => console.error(err));
 }
 
 function renderRank(data) {
-	document.getElementById("gu-rank-name").textContent = data.rank;
-	document.getElementById("gu-amount-approved").textContent = formatNumber(data.amountApproved);
-	document.getElementById("gu-amount-need-approve").textContent = formatNumber(data.amountNeedApprove);
-	document.getElementById("gu-point").textContent = formatNumber(data.point);
+	
+document.getElementsByClassName("gu-rank-name")[0].innerText = data.rank;
+	
+document.getElementsByClassName("gu-amount-approved")[0].innerText = formatNumber(data.amountApproved);
+
+document.getElementsByClassName("gu-amount-need-approve")[0].innerText = formatNumber(
+		data.amountNeedApprove
+	);
+	
+document.getElementsByClassName("gu-point")[0].innerText = formatNumber(formatNumber(
+		data.point
+	));	
+
 }
 
 function renderCampaign(data) {
-    var guCampaignDescription = document.querySelector("#gu-campaign-description");
-    guCampaignDescription.textContent = data.description;
+	var guCampaignDescription = document.querySelector("#gu-campaign-description");
+	guCampaignDescription.textContent = data.description;
 }
 
 function renderGift(items) {
 	let container = document.getElementById("gu-gift-container");
-	debugger;
-
 	for (let i = 0; i < items.length; i++) {
 		let itemGift = items[i];
 		let percent = itemGift.percent;
 		let rewardTypeStr = itemGift.rewardType === 1 ? " đ" : "";
-		let reward = `${itemGift.strReward}  ${formatNumber(itemGift.reward)}${rewardTypeStr}`;
+		let reward = `${itemGift.strReward}  ${formatNumber(
+			itemGift.reward
+		)}${rewardTypeStr}`;
 		let remind = `${formatNumber(itemGift.valueRemind)} đ ${itemGift.strType}`;
 		let newGUID = generateGUID();
 
 		let itemElement = document.createElement("div");
-		itemElement.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+		itemElement.classList.add(
+			"gu-col-4",
+			"gu-col-md-6",
+			"gu-col-s-12",
+			"gu-text-center"
+		);
 		itemElement.innerHTML = `
       <div class="gu__card gu-bg-white gu__card-border-radius gu__card-border-primary gu__card-gift">
         <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg" />
@@ -130,19 +157,28 @@ function renderGift(items) {
 					clearInterval(countdownInterval);
 				} else {
 					let days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-					let hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					let hours = Math.floor(
+						(timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+					);
 					let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
 					let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
 					document.getElementById(newGUID).textContent =
-						days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây";
+						days +
+						" ngày " +
+						hours +
+						" giờ " +
+						minutes +
+						" phút " +
+						seconds +
+						" giây";
 				}
 			}, 1000);
 		}
 	}
 }
 
-function renderCoupon(items) { 
+function renderCoupon(items) {
 	//console.log(items)
 }
 
@@ -171,7 +207,12 @@ function renderRewardSettings(items) {
 		let giftName = item.nameGift;
 
 		let itemElement = document.createElement("div");
-		itemElement.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+		itemElement.classList.add(
+			"gu-col-4",
+			"gu-col-md-6",
+			"gu-col-s-12",
+			"gu-text-center"
+		);
 		itemElement.innerHTML = `
       <div class="gu__card gu__card-border-radius gu-bg-white">
         <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
@@ -377,7 +418,6 @@ function renderGift6(item) {
 	rewardSetting.appendChild(elm);
 }
 
-
 function formatNumber(number) {
 	return number.toLocaleString("en");
 }
@@ -385,29 +425,32 @@ function formatNumber(number) {
 var modal = document.querySelector("#modalGetCoupon");
 var modal2 = document.querySelector("#modal2");
 var btnGetCoupon = document.querySelector("#btn-get-coupon");
-var btnSendInfo = document.querySelector("#btn-send-info");
-var btnClose = document.querySelectorAll(".gu-modal-close");
 
-btnGetCoupon.addEventListener("click", function() {
-    modal.style.display = "block";
+var btnSendInfo = document.getElementsByClassName("btn-send-info")[0]; 
+
+var btnCloseList = document.querySelectorAll(".gu-modal-close"); 
+
+
+btnGetCoupon.addEventListener("click", function () {
+	modal.style.display = "block";
 });
 
-btnSendInfo.addEventListener("click", function() {
-    modal2.style.display = "block";
+btnSendInfo.addEventListener("click", function () {
+	modal2.style.display = "block";
 });
 
-btnClose.forEach(function(element) {
-    element.addEventListener("click", function() {
-        modal.style.display = "none";
-        modal2.style.display = "none";
-    });
+btnCloseList.forEach(function (element) {
+	element.addEventListener("click", function () {
+		modal.style.display = "none";
+		modal2.style.display = "none";
+	});
 });
 
-window.addEventListener("click", function(e) {
-    if (e.target.classList.contains("modal")) {
-        modal.style.display = "none";
-        modal2.style.display = "none";
-    }
+window.addEventListener("click", function (e) {
+	if (e.target.classList.contains("modal")) {
+		modal.style.display = "none";
+		modal2.style.display = "none";
+	}
 });
 
 var guFormInfo = document.querySelector("#gu-form-info");
@@ -432,5 +475,6 @@ function generateGUID() {
 	var guid = currentDate + randomPart;
 	return guid;
 }
+
 	
 });
