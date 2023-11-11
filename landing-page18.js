@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function (event) {
+let head = document.getElementsByTagName('head')[0];
+  let link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css';
+  head.appendChild(link);
+
 getProgress();
 getRank();
 getCampaign();
@@ -78,8 +85,8 @@ function renderRank(data) {
 }
 
 function renderCampaign(data) {
-	var guCampaignDescription = document.querySelector("#gu-campaign-description");
-	guCampaignDescription.textContent = data.description;
+    var guCampaignDescription = document.querySelector("#gu-campaign-description");
+    guCampaignDescription.textContent = data.description;
 }
 
 function renderGift(items) {
@@ -135,7 +142,7 @@ function renderGift(items) {
 	}
 }
 
-function renderCoupon(items) {
+function renderCoupon(items) { 
 	//console.log(items)
 }
 
@@ -381,26 +388,26 @@ var btnGetCoupon = document.querySelector("#btn-get-coupon");
 var btnSendInfo = document.querySelector("#btn-send-info");
 var btnClose = document.querySelectorAll(".gu-modal-close");
 
-btnGetCoupon.addEventListener("click", function () {
-	modal.style.display = "block";
+btnGetCoupon.addEventListener("click", function() {
+    modal.style.display = "block";
 });
 
-btnSendInfo.addEventListener("click", function () {
-	modal2.style.display = "block";
+btnSendInfo.addEventListener("click", function() {
+    modal2.style.display = "block";
 });
 
-btnClose.forEach(function (element) {
-	element.addEventListener("click", function () {
-		modal.style.display = "none";
-		modal2.style.display = "none";
-	});
+btnClose.forEach(function(element) {
+    element.addEventListener("click", function() {
+        modal.style.display = "none";
+        modal2.style.display = "none";
+    });
 });
 
-window.addEventListener("click", function (e) {
-	if (e.target.classList.contains("modal")) {
-		modal.style.display = "none";
-		modal2.style.display = "none";
-	}
+window.addEventListener("click", function(e) {
+    if (e.target.classList.contains("modal")) {
+        modal.style.display = "none";
+        modal2.style.display = "none";
+    }
 });
 
 var guFormInfo = document.querySelector("#gu-form-info");
