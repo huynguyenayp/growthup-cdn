@@ -107,12 +107,13 @@ document.getElementsByClassName("gu-point")[0].innerText = formatNumber(formatNu
 }
 
 function renderCampaign(data) {
-	var guCampaignDescription = document.querySelector("#gu-campaign-description");
+	var guCampaignDescription = document.getElementsByClassName("gu-campaign-description")[0];
+	
 	guCampaignDescription.textContent = data.description;
 }
 
 function renderGift(items) {
-	let container = document.getElementById("gu-gift-container");
+	let container = document.getElementsByClassName("gu-gift-container")[0];
 	for (let i = 0; i < items.length; i++) {
 		let itemGift = items[i];
 		let percent = itemGift.percent;
@@ -422,9 +423,12 @@ function formatNumber(number) {
 	return number.toLocaleString("en");
 }
 
-var modal = document.querySelector("#modalGetCoupon");
-var modal2 = document.querySelector("#modal2");
-var btnGetCoupon = document.querySelector("#btn-get-coupon");
+var modal = 
+document.getElementsByClassName("modalGetCoupon")[0];
+
+var modal2 = document.getElementsByClassName("modalSendInfo")[0];
+
+var btnGetCoupon = document.getElementsByClassName("btn-get-coupon")[0]
 
 var btnSendInfo = document.getElementsByClassName("btn-send-info")[0]; 
 
@@ -453,7 +457,7 @@ window.addEventListener("click", function (e) {
 	}
 });
 
-var guFormInfo = document.querySelector("#gu-form-info");
+var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
 guFormInfo.innerHTML += `
     <div class="gu-d-flex gu-d-flex-column gu-mt-20">
         <label for="">Số điện thoại*:</label>
@@ -476,5 +480,4 @@ function generateGUID() {
 	return guid;
 }
 
-	
 });
