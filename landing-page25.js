@@ -517,6 +517,36 @@ guFormInfo.innerHTML += `
     </div>
 `;
 
+const formInfoButtonSubmit = document.getElementsByClassName("form-info-btn-submit")?.[0]
+formInfoButtonSubmit.onclick = () => {
+	const formInfoInputPhone = document.getElementsByClassName("form-info-input-phone")?.[0];
+	const formInfoInputName = document.getElementsByClassName("form-info-input-name")?.[0];
+	const formInfoInputNote = document.getElementsByClassName("form-info-input-note")?.[0];
+	const body = {
+		domain: "https://org-prod.myharavan.com/",
+		email: guCustomerEmail,
+		phone: formInfoInputPhone?.value ?? "",
+		name: formInfoInputName?.value ?? "",
+		request: formInfoInputNote?.value ?? "",
+		note: formInfoInputNote?.value ?? ""
+	};
+
+	if (!body.phone?.trim()?.length) return;
+
+	fetch("https://api.growthup.work/api/potential-customer/portal", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(body)
+	})
+		.then((response) => response.json())
+		.catch((err) => console.error(err))
+		.finally(() => {
+			 modal2.style.display = "none"
+		})
+};
+	
 function generateGUID() {
 	var currentDate = new Date().getTime().toString(16);
 	var randomPart = Math.random().toString(16).substring(2);
