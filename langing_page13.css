@@ -1,4 +1,4 @@
-body.gu-body {
+.gu-body {
 	font-family: "Inter";
 	color: #495057;
 	font-weight: 400;
@@ -619,7 +619,7 @@ details[open] {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
-.accordionTitle i {
+.accordionTitle .fa {
 	margin-right: 10px;
 	transition: transform 0.2s ease-in-out;
 }
@@ -631,7 +631,7 @@ details[open] {
 	display: block;
 }
 
-.accordionTitle.is-open i {
+.accordionTitle.is-open .fa {
 	transform: rotate(90deg);
 }
 
