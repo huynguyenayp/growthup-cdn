@@ -4,7 +4,7 @@ let link = document.createElement("link");
 link.rel = "stylesheet";
 link.type = "text/css";
 link.href =
-"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page12.css";
+"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page13.css";
 head.appendChild(link);
 
 let link2 = document.createElement("link");
@@ -494,5 +494,6 @@ function generateGUID() {
 	var guid = currentDate + randomPart;
 	return guid;
 }
+
 
 });
