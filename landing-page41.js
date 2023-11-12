@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</div>
 						<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
 							<span class="gu-text-16">${point} điểm cho 1 đơn hàng bạn giới thiệu</span>
-							<a id="gu-sign-up" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
+							<a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
 						</div>
 					</div>
     `;
