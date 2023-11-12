@@ -36,20 +36,23 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             if (guCustomerEmail) {
                 let viewIsGuestElement = document.getElementById("gu-is-guest");
-                if (viewIsGuestElement)
+                if (viewIsGuestElement) {
                     viewIsGuestElement.style.display = "none";
+                }
 
                 let viewIsLogin = document.getElementById("gu-is-login");
-                if (viewIsLogin)
+                if (viewIsLogin) {
                     viewIsLogin.style.display = "block";
+                }
+                getProgress(guCustomerEmail);
+                getRank(guCustomerEmail);
+                getCampaign(guCustomerEmail);
+                getCoupon(guCustomerEmail);
             }
 
             document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
 
-            getProgress(guCustomerEmail);
-            getRank(guCustomerEmail);
-            getCampaign(guCustomerEmail);
-            getCoupon(guCustomerEmail);
+
             getPointSettings();
             getRewardSettings();
             loadAccordion();
