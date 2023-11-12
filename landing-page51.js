@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 	        viewIsGuestElement.remove();	    
                 
                 if (viewIsLoginElement) {
-                    viewIsLogin.style.display = "block";
+                    viewIsLoginElement.style.display = "block";
                 }
 
                 document.getElementsByClassName(
