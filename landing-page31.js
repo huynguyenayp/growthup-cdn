@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 	debugger;
+const locationCurrent = window.location;
+const origin = locationCurrent.origin;
+const pathname = locationCurrent.pathname;
+
+if(currentPage.includes("pages/partner"){
 loadCss();
 function loadCss() {
 	let head = document.getElementsByTagName("head")[0];
@@ -57,7 +62,7 @@ accordionTitles.forEach(function (accordionTitle) {
 
 function getProgress(email) {
 	fetch(
-		`https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=${email}`
+		`https://api.growthup.work/api/partner/kpi-progress-public?domain=${origin}/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderGift(data.data.items))
@@ -66,7 +71,7 @@ function getProgress(email) {
 
 function getRank(email) {
 	fetch(
-		`https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=${email}`
+		`https://api.growthup.work/api/partner/portal?domain=${origin}/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderRank(data.data))
@@ -75,7 +80,7 @@ function getRank(email) {
 
 function getCampaign(email) {
 	fetch(
-		`https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=${email}`
+		`https://api.growthup.work/api/campaign/portal?domain=${origin}/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderCampaign(data.data))
@@ -84,7 +89,7 @@ function getCampaign(email) {
 
 function getCoupon(email) {
 	fetch(
-	`https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=${email}`
+	`https://api.growthup.work/api/coupon/portal?domain=${origin}/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderCoupon(data.data))
@@ -93,7 +98,7 @@ function getCoupon(email) {
 
 function getPointSettings() {
 	fetch(
-		"https://api.growthup.work/api/point-setting/public?domain=https://org-prod.myharavan.com/"
+		`https://api.growthup.work/api/point-setting/public?domain=${origin}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderPointSettings(data.data.items))
@@ -102,7 +107,7 @@ function getPointSettings() {
 
 function getRewardSettings() {
 	fetch(
-		"https://api.growthup.work/api/reward-setting/public?domain=https://org-prod.myharavan.com/"
+		`https://api.growthup.work/api/reward-setting/public?domain=${origin}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderRewardSettings(data.data.items))
@@ -537,7 +542,7 @@ formInfoButtonSubmit.onclick = () => {
 		"form-info-input-note"
 	)?.[0];
 	const body = {
-		domain: "https://org-prod.myharavan.com/",
+		domain: origin,
 		email: guCustomerEmail,
 		phone: formInfoInputPhone?.value ?? "",
 		name: formInfoInputName?.value ?? "",
@@ -585,5 +590,5 @@ function getCookie(cookieName) {
 function formatNumber(number) {
 	return number.toLocaleString("en");
 }
-
+}
 });
