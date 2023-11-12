@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
         }
 
         function loadView() {
-
             let guCustomerEmail = getCookie("email_portal");
             let guCustomerName = getCookie("name_portal");
 
@@ -44,15 +43,18 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 if (viewIsLogin) {
                     viewIsLogin.style.display = "block";
                 }
-                getProgress(guCustomerEmail);
-                getRank(guCustomerEmail);
-                getCampaign(guCustomerEmail);
-                getCoupon(guCustomerEmail);
+
+                document.getElementsByClassName(
+                    "gu-customer-name"
+                )[0].innerText = guCustomerName;
             }
 
-            document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
 
 
+            getProgress(guCustomerEmail);
+            getRank(guCustomerEmail);
+            getCampaign(guCustomerEmail);
+            getCoupon(guCustomerEmail);
             getPointSettings();
             getRewardSettings();
             loadAccordion();
@@ -112,9 +114,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function getPointSettings() {
-                fetch(
-                    `https://api.growthup.work/api/point-setting/public?domain=${origin}`
-                )
+                fetch(`https://api.growthup.work/api/point-setting/public?domain=${origin}`)
                     .then((response) => response.json())
                     .then((data) => renderPointSettings(data.data.items))
                     .catch((err) => console.error(err));
@@ -202,7 +202,9 @@ document.addEventListener("DOMContentLoaded", function (events) {
                                 let hours = Math.floor(
                                     (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
                                 );
-                                let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                                let minutes = Math.floor(
+                                    (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+                                );
                                 let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
                                 document.getElementById(newGUID).textContent =
@@ -314,7 +316,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
         <div class="gu__card gu__card-border gu-position-relative">
             <div>
@@ -344,7 +351,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
        <div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -378,7 +390,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 							</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
 <div class="gu__card gu__card-border gu-position-relative">
 						<div>
@@ -411,7 +428,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
 <div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -442,7 +464,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
 	<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -473,7 +500,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</svg>`;
 
                 let elm = document.createElement("div");
-                elm.classList.add("gu-col-4", "gu-col-md-6", "gu-col-s-12", "gu-text-center");
+                elm.classList.add(
+                    "gu-col-4",
+                    "gu-col-md-6",
+                    "gu-col-s-12",
+                    "gu-text-center"
+                );
                 elm.innerHTML = `
 	<div class="gu__card gu__card-border gu-position-relative">
 					<div>
@@ -588,12 +620,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function getCookie(cookieName) {
-                const cookies = document.cookie.split(';');
+                const cookies = document.cookie.split(";");
 
                 for (let i = 0; i < cookies.length; i++) {
                     const cookie = cookies[i].trim();
 
-                    if (cookie.startsWith(cookieName + '=')) {
+                    if (cookie.startsWith(cookieName + "=")) {
                         return cookie.substring(cookieName.length + 1);
                     }
                 }
@@ -605,5 +637,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 return number.toLocaleString("en");
             }
         }
+
     }
 });
