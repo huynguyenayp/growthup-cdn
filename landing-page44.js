@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (events) {
 
     if (window.location.pathname.includes("pages/partner")) {
+        let guApiBase = "https://api.growthup.work/api";
 
         loadCss();
         loadView();
@@ -10,15 +11,13 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href =
-                "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page15.css";
+            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page15.css";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
             link2.rel = "stylesheet";
             link2.type = "text/css";
-            link2.href =
-                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+            link2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
             head.appendChild(link2);
 
             let link3 = document.createElement("link");
@@ -49,8 +48,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 )[0].innerText = guCustomerName;
             }
 
-
-
             getProgress(guCustomerEmail);
             getRank(guCustomerEmail);
             getCampaign(guCustomerEmail);
@@ -79,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function getProgress(email) {
                 fetch(
-                    `https://api.growthup.work/api/partner/kpi-progress-public?domain=${origin}/&email=${email}`
+                    `${guApiBase}/partner/kpi-progress-public?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderGift(data.data.items))
@@ -88,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function getRank(email) {
                 fetch(
-                    `https://api.growthup.work/api/partner/portal?domain=${origin}/&email=${email}`
+                    `${guApiBase}/partner/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderRank(data.data))
@@ -97,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function getCampaign(email) {
                 fetch(
-                    `https://api.growthup.work/api/campaign/portal?domain=${origin}/&email=${email}`
+                    `${guApiBase}/campaign/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderCampaign(data.data))
@@ -106,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function getCoupon(email) {
                 fetch(
-                    `https://api.growthup.work/api/coupon/portal?domain=${origin}/&email=${email}`
+                    `${guApiBase}/coupon/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderCoupon(data.data))
@@ -114,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function getPointSettings() {
-                fetch(`https://api.growthup.work/api/point-setting/public?domain=${origin}`)
+                fetch(`${guApiBase}/point-setting/public?domain=${origin}`)
                     .then((response) => response.json())
                     .then((data) => renderPointSettings(data.data.items))
                     .catch((err) => console.error(err));
@@ -122,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function getRewardSettings() {
                 fetch(
-                    `https://api.growthup.work/api/reward-setting/public?domain=${origin}`
+                    `${guApiBase}/reward-setting/public?domain=${origin}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderRewardSettings(data.data.items))
@@ -173,18 +170,18 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         "gu-text-center"
                     );
                     itemElement.innerHTML = `
-      <div class="gu__card gu-bg-white gu__card-border-radius gu__card-border-primary gu__card-gift">
-        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg" />
-        <div class="gu-text-16">${reward}</div>
-        <div class="gu-text-16 gu-text-color-red gu-p-x-10" id="${newGUID}">-</div>
-        <div class="gu-p-x-10">
-          <div class="gu-progress-bar">
-            <span class="gu-progress-bar-fill" style="width: ${percent}%;"></span>
-          </div>
-        </div>
-        <div>Bạn cần đạt <strong>${remind} </strong> nữa để nhận phần thưởng!</div>
-      </div>
-    `;
+                    <div class="gu__card gu-bg-white gu__card-border-radius gu__card-border-primary gu__card-gift">
+                        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg" />
+                        <div class="gu-text-16">${reward}</div>
+                        <div class="gu-text-16 gu-text-color-red gu-p-x-10" id="${newGUID}">-</div>
+                        <div class="gu-p-x-10">
+                        <div class="gu-progress-bar">
+                            <span class="gu-progress-bar-fill" style="width: ${percent}%;"></span>
+                        </div>
+                        </div>
+                        <div>Bạn cần đạt <strong>${remind} </strong> nữa để nhận phần thưởng!</div>
+                    </div>
+                    `;
 
                     container.appendChild(itemElement);
 
@@ -207,15 +204,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                                 );
                                 let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-                                document.getElementById(newGUID).textContent =
-                                    days +
-                                    " ngày " +
-                                    hours +
-                                    " giờ " +
-                                    minutes +
-                                    " phút " +
-                                    seconds +
-                                    " giây";
+                                document.getElementById(newGUID).textContent = days + " ngày " + hours + " giờ " + minutes + " phút " + seconds + " giây";
                             }
                         }, 1000);
                     }
@@ -262,10 +251,8 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function renderPointSettings(items) {
                 let giftSetting1 = items.find((obj) => obj.type === 13);
-
                 renderGift1(giftSetting1);
                 let giftSetting2 = items.find((obj) => obj.type === 9);
-
                 renderGift2(giftSetting2);
                 let giftSetting3 = items.find((obj) => obj.type === 1);
                 renderGift3(giftSetting3);
@@ -292,16 +279,16 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         "gu-text-center"
                     );
                     itemElement.innerHTML = `
-      <div class="gu__card gu__card-border-radius gu-bg-white">
-        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
-        <p>
-          ${giftName}
-        </p>
-        <div class="gu__price">
-          ${formatNumber(giftPoint)} UP
-        </div>
-      </div>
-    `;
+                    <div class="gu__card gu__card-border-radius gu-bg-white">
+                        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
+                        <p>
+                        ${giftName}
+                        </p>
+                        <div class="gu__price">
+                        ${formatNumber(giftPoint)} UP
+                        </div>
+                    </div>
+                    `;
 
                     container.appendChild(itemElement);
                 }
@@ -323,21 +310,21 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-        <div class="gu__card gu__card-border gu-position-relative">
-            <div>
-                ${icon}
-                <div class="gu-text-18">
-                    ${strPoint}
-                </div>
-                <div>
-                    ${strType}
-                </div>
-            </div>
-            <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-                <span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>
-            </div>
-        </div>
-    `;
+                    <div class="gu__card gu__card-border gu-position-relative">
+                        <div>
+                            ${icon}
+                            <div class="gu-text-18">
+                                ${strPoint}
+                            </div>
+                            <div>
+                                ${strType}
+                            </div>
+                        </div>
+                        <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                            <span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>
+                        </div>
+                    </div>
+                `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -358,25 +345,25 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-       <div class="gu__card gu__card-border gu-position-relative">
-					<div>
-						${icon}
-						<div class="gu-text-18">
-								${strPoint}
-						</div>
-						<div>
-								${strType}
-						</div>
-					</div>
-					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-						<span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
-						<div class="gu-d-flex gu-mt-30">
-							<input type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
-							<a class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
-						</div>
-					</div>
-				</div>
-    `;
+                <div class="gu__card gu__card-border gu-position-relative">
+                                <div>
+                                    ${icon}
+                                    <div class="gu-text-18">
+                                            ${strPoint}
+                                    </div>
+                                    <div>
+                                            ${strType}
+                                    </div>
+                                </div>
+                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                    <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
+                                    <div class="gu-d-flex gu-mt-30">
+                                        <input type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
+                                        <a class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -397,24 +384,24 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-<div class="gu__card gu__card-border gu-position-relative">
-						<div>
-							<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
-								<path d="M35.6268 59.375C35.6268 62.0033 33.5051 64.125 30.8768 64.125C28.2485 64.125 26.1268 62.0033 26.1268 59.375C26.1268 56.7467 28.2485 54.625 30.8768 54.625C33.5051 54.625 35.6268 56.7467 35.6268 59.375ZM51.4601 54.625C48.8318 54.625 46.7101 56.7467 46.7101 59.375C46.7101 62.0033 48.8318 64.125 51.4601 64.125C54.0885 64.125 56.2101 62.0033 56.2101 59.375C56.2101 56.7467 54.0885 54.625 51.4601 54.625ZM65.6468 24.32L59.3135 49.6533C59.0601 50.6983 58.1101 51.4583 57.0018 51.4583H25.3351C24.1951 51.4583 23.2135 50.635 22.9918 49.495L17.0068 16.625H12.6685C11.3701 16.625 10.2935 15.5483 10.2935 14.25C10.2935 12.9517 11.3701 11.875 12.6685 11.875H19.0018C20.1418 11.875 21.1235 12.6983 21.3451 13.8383L22.7068 21.375H63.3351C64.0635 21.375 64.7601 21.7233 65.2035 22.2933C65.6468 22.8633 65.8051 23.6233 65.6468 24.32ZM60.2951 26.125H23.5618L27.2985 46.7083H55.1335L60.2951 26.125Z" fill="#212121" />
-							</svg>
-							<div class="gu-text-18">
-								${strPoint}
-							</div>
-							<div>
-								${strType}
-							</div>
-						</div>
-						<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-							<span class="gu-text-16">${point} điểm cho 1 đơn hàng bạn giới thiệu</span>
-							<a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
-						</div>
-					</div>
-    `;
+                <div class="gu__card gu__card-border gu-position-relative">
+                                        <div>
+                                            <svg width="76" height="76" viewBox="0 0 76 76" fill="none">
+                                                <path d="M35.6268 59.375C35.6268 62.0033 33.5051 64.125 30.8768 64.125C28.2485 64.125 26.1268 62.0033 26.1268 59.375C26.1268 56.7467 28.2485 54.625 30.8768 54.625C33.5051 54.625 35.6268 56.7467 35.6268 59.375ZM51.4601 54.625C48.8318 54.625 46.7101 56.7467 46.7101 59.375C46.7101 62.0033 48.8318 64.125 51.4601 64.125C54.0885 64.125 56.2101 62.0033 56.2101 59.375C56.2101 56.7467 54.0885 54.625 51.4601 54.625ZM65.6468 24.32L59.3135 49.6533C59.0601 50.6983 58.1101 51.4583 57.0018 51.4583H25.3351C24.1951 51.4583 23.2135 50.635 22.9918 49.495L17.0068 16.625H12.6685C11.3701 16.625 10.2935 15.5483 10.2935 14.25C10.2935 12.9517 11.3701 11.875 12.6685 11.875H19.0018C20.1418 11.875 21.1235 12.6983 21.3451 13.8383L22.7068 21.375H63.3351C64.0635 21.375 64.7601 21.7233 65.2035 22.2933C65.6468 22.8633 65.8051 23.6233 65.6468 24.32ZM60.2951 26.125H23.5618L27.2985 46.7083H55.1335L60.2951 26.125Z" fill="#212121" />
+                                            </svg>
+                                            <div class="gu-text-18">
+                                                ${strPoint}
+                                            </div>
+                                            <div>
+                                                ${strType}
+                                            </div>
+                                        </div>
+                                        <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                            <span class="gu-text-16">${point} điểm cho 1 đơn hàng bạn giới thiệu</span>
+                                            <a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
+                                        </div>
+                                    </div>
+                    `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -435,22 +422,22 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-<div class="gu__card gu__card-border gu-position-relative">
-					<div>
-						${icon}
-						<div class="gu-text-18">
-							${strPoint}
-						</div>
-						<div>
-							${strType}
-						</div>
-					</div>
-					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-						<span class="gu-text-16">${point} điểm cho 1,000đ trên giá trị đơn hàng bạn giới thiệu</span>
-						<a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
-					</div>
-				</div>
-    `;
+                <div class="gu__card gu__card-border gu-position-relative">
+                                    <div>
+                                        ${icon}
+                                        <div class="gu-text-18">
+                                            ${strPoint}
+                                        </div>
+                                        <div>
+                                            ${strType}
+                                        </div>
+                                    </div>
+                                    <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                        <span class="gu-text-16">${point} điểm cho 1,000đ trên giá trị đơn hàng bạn giới thiệu</span>
+                                        <a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
+                                    </div>
+                                </div>
+                    `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -471,22 +458,22 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-	<div class="gu__card gu__card-border gu-position-relative">
-					<div>
-						${icon}
-						<div class="gu-text-18">
-								${strPoint}
-						</div>
-						<div>
-								${strType}
-						</div>
-					</div>
-					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-						<a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
-					</div>
-				</div>
-    `;
+                <div class="gu__card gu__card-border gu-position-relative">
+                                <div>
+                                    ${icon}
+                                    <div class="gu-text-18">
+                                            ${strPoint}
+                                    </div>
+                                    <div>
+                                            ${strType}
+                                    </div>
+                                </div>
+                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                    <span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+                                    <a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
+                                </div>
+                            </div>
+                `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -507,22 +494,22 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-	<div class="gu__card gu__card-border gu-position-relative">
-					<div>
-						${icon}
-						<div class="gu-text-18">
-								${strPoint}
-						</div>
-						<div>
-								${strType}
-						</div>
-					</div>
-					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-						<span class="gu-text-16">${point} điểm cho 1,000đ hoa hồng bạn nhận được</span>
-						<a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
-					</div>
-				</div>
-    `;
+                <div class="gu__card gu__card-border gu-position-relative">
+                                <div>
+                                    ${icon}
+                                    <div class="gu-text-18">
+                                            ${strPoint}
+                                    </div>
+                                    <div>
+                                            ${strType}
+                                    </div>
+                                </div>
+                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                    <span class="gu-text-16">${point} điểm cho 1,000đ hoa hồng bạn nhận được</span>
+                                    <a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
+                                </div>
+                            </div>
+                `;
                 rewardSetting.appendChild(elm);
             }
 
@@ -560,19 +547,19 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
             guFormInfo.innerHTML += `
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="phoneNumber">Số điện thoại*:</label>
-        <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
-    </div>
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="fullName">Họ và tên khách hàng:</label>
-        <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
-    </div>
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="txtname">Nhu cầu:</label>
-        <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
-    </div>
-`;
+                <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <label for="phoneNumber">Số điện thoại*:</label>
+                    <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
+                </div>
+                <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <label for="fullName">Họ và tên khách hàng:</label>
+                    <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
+                </div>
+                <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <label for="txtname">Nhu cầu:</label>
+                    <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
+                </div>
+            `;
 
             const formInfoButtonSubmit = document.getElementsByClassName(
                 "form-info-btn-submit"
@@ -598,7 +585,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
                 if (!body.phone?.trim()?.length) return;
 
-                fetch("https://api.growthup.work/api/potential-customer/portal", {
+                fetch(`${guApiBase}/potential-customer/portal`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
