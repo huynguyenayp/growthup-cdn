@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 debugger;
+if(locationCurrent.pathname.includes("pages/partner")){
+
 const locationCurrent = window.location;
 const origin = locationCurrent.origin;
-const pathname = locationCurrent.pathname;
-
-if(pathname.includes("pages/partner")){
+	
 loadCss();
 function loadCss() {
 	let head = document.getElementsByTagName("head")[0];
