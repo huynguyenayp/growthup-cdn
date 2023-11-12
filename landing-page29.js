@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function (event) {
+	debugger;
 loadCss();
 function loadCss() {
 	let head = document.getElementsByTagName("head")[0];
