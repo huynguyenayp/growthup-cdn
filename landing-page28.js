@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-	loadCss();
+loadCss();
 function loadCss() {
 	let head = document.getElementsByTagName("head")[0];
 	let link = document.createElement("link");
 	link.rel = "stylesheet";
 	link.type = "text/css";
 	link.href =
-		"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page15.css";
+		"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css";
 	head.appendChild(link);
 
 	let link2 = document.createElement("link");
@@ -23,16 +23,16 @@ function loadCss() {
 
 	head.appendChild(link3);
 }
-getProgress();
-getRank();
-getCampaign();
-getCoupon();
+
+let guCustomerEmail = getCookie("email_portal");
+let guCustomerName = getCookie("name_portal");
+
+getProgress(guCustomerEmail);
+getRank(guCustomerEmail);
+getCampaign(guCustomerEmail);
+getCoupon(guCustomerEmail);
 getPointSettings();
 getRewardSettings();
-
-let guCustomerEmail = "partner-a1-4@yopmail.com";
-
-let guCustomerName = "Ten Ne";
 
 document.getElementsByClassName(
 	"gu-customer-name"
@@ -54,36 +54,36 @@ accordionTitles.forEach(function (accordionTitle) {
 	});
 });
 
-function getProgress() {
+function getProgress(email) {
 	fetch(
-		"https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com"
+		`https://api.growthup.work/api/partner/kpi-progress-public?domain=https://org-prod.myharavan.com/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderGift(data.data.items))
 		.catch((err) => console.error(err));
 }
 
-function getRank() {
+function getRank(email) {
 	fetch(
-		"https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=kpi-reward@yopmail.com"
+		`https://api.growthup.work/api/partner/portal?domain=https://org-prod.myharavan.com/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderRank(data.data))
 		.catch((err) => console.error(err));
 }
 
-function getCampaign() {
+function getCampaign(email) {
 	fetch(
-		"https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=partner-a1-4@yopmail.com"
+		`https://api.growthup.work/api/campaign/portal?domain=https://org-prod.myharavan.com/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderCampaign(data.data))
 		.catch((err) => console.error(err));
 }
 
-function getCoupon() {
+function getCoupon(email) {
 	fetch(
-		"https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=cp-4@yopmail.com"
+	`https://api.growthup.work/api/coupon/portal?domain=https://org-prod.myharavan.com/&email=${email}`
 	)
 		.then((response) => response.json())
 		.then((data) => renderCoupon(data.data))
@@ -474,10 +474,6 @@ function renderGift6(item) {
 	rewardSetting.appendChild(elm);
 }
 
-function formatNumber(number) {
-	return number.toLocaleString("en");
-}
-
 var modal = document.getElementsByClassName("modalGetCoupon")[0];
 
 var modal2 = document.getElementsByClassName("modalSendInfo")[0];
@@ -569,6 +565,24 @@ function generateGUID() {
 	var randomPart = Math.random().toString(16).substring(2);
 	var guid = currentDate + randomPart;
 	return guid;
+}
+
+function getCookie(cookieName) {
+  const cookies = document.cookie.split(';');
+  
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    
+    if (cookie.startsWith(cookieName + '=')) {
+      return cookie.substring(cookieName.length + 1);
+    }
+  }
+  
+  return null; // Cookie not found
+}
+
+function formatNumber(number) {
+	return number.toLocaleString("en");
 }
 
 });
