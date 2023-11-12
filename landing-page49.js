@@ -34,13 +34,16 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             if (guCustomerEmail) {
                 let viewIsGuestElement = document.getElementById("gu-is-guest");
+		let viewIsLoginElement = document.getElementById("gu-is-login");
+		    
                 if (viewIsGuestElement) {
                     viewIsGuestElement.style.display = "none";
+		    viewIsLoginElement.remove();
                 }
-
-                let viewIsLogin = document.getElementById("gu-is-login");
-                if (viewIsLogin) {
+                
+                if (viewIsLoginElement) {
                     viewIsLogin.style.display = "block";
+	            viewIsGuestElement.remove();
                 }
 
                 document.getElementsByClassName(
