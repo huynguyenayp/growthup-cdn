@@ -31,25 +31,24 @@ document.addEventListener("DOMContentLoaded", function (events) {
         function loadView() {
             let guCustomerEmail = getCookie("email_portal");
             let guCustomerName = getCookie("name_portal");
-
+            let viewIsGuestElement = document.getElementById("gu-is-guest");
+            let viewIsLoginElement = document.getElementById("gu-is-login");
+		
             if (guCustomerEmail) {
-                let viewIsGuestElement = document.getElementById("gu-is-guest");
-		let viewIsLoginElement = document.getElementById("gu-is-login");
-		    
-                if (viewIsGuestElement) {
-                    viewIsGuestElement.style.display = "none";
-		    viewIsLoginElement.remove();
-                }
+
+	        viewIsGuestElement.remove();	    
                 
                 if (viewIsLoginElement) {
                     viewIsLogin.style.display = "block";
-	            viewIsGuestElement.remove();
                 }
 
                 document.getElementsByClassName(
                     "gu-customer-name"
                 )[0].innerText = guCustomerName;
-            }
+		    
+            } else {
+		    viewIsLoginElement.remove();
+	    }
 
             getProgress(guCustomerEmail);
             getRank(guCustomerEmail);
