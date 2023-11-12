@@ -7,7 +7,7 @@ function loadCss() {
 	link.rel = "stylesheet";
 	link.type = "text/css";
 	link.href =
-		"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css";
+		"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page15.css";
 	head.appendChild(link);
 
 	let link2 = document.createElement("link");
