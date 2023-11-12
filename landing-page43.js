@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						<span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
 						<div class="gu-d-flex gu-mt-30">
 							<input type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
-							<button id="gu-sign-up" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></button>
+							<a class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
 						</div>
 					</div>
 				</div>
@@ -483,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 					</div>
 					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
 						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-						<button id="gu-sign-up" class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</button>
+						<a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
 					</div>
 				</div>
     `;
@@ -519,7 +519,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 					</div>
 					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
 						<span class="gu-text-16">${point} điểm cho 1,000đ hoa hồng bạn nhận được</span>
-						<button href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</button>
+						<a href="#gu-guide-activity" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
 					</div>
 				</div>
     `;
