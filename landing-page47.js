@@ -44,11 +44,11 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 if (viewIsLogin) {
                     viewIsLogin.style.display = "block";
                 }
+
+		document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
             }
 
-            document.getElementsByClassName(
-                "gu-customer-name"
-            )[0].innerText = guCustomerName;
+
 
             getProgress(guCustomerEmail);
             getRank(guCustomerEmail);
