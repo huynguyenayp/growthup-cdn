@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function (events) {
 
-    if (locationCurrent.pathname.includes("pages/partner")) {
+    if (window.location.pathname.includes("pages/partner")) {
 
         loadCss();
         loadView();
@@ -37,9 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (guCustomerEmail) {
                 const element = document.getElementById("gu-is-login");
                 element.style.display = "block";
-            } else {
-                const element = document.getElementById("gu-is-guest");
-                element.style.display = "block";
+		const element = document.getElementById("gu-is-guest");
+                element.style.display = "none";
             }
 
             document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
