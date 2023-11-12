@@ -1,27 +1,28 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-let head = document.getElementsByTagName("head")[0];
-let link = document.createElement("link");
-link.rel = "stylesheet";
-link.type = "text/css";
-link.href =
-"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page13.css";
-head.appendChild(link);
+	loadCss();
+function loadCss() {
+	let head = document.getElementsByTagName("head")[0];
+	let link = document.createElement("link");
+	link.rel = "stylesheet";
+	link.type = "text/css";
+	link.href =
+		"https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page6.css";
+	head.appendChild(link);
 
-let link2 = document.createElement("link");
-link2.rel = "stylesheet";
-link2.type = "text/css";
-link2.href =
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
-head.appendChild(link2);
+	let link2 = document.createElement("link");
+	link2.rel = "stylesheet";
+	link2.type = "text/css";
+	link2.href =
+		"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+	head.appendChild(link2);
 
-let link3 = document.createElement("link");
-link3.rel = "stylesheet";
-link3.type = "text/css";
-link3.href =
-"https://fonts.googleapis.com/css?family=Inter";
+	let link3 = document.createElement("link");
+	link3.rel = "stylesheet";
+	link3.type = "text/css";
+	link3.href = "https://fonts.googleapis.com/css?family=Inter";
 
-head.appendChild(link3);
-
+	head.appendChild(link3);
+}
 getProgress();
 getRank();
 getCampaign();
@@ -31,9 +32,11 @@ getRewardSettings();
 
 let guCustomerEmail = "partner-a1-4@yopmail.com";
 
-var guCustomerName = "Ten Ne";
+let guCustomerName = "Ten Ne";
 
-document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
+document.getElementsByClassName(
+	"gu-customer-name"
+)[0].innerText = guCustomerName;
 
 let accordionTitles = document.querySelectorAll(".accordionTitle");
 
@@ -106,24 +109,26 @@ function getRewardSettings() {
 }
 
 function renderRank(data) {
-	
-document.getElementsByClassName("gu-rank-name")[0].innerText = data.rank;
-	
-document.getElementsByClassName("gu-amount-approved")[0].innerText = formatNumber(data.amountApproved);
+	document.getElementsByClassName("gu-rank-name")[0].innerText = data.rank;
 
-document.getElementsByClassName("gu-amount-need-approve")[0].innerText = formatNumber(
-		data.amountNeedApprove
+	document.getElementsByClassName(
+		"gu-amount-approved"
+	)[0].innerText = formatNumber(data.amountApproved);
+
+	document.getElementsByClassName(
+		"gu-amount-need-approve"
+	)[0].innerText = formatNumber(data.amountNeedApprove);
+
+	document.getElementsByClassName("gu-point")[0].innerText = formatNumber(
+		formatNumber(data.point)
 	);
-	
-document.getElementsByClassName("gu-point")[0].innerText = formatNumber(formatNumber(
-		data.point
-	));	
-
 }
 
 function renderCampaign(data) {
-	var guCampaignDescription = document.getElementsByClassName("gu-campaign-description")[0];
-	
+	var guCampaignDescription = document.getElementsByClassName(
+		"gu-campaign-description"
+	)[0];
+
 	guCampaignDescription.textContent = data.description;
 }
 
@@ -195,36 +200,42 @@ function renderGift(items) {
 }
 
 function renderCoupon(data) {
-	if (!data?.items?.length) return
-	const tbodyElement = document.getElementsByClassName('coupon-tbody')?.[0]
-	data.items.forEach(item => {
-		if (!item) return
+	if (!data?.items?.length) return;
+	const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
+	data.items.forEach((item) => {
+		if (!item) return;
 		const iconCopy = `<svg width="15" height="14" viewBox="0 0 15 14" fill="none">
 														<path d="M12.9058 4.12821L8.93555 0.157949C8.83466 0.0569387 8.6978 0.000125678 8.55503 0H6.7817C6.25807 0 5.75588 0.208012 5.38562 0.578276C5.01535 0.948541 4.80734 1.45073 4.80734 1.97436V2.87179H3.90991C3.38627 2.87179 2.88409 3.07981 2.51382 3.45007C2.14356 3.82034 1.93555 4.32252 1.93555 4.84615V12.0256C1.93555 12.5493 2.14356 13.0515 2.51382 13.4217C2.88409 13.792 3.38627 14 3.90991 14H8.93555C9.45918 14 9.96137 13.792 10.3316 13.4217C10.7019 13.0515 10.9099 12.5493 10.9099 12.0256V11.1282H11.0894C11.613 11.1282 12.1152 10.9202 12.4855 10.5499C12.8557 10.1797 13.0638 9.67748 13.0638 9.15385V4.48718C13.0581 4.35192 13.0017 4.22375 12.9058 4.12821ZM9.11503 1.83795L11.2258 3.94872H9.11503V1.83795ZM9.83298 12.0256C9.83298 12.2637 9.73843 12.4919 9.57013 12.6602C9.40183 12.8285 9.17356 12.9231 8.93555 12.9231H3.90991C3.67189 12.9231 3.44362 12.8285 3.27532 12.6602C3.10702 12.4919 3.01247 12.2637 3.01247 12.0256V4.84615C3.01247 4.60814 3.10702 4.37987 3.27532 4.21157C3.44362 4.04327 3.67189 3.94872 3.90991 3.94872H4.80734V9.15385C4.80734 9.67748 5.01535 10.1797 5.38562 10.5499C5.75588 10.9202 6.25807 11.1282 6.7817 11.1282H9.83298V12.0256ZM11.0894 10.0513H6.7817C6.54369 10.0513 6.31542 9.95673 6.14712 9.78843C5.97882 9.62013 5.88426 9.39186 5.88426 9.15385V1.97436C5.88426 1.73634 5.97882 1.50808 6.14712 1.33978C6.31542 1.17147 6.54369 1.07692 6.7817 1.07692H8.03811V4.48718C8.03997 4.62941 8.0973 4.76529 8.19788 4.86587C8.29846 4.96645 8.43434 5.02378 8.57657 5.02564H11.9868V9.15385C11.9868 9.39186 11.8923 9.62013 11.724 9.78843C11.5557 9.95673 11.3274 10.0513 11.0894 10.0513Z" fill="white" />
-													</svg>`
-		const trElement = document.createElement('tr')
-		const tdCode = document.createElement('td')
-		const tdExpiredDate = document.createElement('td')
-		const tdNote = document.createElement('td')
-		const tdCopy = document.createElement('td')
-		const btnCopy = document.createElement('a')
-		const expiredDate = new Date(item.expiredDate)
-		btnCopy.classList.add('gu-button', 'gu-button__primary', 'gu-width-fit-content')
-		btnCopy.innerHTML = 'Sao chép ' + iconCopy
+													</svg>`;
+		const trElement = document.createElement("tr");
+		const tdCode = document.createElement("td");
+		const tdExpiredDate = document.createElement("td");
+		const tdNote = document.createElement("td");
+		const tdCopy = document.createElement("td");
+		const btnCopy = document.createElement("a");
+		const expiredDate = new Date(item.expiredDate);
+		btnCopy.classList.add(
+			"gu-button",
+			"gu-button__primary",
+			"gu-width-fit-content"
+		);
+		btnCopy.innerHTML = "Sao chép " + iconCopy;
 		btnCopy.onclick = () => {
-			 navigator.clipboard.writeText(item.code)
-		}
-		
-		tdCode.textContent = item.code
-		tdExpiredDate.textContent = `${expiredDate.getHours()}:${expiredDate.getMinutes()} ${expiredDate.getDate()}/${expiredDate.getMonth() + 1}/${expiredDate.getFullYear()}`
-		tdNote.textContent = item.note
-		tdCopy.appendChild(btnCopy)
-		trElement.appendChild(tdCode)
-		trElement.appendChild(tdExpiredDate)
-		trElement.appendChild(tdNote)
-		trElement.appendChild(tdCopy)
-		tbodyElement.appendChild(trElement)
-	})
+			navigator.clipboard.writeText(item.code);
+		};
+
+		tdCode.textContent = item.code;
+		tdExpiredDate.textContent = `${expiredDate.getHours()}:${expiredDate.getMinutes()} ${expiredDate.getDate()}/${
+			expiredDate.getMonth() + 1
+		}/${expiredDate.getFullYear()}`;
+		tdNote.textContent = item.note;
+		tdCopy.appendChild(btnCopy);
+		trElement.appendChild(tdCode);
+		trElement.appendChild(tdExpiredDate);
+		trElement.appendChild(tdNote);
+		trElement.appendChild(tdCopy);
+		tbodyElement.appendChild(trElement);
+	});
 }
 
 function renderPointSettings(items) {
@@ -467,17 +478,15 @@ function formatNumber(number) {
 	return number.toLocaleString("en");
 }
 
-var modal = 
-document.getElementsByClassName("modalGetCoupon")[0];
+var modal = document.getElementsByClassName("modalGetCoupon")[0];
 
 var modal2 = document.getElementsByClassName("modalSendInfo")[0];
 
-var btnGetCoupon = document.getElementsByClassName("btn-get-coupon")[0]
+var btnGetCoupon = document.getElementsByClassName("btn-get-coupon")[0];
 
-var btnSendInfo = document.getElementsByClassName("btn-send-info")[0]; 
+var btnSendInfo = document.getElementsByClassName("btn-send-info")[0];
 
-var btnCloseList = document.querySelectorAll(".gu-modal-close"); 
-
+var btnCloseList = document.querySelectorAll(".gu-modal-close");
 
 btnGetCoupon.addEventListener("click", function () {
 	modal.style.display = "block";
@@ -504,24 +513,32 @@ window.addEventListener("click", function (e) {
 var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
 guFormInfo.innerHTML += `
     <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="">Số điện thoại*:</label>
-        <input type="text" class="gu-w-100">
+        <label for="phoneNumber">Số điện thoại*:</label>
+        <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
     </div>
     <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="">Họ và tên khách hàng:</label>
-        <input type="text" class="gu-w-100">
+        <label for="fullName">Họ và tên khách hàng:</label>
+        <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
     </div>
     <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="">Nhu cầu:</label>
-        <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100"></textarea>
+        <label for="txtname">Nhu cầu:</label>
+        <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
     </div>
 `;
 
-const formInfoButtonSubmit = document.getElementsByClassName("form-info-btn-submit")?.[0]
+const formInfoButtonSubmit = document.getElementsByClassName(
+	"form-info-btn-submit"
+)?.[0];
 formInfoButtonSubmit.onclick = () => {
-	const formInfoInputPhone = document.getElementsByClassName("form-info-input-phone")?.[0];
-	const formInfoInputName = document.getElementsByClassName("form-info-input-name")?.[0];
-	const formInfoInputNote = document.getElementsByClassName("form-info-input-note")?.[0];
+	const formInfoInputPhone = document.getElementsByClassName(
+		"form-info-input-phone"
+	)?.[0];
+	const formInfoInputName = document.getElementsByClassName(
+		"form-info-input-name"
+	)?.[0];
+	const formInfoInputNote = document.getElementsByClassName(
+		"form-info-input-note"
+	)?.[0];
 	const body = {
 		domain: "https://org-prod.myharavan.com/",
 		email: guCustomerEmail,
@@ -543,16 +560,15 @@ formInfoButtonSubmit.onclick = () => {
 		.then((response) => response.json())
 		.catch((err) => console.error(err))
 		.finally(() => {
-			 modal2.style.display = "none"
-		})
+			modal2.style.display = "none";
+		});
 };
-	
+
 function generateGUID() {
 	var currentDate = new Date().getTime().toString(16);
 	var randomPart = Math.random().toString(16).substring(2);
 	var guid = currentDate + randomPart;
 	return guid;
 }
-
 
 });
