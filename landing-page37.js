@@ -35,10 +35,11 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let guCustomerName = getCookie("name_portal");
 
             if (guCustomerEmail) {
-                const element = document.getElementById("gu-is-login");
-                element.style.display = "block";
-		const element = document.getElementById("gu-is-guest");
-                element.style.display = "none";
+                const viewIsGuestElement = document.getElementById("gu-is-guest");
+                viewIsGuestElement?.style?.display = "none";
+
+                const viewIsLogin = document.getElementById("gu-is-login");
+                viewIsLogin?.style?.display = "block";
             }
 
             document.getElementsByClassName("gu-customer-name")[0].innerText = guCustomerName;
