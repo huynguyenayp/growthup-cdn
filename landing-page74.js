@@ -11,7 +11,7 @@
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page21.css";
+            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page22.css";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
