@@ -434,6 +434,22 @@ document.addEventListener("DOMContentLoaded", function (events) {
 							<path d="M61.7498 24.5391H57.3165C58.5832 23.0191 59.3748 21.1191 59.3748 18.9974C59.3748 14.1841 55.4798 10.2891 50.6665 10.2891C45.3465 10.2891 40.6598 13.1074 37.9998 17.2874C35.3398 13.1074 30.6532 10.2891 25.3332 10.2891C20.5198 10.2891 16.6248 14.1841 16.6248 18.9974C16.6248 21.1191 17.4165 23.0191 18.6832 24.5391H14.2498C12.0648 24.5391 10.2915 26.3124 10.2915 28.4974V36.4141C10.2915 38.3141 11.6532 39.8341 13.4582 40.2141V61.7474C13.4582 63.9324 15.2315 65.7057 17.4165 65.7057H58.5832C60.7682 65.7057 62.5415 63.9324 62.5415 61.7474V40.2141C64.3465 39.8341 65.7082 38.3141 65.7082 36.4141V28.4974C65.7082 26.3124 63.9348 24.5391 61.7498 24.5391ZM60.9582 35.6224H40.3748V29.2891H60.9582V35.6224ZM50.6665 15.0391C52.8515 15.0391 54.6248 16.8124 54.6248 18.9974C54.6248 21.1824 52.8515 22.9557 50.6665 22.9557H40.6598C41.7365 18.4274 45.8215 15.0391 50.6665 15.0391ZM25.3332 15.0391C30.1782 15.0391 34.2632 18.4274 35.3398 22.9557H25.3332C23.1482 22.9557 21.3748 21.1824 21.3748 18.9974C21.3748 16.8124 23.1482 15.0391 25.3332 15.0391ZM15.0415 29.2891H35.6248V35.6224H15.0415V29.2891ZM18.2082 40.3724H35.6248V60.9557H18.2082V40.3724ZM57.7915 60.9557H40.3748V40.3724H57.7915V60.9557Z" fill="#212121" />
 						</svg>`;
 
+                let elmGuest = `
+                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
+                    <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
+                        href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
+                `
+                let elmLogin = `
+                <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
+                                                <div class="gu-d-flex gu-mt-30">
+                                                    <input type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
+                                                    <a class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
+                                                </div>
+                `;
+
+                let guCustomerEmail = getCookie("email_portal");
+                let elmHover = guCustomerEmail ? elmLogin : elmGuest;
+
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
@@ -453,11 +469,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                                 </div>
                             </div>
                             <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-                                <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
-                                <div class="gu-d-flex gu-mt-30">
-                                    <input type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
-                                    <a class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
-                                </div>
+                                ${elmHover}
                             </div>
                         </div>
             `;
@@ -547,6 +559,21 @@ document.addEventListener("DOMContentLoaded", function (events) {
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M31.4028 38.3737C33.3556 39.6785 35.6515 40.375 38.0002 40.375C41.1496 40.375 44.1701 39.1239 46.3971 36.8969C48.6241 34.6699 49.8752 31.6495 49.8752 28.5C49.8752 26.1514 49.1787 23.8554 47.8739 21.9026C46.569 19.9498 44.7144 18.4277 42.5445 17.5289C40.3747 16.6301 37.987 16.395 35.6835 16.8532C33.3799 17.3114 31.264 18.4424 29.6033 20.1031C27.9425 21.7639 26.8115 23.8798 26.3533 26.1833C25.8951 28.4868 26.1303 30.8745 27.0291 33.0444C27.9279 35.2142 29.4499 37.0689 31.4028 38.3737ZM34.0417 22.5758C35.2134 21.7929 36.591 21.375 38.0002 21.375C39.8898 21.375 41.7021 22.1257 43.0383 23.4619C44.3745 24.7981 45.1252 26.6103 45.1252 28.5C45.1252 29.9092 44.7073 31.2867 43.9244 32.4584C43.1415 33.6301 42.0287 34.5434 40.7268 35.0826C39.4249 35.6219 37.9923 35.763 36.6102 35.4881C35.228 35.2132 33.9585 34.5346 32.962 33.5381C31.9656 32.5417 31.287 31.2721 31.0121 29.89C30.7372 28.5079 30.8783 27.0753 31.4175 25.7734C31.9568 24.4715 32.87 23.3587 34.0417 22.5758ZM58.4965 61.837C58.9402 62.2806 59.5395 62.5335 60.1668 62.5417C60.7942 62.5335 61.3935 62.2806 61.8371 61.837C62.2808 61.3933 62.5336 60.794 62.5418 60.1667C62.5418 45.125 45.3468 45.125 38.0002 45.125C30.6535 45.125 13.4585 45.125 13.4585 60.1667C13.4585 60.7966 13.7087 61.4006 14.1541 61.846C14.5995 62.2914 15.2036 62.5417 15.8335 62.5417C16.4634 62.5417 17.0675 62.2914 17.5129 61.846C17.9583 61.4006 18.2085 60.7966 18.2085 60.1667C18.2085 53.9917 21.5652 49.875 38.0002 49.875C54.4352 49.875 57.7918 53.9917 57.7918 60.1667C57.8 60.794 58.0529 61.3933 58.4965 61.837ZM60.1668 45.9167C59.5395 45.9085 58.9402 45.6556 58.4965 45.212C58.0529 44.7683 57.8 44.169 57.7918 43.5417V40.375H54.6252C53.9953 40.375 53.3912 40.1248 52.9458 39.6794C52.5004 39.234 52.2502 38.6299 52.2502 38C52.2502 37.3701 52.5004 36.766 52.9458 36.3206C53.3912 35.8752 53.9953 35.625 54.6252 35.625H57.7918V32.4583C57.7918 31.8284 58.0421 31.2244 58.4875 30.779C58.9328 30.3336 59.5369 30.0833 60.1668 30.0833C60.7967 30.0833 61.4008 30.3336 61.8462 30.779C62.2916 31.2244 62.5418 31.8284 62.5418 32.4583V35.625H65.7085C66.3384 35.625 66.9425 35.8752 67.3879 36.3206C67.8333 36.766 68.0835 37.3701 68.0835 38C68.0835 38.6299 67.8333 39.234 67.3879 39.6794C66.9425 40.1248 66.3384 40.375 65.7085 40.375H62.5418V43.5417C62.5336 44.169 62.2808 44.7683 61.8371 45.212C61.3935 45.6556 60.7942 45.9085 60.1668 45.9167Z" fill="#212121" />
 						</svg>`;
 
+
+
+                let elmGuest = `
+                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
+                    <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
+                        href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
+                `
+                let elmLogin = `
+           						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+						<a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
+                `;
+
+                let guCustomerEmail = getCookie("email_portal");
+                let elmHover = guCustomerEmail ? elmLogin : elmGuest;
+
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
@@ -566,8 +593,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 						</div>
 					</div>
 					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-						<a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
+						${elmHover}
 					</div>
 				</div>
     `;
