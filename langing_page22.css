@@ -364,6 +364,10 @@ input:focus {
 	.gu__container-banner-content {
 		max-width: unset;
 	}
+	
+	.gu-modal-content {
+		width: 100%;
+	}
 }
 
 @media only screen and (min-width: 600px) {
@@ -416,10 +420,6 @@ input:focus {
 		width: 100%;
 	}
 
-	.gu-modal-content {
-		width: 100%;
-	}
-	
 }
 
 @media only screen and (min-width: 768px) {
