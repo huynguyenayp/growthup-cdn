@@ -432,7 +432,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 let strType = item.strType;
                 let birthday = item.birthday;
 
-                document.getElementById("gu-input-birthday").value = birthday;
 
                 let point = formatNumber(item.point);
                 let icon = `<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
@@ -463,27 +462,29 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-text-center"
                 );
                 elm.innerHTML = `
-            <div class="gu__card gu__card-border gu-position-relative">
-                            <div>
-                                ${icon}
-                                <div class="gu-text-18">
-                                        ${strPoint}
-                                </div>
+                <div class="gu__card gu__card-border gu-position-relative">
                                 <div>
-                                        ${strType}
+                                    ${icon}
+                                    <div class="gu-text-18">
+                                            ${strPoint}
+                                    </div>
+                                    <div>
+                                            ${strType}
+                                    </div>
+                                </div>
+                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                    ${elmHover}
                                 </div>
                             </div>
-                            <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-                                ${elmHover}
-                            </div>
-                        </div>
-            `;
+                `;
+
                 rewardSetting.appendChild(elm);
 
+                let inputBirthday = document.getElementById("gu-input-birthday");
+                if (inputBirthday)
+                    inputBirthday.value = birthday;
 
-                const btnUpdateBirthday = document.getElementById(
-                    "gu-btn-update-birthday"
-                );
+                const btnUpdateBirthday = document.getElementById("gu-btn-update-birthday");
 
                 btnUpdateBirthday.onclick = () => {
                     var valueBirthday = document.getElementById("gu-input-birthday").value;
