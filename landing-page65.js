@@ -481,7 +481,8 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 );
 
                 btnUpdateBirthday.onclick = () => {
-                    debugger;
+                    var valueBirthday = document.getElementById("gu-input-birthday").value;
+                    const birthday =  new Date(valueBirthday).toISOString();
                     updateBirthday(birthday);
                 }
 
