@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         });
                 };
 
-                const birthday = document.getElementById("gu-btn-update-birthday").value;
+                const birthday = document.getElementById("gu-input-birthday").value;
                 const btnUpdateBirthday = document.getElementById(
                     "gu-btn-update-birthday"
                 );
