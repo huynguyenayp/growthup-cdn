@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page19.css";
+            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page18.css";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
@@ -337,16 +337,16 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             function renderPointSettings(items) {
                 let giftSetting1 = items.find((obj) => obj.type === 13);
-                renderGift1(giftSetting1);
+                renderPointSetting1(giftSetting1);
                 let giftSetting2 = items.find((obj) => obj.type === 9);
-                renderGift2(giftSetting2);
+                renderPointSetting2(giftSetting2);
                 let giftSetting3 = items.find((obj) => obj.type === 1);
-                renderGift3(giftSetting3);
-                renderGift4(giftSetting3);
+                renderPointSetting3(giftSetting3);
+                renderPointSetting4(giftSetting3);
                 let giftSetting5 = items.find((obj) => obj.type === 5);
-                renderGift5(giftSetting5);
+                renderPointSetting5(giftSetting5);
                 let giftSetting6 = items.find((obj) => obj.type === 3);
-                renderGift6(giftSetting6);
+                renderPointSetting6(giftSetting6);
             }
 
             function renderRewardSettings(items) {
@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 }
             }
 
-            function renderGift1(item) {
+            function renderPointSetting1(item) {
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -425,10 +425,15 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 rewardSetting.appendChild(elm);
             }
 
-            function renderGift2(item) {
+            function renderPointSetting2(item) {
+
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
+                let birthday = item.birthday;
+
+                document.getElementById("gu-input-birthday").value = birthday;
+
                 let point = formatNumber(item.point);
                 let icon = `<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
 							<path d="M61.7498 24.5391H57.3165C58.5832 23.0191 59.3748 21.1191 59.3748 18.9974C59.3748 14.1841 55.4798 10.2891 50.6665 10.2891C45.3465 10.2891 40.6598 13.1074 37.9998 17.2874C35.3398 13.1074 30.6532 10.2891 25.3332 10.2891C20.5198 10.2891 16.6248 14.1841 16.6248 18.9974C16.6248 21.1191 17.4165 23.0191 18.6832 24.5391H14.2498C12.0648 24.5391 10.2915 26.3124 10.2915 28.4974V36.4141C10.2915 38.3141 11.6532 39.8341 13.4582 40.2141V61.7474C13.4582 63.9324 15.2315 65.7057 17.4165 65.7057H58.5832C60.7682 65.7057 62.5415 63.9324 62.5415 61.7474V40.2141C64.3465 39.8341 65.7082 38.3141 65.7082 36.4141V28.4974C65.7082 26.3124 63.9348 24.5391 61.7498 24.5391ZM60.9582 35.6224H40.3748V29.2891H60.9582V35.6224ZM50.6665 15.0391C52.8515 15.0391 54.6248 16.8124 54.6248 18.9974C54.6248 21.1824 52.8515 22.9557 50.6665 22.9557H40.6598C41.7365 18.4274 45.8215 15.0391 50.6665 15.0391ZM25.3332 15.0391C30.1782 15.0391 34.2632 18.4274 35.3398 22.9557H25.3332C23.1482 22.9557 21.3748 21.1824 21.3748 18.9974C21.3748 16.8124 23.1482 15.0391 25.3332 15.0391ZM15.0415 29.2891H35.6248V35.6224H15.0415V29.2891ZM18.2082 40.3724H35.6248V60.9557H18.2082V40.3724ZM57.7915 60.9557H40.3748V40.3724H57.7915V60.9557Z" fill="#212121" />
@@ -488,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
             }
 
-            function renderGift3(item) {
+            function renderPointSetting3(item) {
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -526,7 +531,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 rewardSetting.appendChild(elm);
             }
 
-            function renderGift4(item) {
+            function renderPointSetting4(item) {
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -562,7 +567,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 rewardSetting.appendChild(elm);
             }
 
-            function renderGift5(item) {
+            function renderPointSetting5(item) {
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -610,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 rewardSetting.appendChild(elm);
             }
 
-            function renderGift6(item) {
+            function renderPointSetting6(item) {
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -678,7 +683,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 };
 
                 fetch(`${guApiBase}/user/portal-update-birthday`, {
-                    method: "POST",
+                    method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
                     },
