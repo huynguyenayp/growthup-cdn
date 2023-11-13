@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", function (events) {
+document.addEventListener("DOMContentLoaded", function (events) {
 
     if (window.location.pathname.includes("pages/partner")) {
         let guApiBase = "https://api.growthup.work/api";
@@ -433,10 +433,12 @@
 
                 const btnUpdateBirthday = document.getElementById("gu-btn-update-birthday");
 
-                btnUpdateBirthday.onclick = () => {
-                    var valueBirthday = document.getElementById("gu-input-birthday").value;
-                    const birthday = new Date(valueBirthday).toISOString();
-                    updateBirthday(birthday);
+                if (btnUpdateBirthday) {
+                    btnUpdateBirthday.onclick = () => {
+                        var valueBirthday = document.getElementById("gu-input-birthday").value;
+                        const birthday = new Date(valueBirthday).toISOString();
+                        updateBirthday(birthday);
+                    }
                 }
 
             }
