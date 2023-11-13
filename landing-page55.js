@@ -33,11 +33,16 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let guCustomerName = getCookie("name_portal");
             let viewIsGuestElement = document.getElementById("gu-is-guest");
             let viewIsLoginElement = document.getElementById("gu-is-login");
-		
+
             if (guCustomerEmail) {
 
-	        viewIsGuestElement.remove();	    
-                
+                getProgress(guCustomerEmail);
+                getRank(guCustomerEmail);
+                getCampaign(guCustomerEmail);
+                getCoupon(guCustomerEmail);
+
+                viewIsGuestElement.remove();
+
                 if (viewIsLoginElement) {
                     viewIsLoginElement.style.display = "block";
                 }
@@ -45,15 +50,94 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 document.getElementsByClassName(
                     "gu-customer-name"
                 )[0].innerText = guCustomerName;
-		    
-            } else {
-		    viewIsLoginElement.remove();
-	    }
 
-            getProgress(guCustomerEmail);
-            getRank(guCustomerEmail);
-            getCampaign(guCustomerEmail);
-            getCoupon(guCustomerEmail);
+                var modal = document.getElementsByClassName("modalGetCoupon")[0];
+                var modal2 = document.getElementsByClassName("modalSendInfo")[0];
+                var btnGetCoupon = document.getElementsByClassName("btn-get-coupon")[0];
+                var btnSendInfo = document.getElementsByClassName("btn-send-info")[0];
+                var btnCloseList = document.querySelectorAll(".gu-modal-close");
+
+                btnGetCoupon.addEventListener("click", function () {
+                    modal.style.display = "block";
+                });
+
+                btnSendInfo.addEventListener("click", function () {
+                    modal2.style.display = "block";
+                });
+
+                btnCloseList.forEach(function (element) {
+                    element.addEventListener("click", function () {
+                        modal.style.display = "none";
+                        modal2.style.display = "none";
+                    });
+                });
+
+                window.addEventListener("click", function (e) {
+                    if (e.target.classList.contains("modal")) {
+                        modal.style.display = "none";
+                        modal2.style.display = "none";
+                    }
+                });
+
+                var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
+                guFormInfo.innerHTML += `
+                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                        <label for="phoneNumber">Số điện thoại*:</label>
+                        <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
+                    </div>
+                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                        <label for="fullName">Họ và tên khách hàng:</label>
+                        <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
+                    </div>
+                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                        <label for="txtname">Nhu cầu:</label>
+                        <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
+                    </div>
+                `;
+
+                const formInfoButtonSubmit = document.getElementsByClassName(
+                    "form-info-btn-submit"
+                )?.[0];
+
+                formInfoButtonSubmit.onclick = () => {
+                    const formInfoInputPhone = document.getElementsByClassName(
+                        "form-info-input-phone"
+                    )?.[0];
+                    const formInfoInputName = document.getElementsByClassName(
+                        "form-info-input-name"
+                    )?.[0];
+                    const formInfoInputNote = document.getElementsByClassName(
+                        "form-info-input-note"
+                    )?.[0];
+                    const body = {
+                        domain: origin,
+                        email: guCustomerEmail,
+                        phone: formInfoInputPhone?.value ?? "",
+                        name: formInfoInputName?.value ?? "",
+                        request: formInfoInputNote?.value ?? "",
+                        note: formInfoInputNote?.value ?? ""
+                    };
+
+                    if (!body.phone?.trim()?.length) return;
+
+                    fetch(`${guApiBase}/potential-customer/portal`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(body)
+                    })
+                        .then((response) => response.json())
+                        .catch((err) => console.error(err))
+                        .finally(() => {
+                            modal2.style.display = "none";
+                        });
+                };
+
+            } else {
+                viewIsLoginElement.remove();
+            }
+
             getPointSettings();
             getRewardSettings();
             loadAccordion();
@@ -514,92 +598,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
     `;
                 rewardSetting.appendChild(elm);
             }
-
-            var modal = document.getElementsByClassName("modalGetCoupon")[0];
-
-            var modal2 = document.getElementsByClassName("modalSendInfo")[0];
-
-            var btnGetCoupon = document.getElementsByClassName("btn-get-coupon")[0];
-
-            var btnSendInfo = document.getElementsByClassName("btn-send-info")[0];
-
-            var btnCloseList = document.querySelectorAll(".gu-modal-close");
-
-            btnGetCoupon.addEventListener("click", function () {
-                modal.style.display = "block";
-            });
-
-            btnSendInfo.addEventListener("click", function () {
-                modal2.style.display = "block";
-            });
-
-            btnCloseList.forEach(function (element) {
-                element.addEventListener("click", function () {
-                    modal.style.display = "none";
-                    modal2.style.display = "none";
-                });
-            });
-
-            window.addEventListener("click", function (e) {
-                if (e.target.classList.contains("modal")) {
-                    modal.style.display = "none";
-                    modal2.style.display = "none";
-                }
-            });
-
-            var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
-            guFormInfo.innerHTML += `
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="phoneNumber">Số điện thoại*:</label>
-        <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
-    </div>
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="fullName">Họ và tên khách hàng:</label>
-        <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
-    </div>
-    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
-        <label for="txtname">Nhu cầu:</label>
-        <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
-    </div>
-`;
-
-            const formInfoButtonSubmit = document.getElementsByClassName(
-                "form-info-btn-submit"
-            )?.[0];
-            formInfoButtonSubmit.onclick = () => {
-                const formInfoInputPhone = document.getElementsByClassName(
-                    "form-info-input-phone"
-                )?.[0];
-                const formInfoInputName = document.getElementsByClassName(
-                    "form-info-input-name"
-                )?.[0];
-                const formInfoInputNote = document.getElementsByClassName(
-                    "form-info-input-note"
-                )?.[0];
-                const body = {
-                    domain: origin,
-                    email: guCustomerEmail,
-                    phone: formInfoInputPhone?.value ?? "",
-                    name: formInfoInputName?.value ?? "",
-                    request: formInfoInputNote?.value ?? "",
-                    note: formInfoInputNote?.value ?? ""
-                };
-
-                if (!body.phone?.trim()?.length) return;
-
-                fetch(`${guApiBase}/potential-customer/portal`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                })
-                    .then((response) => response.json())
-                    .catch((err) => console.error(err))
-                    .finally(() => {
-                        modal2.style.display = "none";
-                    });
-            };
 
             function generateGUID() {
                 var currentDate = new Date().getTime().toString(16);
