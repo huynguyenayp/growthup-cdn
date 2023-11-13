@@ -395,6 +395,17 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-col-s-12",
                     "gu-text-center"
                 );
+
+                let elmGuest = `
+                    <button id="gu-sign-up" class="gu-button gu-button__secondary">{{header_guest_btn_sign_up}}</button>
+                    <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
+                        href="/">{{header_guest_btn_sign_in}}</a></span>
+                `
+                let elmLogin = `<span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>`;
+
+                let guCustomerEmail = getCookie("email_portal");
+                let elmHover = guCustomerEmail ? elmLogin : elmLogin;
+
                 elm.innerHTML = `
                     <div class="gu__card gu__card-border gu-position-relative">
                         <div>
@@ -407,7 +418,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                             </div>
                         </div>
                         <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-                            <span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>
+                            ${elmHover}
                         </div>
                     </div>
                 `;
