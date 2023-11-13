@@ -442,7 +442,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 let elmLogin = `
                 <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
                                                 <div class="gu-d-flex gu-mt-30">
-                                                    <input id="gu-input-birthday" type="date" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
+                                                    <input id="gu-input-birthday" type="date" value="" placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
                                                     <a id="gu-btn-update-birthday" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
                                                 </div>
                 `;
