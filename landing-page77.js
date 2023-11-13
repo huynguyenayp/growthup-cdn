@@ -687,7 +687,7 @@
                 };
 
                 fetch(`${guApiBase}/user/portal-update-birthday`, {
-                    method: "PUT",
+                    method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
