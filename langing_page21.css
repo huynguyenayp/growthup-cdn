@@ -415,6 +415,11 @@ input:focus {
 	.gu-col-s-12 {
 		width: 100%;
 	}
+
+	.gu-modal-content {
+		width: 100%;
+	}
+	
 }
 
 @media only screen and (min-width: 768px) {
