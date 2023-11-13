@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (events) {
+ document.addEventListener("DOMContentLoaded", function (events) {
 
     if (window.location.pathname.includes("pages/partner")) {
         let guApiBase = "https://api.growthup.work/api";
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page20.css";
+            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page21.css";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
