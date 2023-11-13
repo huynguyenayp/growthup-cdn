@@ -134,15 +134,6 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         });
                 };
 
-                const btnUpdateBirthday = document.getElementById(
-                    "gu-btn-update-birthday"
-                );
-
-                btnUpdateBirthday.onclick = () => {
-                    debugger;
-                    updateBirthday(birthday);
-                }
-
             } else {
                 viewIsLoginElement.remove();
             }
@@ -483,6 +474,17 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         </div>
             `;
                 rewardSetting.appendChild(elm);
+
+
+                const btnUpdateBirthday = document.getElementById(
+                    "gu-btn-update-birthday"
+                );
+
+                btnUpdateBirthday.onclick = () => {
+                    debugger;
+                    updateBirthday(birthday);
+                }
+
             }
 
             function renderGift3(item) {
