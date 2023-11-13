@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 );
 
                 let elmGuest = `
-                    <button id="gu-sign-up" class="gu-button gu-button__secondary">{{header_guest_btn_sign_up}}</button>
+                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
