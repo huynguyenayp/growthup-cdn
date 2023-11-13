@@ -482,7 +482,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 
                 btnUpdateBirthday.onclick = () => {
                     var valueBirthday = document.getElementById("gu-input-birthday").value;
-                    const birthday =  new Date(valueBirthday).toISOString();
+                    const birthday = new Date(valueBirthday).toISOString();
                     updateBirthday(birthday);
                 }
 
@@ -677,9 +677,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     birthday: birthday
                 };
 
-                if (!body.phone?.trim()?.length) return;
-
-                fetch(`${guApiBase}/potential-customer/portal`, {
+                fetch(`${guApiBase}/user/portal-update-birthday`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
