@@ -404,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 let elmLogin = `<span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>`;
 
                 let guCustomerEmail = getCookie("email_portal");
-                let elmHover = guCustomerEmail ? elmLogin : elmLogin;
+                let elmHover = guCustomerEmail ? elmLogin : elmGuest;
 
                 elm.innerHTML = `
                     <div class="gu__card gu__card-border gu-position-relative">
