@@ -532,6 +532,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
 		const elmCopyLinkInvite = document.createElement('a')
+		elmCopyLinkInvite.textContent = 'Sao chép link mời'
 	    	elmCopyLinkInvite.classList.add('gu-button', 'gu-button__primary', 'gu-mt-30')
 		elmCopyLinkInvite.onclick = () => {
 			navigator.clipboard.writeText('handleClickCopyLinkInvite')
