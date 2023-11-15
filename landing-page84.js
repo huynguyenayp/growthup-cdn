@@ -531,9 +531,14 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
+		const elmCopyLinkInvite = document.createElement('a')
+	    	elmCopyLinkInvite.classList.add('gu-button', 'gu-button__primary', 'gu-mt-30')
+		elmCopyLinkInvite.onclick = () => {
+			navigator.clipboard.writeText('handleClickCopyLinkInvite')
+		}
                 let elmLogin = `
            						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-						<a class="gu-button gu-button__primary gu-mt-30">Sao chép link mời</a>
+							${elmCopyLinkInvite.outerHTML}
                 `;
 
                 let guCustomerEmail = getCookie("email_portal");
