@@ -245,10 +245,9 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function renderCoupon(data) {
+	    	const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
+		tbodyElement.onclick = () => { console.log('copy'); navigator.clipboard.writeText('test copy') }
                 if (!data?.items?.length) return;
-                const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
-		    console.log('renderCoupon')
-		tbodyElement != null && (tbodyElement.onclick = () => { console.log('copy'); navigator.clipboard.writeText('test copy') })
                 data.items.forEach((item) => {
                     if (!item) return;
                     const iconCopy = `<svg width="15" height="14" viewBox="0 0 15 14" fill="none">
@@ -705,7 +704,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function formatNumber(number) {
-                return number?.toLocaleString?.("en");
+                return number?.toLocaleString?.("en") ?? 0;
             }
         }
 
