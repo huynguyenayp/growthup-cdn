@@ -531,17 +531,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
-		let x = '123'
-		let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
-		
-                let elmLogin = `
-           						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-							<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
-                `;
-
                 let guCustomerEmail = getCookie("email_portal");
-                let elmHover = guCustomerEmail ? elmLogin : elmGuest;
-
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
@@ -549,24 +539,52 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-col-s-12",
                     "gu-text-center"
                 );
-                elm.innerHTML = `
-                <div class="gu__card gu__card-border gu-position-relative">
-                                <div>
-                                    ${icon}
-                                    <div class="gu-text-18">
-                                            ${strPoint}
-                                    </div>
-                                    <div>
-                                            ${strType}
-                                    </div>
-                                </div>
-                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-                                    ${elmHover}
-                                </div>
-                            </div>
-                `;
-                rewardSetting.appendChild(elm);
-		document
+
+		if (guCustomerEmail) {
+			setTimeout(() => {
+				let x = '123'
+				let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
+		                let elmLogin = `
+					<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+					<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
+		                `;
+				elm.innerHTML = `
+		                	<div class="gu__card gu__card-border gu-position-relative">
+		                                <div>
+		                                    ${icon}
+		                                    <div class="gu-text-18">
+		                                            ${strPoint}
+		                                    </div>
+		                                    <div>
+		                                            ${strType}
+		                                    </div>
+		                                </div>
+		                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+		                                    ${elmLogin}
+		                                </div>
+		                            </div>
+		                `;
+		                rewardSetting.appendChild(elm);
+			}, 3000)
+		} else {
+			elm.innerHTML = `
+	                	<div class="gu__card gu__card-border gu-position-relative">
+	                                <div>
+	                                    ${icon}
+	                                    <div class="gu-text-18">
+	                                            ${strPoint}
+	                                    </div>
+	                                    <div>
+	                                            ${strType}
+	                                    </div>
+	                                </div>
+	                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+	                                    ${elmGuest}
+	                                </div>
+	                            </div>
+	                `;
+	                rewardSetting.appendChild(elm);
+		}
             }
 
             function renderPointSetting6(item) {
