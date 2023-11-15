@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function formatNumber(number) {
-                return number.toLocaleString("en");
+                return number?.toLocaleString?.("en");
             }
         }
 
