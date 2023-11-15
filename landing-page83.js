@@ -245,9 +245,8 @@ document.addEventListener("DOMContentLoaded", function (events) {
             }
 
             function renderCoupon(data) {
-	    	const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
-		tbodyElement.onclick = () => { console.log('copy'); navigator.clipboard.writeText('test copy') }
                 if (!data?.items?.length) return;
+	    	const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
                 data.items.forEach((item) => {
                     if (!item) return;
                     const iconCopy = `<svg width="15" height="14" viewBox="0 0 15 14" fill="none">
