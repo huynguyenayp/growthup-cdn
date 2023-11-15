@@ -532,10 +532,11 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
 		let x = '123'
-		let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText("${x}");};copy()`
+		let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText("${x}")};copy()`
+		
                 let elmLogin = `
            						<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-							<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick=${handleClickLinkInvite}>Sao chép link mời</a>
+							<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
                 `;
 
                 let guCustomerEmail = getCookie("email_portal");
