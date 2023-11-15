@@ -541,31 +541,30 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 );
 
 		if (guCustomerEmail) {
-			setTimeout(() => {
-				let x = '123'
-				let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
-		                let elmLogin = `
-					<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-					<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
-		                `;
-				elm.innerHTML = `
-		                	<div class="gu__card gu__card-border gu-position-relative">
-		                                <div>
-		                                    ${icon}
-		                                    <div class="gu-text-18">
-		                                            ${strPoint}
-		                                    </div>
-		                                    <div>
-		                                            ${strType}
-		                                    </div>
-		                                </div>
-		                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-		                                    ${elmLogin}
-		                                </div>
-		                            </div>
-		                `;
-		                rewardSetting.appendChild(elm);
-			}, 3000)
+			// after call api
+			let x = 'copied invite link'
+			let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
+			let elmLogin = `
+				<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+				<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
+			`;
+			elm.innerHTML = `
+				<div class="gu__card gu__card-border gu-position-relative">
+					<div>
+					    ${icon}
+					    <div class="gu-text-18">
+						    ${strPoint}
+					    </div>
+					    <div>
+						    ${strType}
+					    </div>
+					</div>
+					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+					    ${elmLogin}
+					</div>
+				    </div>
+			`;
+			rewardSetting.appendChild(elm);
 		} else {
 			elm.innerHTML = `
 	                	<div class="gu__card gu__card-border gu-position-relative">
