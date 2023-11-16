@@ -664,7 +664,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 };
             }
 
-	    function updateLinkInviteButton() => {
+	    function updateLinkInviteButton() {
 		const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
 		if (btnLinkInvite && linkInvite?.length > 0) {
 			btnLinkInvite.onclick = () => {
