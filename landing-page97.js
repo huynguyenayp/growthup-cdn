@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let guCustomerName = getCookie("name_portal");
             let viewIsGuestElement = document.getElementById("gu-is-guest");
             let viewIsLoginElement = document.getElementById("gu-is-login");
+	    let linkInvite = '';
 
             if (guCustomerEmail) {
 
@@ -173,6 +174,9 @@ document.addEventListener("DOMContentLoaded", function (events) {
                 document.getElementsByClassName("gu-point")[0].innerText = formatNumber(
                     formatNumber(data.point)
                 );
+
+		linkInvite = data.linkReferral;
+		updateLinkInviteButton();
             }
 
             function renderCampaign(data) {
@@ -565,61 +569,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 	    		</div>
 		`;
 		rewardSetting.appendChild(elm);
-		const btnLinkInvite = rewardSetting.getElementsByClassName("btn-link-invite")?.[0]
-		if (btnLinkInvite) {
-			btnLinkInvite.onclick = () => {
-				navigator.clipboard.writeText("copied invite link")
-				btnLinkInvite.textContent = "Đã sao chép"
-				setTimeout(() => {
-					btnLinkInvite.textContent = "Sao chép link mời"
-				}, 1500)
-			}
-		}
-		
-		// if (guCustomerEmail) {
-		// 	// after call api
-		// 	let x = 'copied invite link'
-		// 	let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
-		// 	let elmLogin = `
-		// 		<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-		// 		<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
-		// 	`;
-		// 	elm.innerHTML = `
-		// 		<div class="gu__card gu__card-border gu-position-relative">
-		// 			<div>
-		// 			    ${icon}
-		// 			    <div class="gu-text-18">
-		// 				    ${strPoint}
-		// 			    </div>
-		// 			    <div>
-		// 				    ${strType}
-		// 			    </div>
-		// 			</div>
-		// 			<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-		// 			    ${elmLogin}
-		// 			</div>
-		// 		    </div>
-		// 	`;
-		// 	rewardSetting.appendChild(elm);
-		// } else {
-		// 	elm.innerHTML = `
-	 //                	<div class="gu__card gu__card-border gu-position-relative">
-	 //                                <div>
-	 //                                    ${icon}
-	 //                                    <div class="gu-text-18">
-	 //                                            ${strPoint}
-	 //                                    </div>
-	 //                                    <div>
-	 //                                            ${strType}
-	 //                                    </div>
-	 //                                </div>
-	 //                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-	 //                                    ${elmGuest}
-	 //                                </div>
-	 //                            </div>
-	 //                `;
-	 //                rewardSetting.appendChild(elm);
-		// }
+		updateLinkInviteButton();
             }
 
             function renderPointSetting6(item) {
@@ -713,6 +663,19 @@ document.addEventListener("DOMContentLoaded", function (events) {
                         });
                 };
             }
+
+	    function updateLinkInviteButton = () => {
+		const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
+		if (btnLinkInvite && linkInvite?.length > 0) {
+			btnLinkInvite.onclick = () => {
+				navigator.clipboard.writeText(linkInvite);
+				btnLinkInvite.textContent = "Đã sao chép";
+				setTimeout(() => {
+					btnLinkInvite.textContent = "Sao chép link mời";
+				}, 1500);
+			};
+		}
+	    }
 
             function generateGUID() {
                 var currentDate = new Date().getTime().toString(16);
