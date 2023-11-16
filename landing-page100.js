@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href = "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/langing_page23.css";
+            link.href = "###href_css###";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
