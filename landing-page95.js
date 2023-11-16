@@ -267,6 +267,10 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     btnCopy.innerHTML = "Sao chép " + iconCopy;
                     btnCopy.onclick = () => {
                         navigator.clipboard.writeText(item.code);
+			btnCopy.innerHTML = "Đã sao chép"
+			setTimeout(() => {
+				btnCopy.innerHTML = "Sao chép " + iconCopy;
+			}, 1500)
                     };
 
                     tdCode.textContent = item.code;
@@ -531,7 +535,12 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
                         href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
                 `
+		let elmLogin = `
+			<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+			<a class="gu-button gu-button__primary gu-mt-30 btn-link-invite">Sao chép link mời</a>
+		`;
                 let guCustomerEmail = getCookie("email_portal");
+	    	let elmHover = guCustomerEmail ? elmLogin : elmGuest;
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
@@ -539,51 +548,78 @@ document.addEventListener("DOMContentLoaded", function (events) {
                     "gu-col-s-12",
                     "gu-text-center"
                 );
-
-		if (guCustomerEmail) {
-			// after call api
-			let x = 'copied invite link'
-			let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
-			let elmLogin = `
-				<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
-				<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
-			`;
-			elm.innerHTML = `
-				<div class="gu__card gu__card-border gu-position-relative">
-					<div>
-					    ${icon}
-					    <div class="gu-text-18">
-						    ${strPoint}
-					    </div>
-					    <div>
-						    ${strType}
-					    </div>
-					</div>
-					<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-					    ${elmLogin}
-					</div>
+		elm.innerHTML = `
+			<div class="gu__card gu__card-border gu-position-relative">
+				<div>
+				    ${icon}
+				    <div class="gu-text-18">
+					    ${strPoint}
 				    </div>
-			`;
-			rewardSetting.appendChild(elm);
-		} else {
-			elm.innerHTML = `
-	                	<div class="gu__card gu__card-border gu-position-relative">
-	                                <div>
-	                                    ${icon}
-	                                    <div class="gu-text-18">
-	                                            ${strPoint}
-	                                    </div>
-	                                    <div>
-	                                            ${strType}
-	                                    </div>
-	                                </div>
-	                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
-	                                    ${elmGuest}
-	                                </div>
-	                            </div>
-	                `;
-	                rewardSetting.appendChild(elm);
+				    <div>
+					    ${strType}
+				    </div>
+				</div>
+				<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+				    ${elmHover}
+				</div>
+	    		</div>
+		`;
+		rewardSetting.appendChild(elm);
+		const btnLinkInvite = elm.getElementsByClassName("btn-link-invite")
+		if (btnLinkInvite) {
+			btnLinkInvite.onclick = () => {
+				navigator.clipboard.writeText("copied invite link")
+				btnLinkInvite.textContent = "Đã sao chép"
+				setTimeout(() => {
+					btnLinkInvite.textContent = "Sao chép link mời"
+				}, 1500)
+			}
 		}
+		
+		// if (guCustomerEmail) {
+		// 	// after call api
+		// 	let x = 'copied invite link'
+		// 	let handleClickLinkInvite = `function copy(){navigator.clipboard.writeText('${x}')};copy()`
+		// 	let elmLogin = `
+		// 		<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
+		// 		<a class="gu-button gu-button__primary gu-mt-30 link-invite" onclick="${handleClickLinkInvite}">Sao chép link mời</a>
+		// 	`;
+		// 	elm.innerHTML = `
+		// 		<div class="gu__card gu__card-border gu-position-relative">
+		// 			<div>
+		// 			    ${icon}
+		// 			    <div class="gu-text-18">
+		// 				    ${strPoint}
+		// 			    </div>
+		// 			    <div>
+		// 				    ${strType}
+		// 			    </div>
+		// 			</div>
+		// 			<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+		// 			    ${elmLogin}
+		// 			</div>
+		// 		    </div>
+		// 	`;
+		// 	rewardSetting.appendChild(elm);
+		// } else {
+		// 	elm.innerHTML = `
+	 //                	<div class="gu__card gu__card-border gu-position-relative">
+	 //                                <div>
+	 //                                    ${icon}
+	 //                                    <div class="gu-text-18">
+	 //                                            ${strPoint}
+	 //                                    </div>
+	 //                                    <div>
+	 //                                            ${strType}
+	 //                                    </div>
+	 //                                </div>
+	 //                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+	 //                                    ${elmGuest}
+	 //                                </div>
+	 //                            </div>
+	 //                `;
+	 //                rewardSetting.appendChild(elm);
+		// }
             }
 
             function renderPointSetting6(item) {
