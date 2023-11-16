@@ -565,7 +565,7 @@ document.addEventListener("DOMContentLoaded", function (events) {
 	    		</div>
 		`;
 		rewardSetting.appendChild(elm);
-		const btnLinkInvite = elm.getElementsByClassName("btn-link-invite")
+		const btnLinkInvite = rewardSetting.getElementsByClassName("btn-link-invite")?.[0]
 		if (btnLinkInvite) {
 			btnLinkInvite.onclick = () => {
 				navigator.clipboard.writeText("copied invite link")
