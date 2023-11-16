@@ -1,6 +1,5 @@
-document.addEventListener("DOMContentLoaded", function (events) {
-
-    if (window.location.pathname.includes("pages/partner")) {
+(function () {
+  if (window.location.pathname.includes("pages/partner")) {
         let guApiBase = "https://api.growthup.work/api";
 
         loadCss();
@@ -728,4 +727,4 @@ document.addEventListener("DOMContentLoaded", function (events) {
         }
 
     }
-});
+})()
