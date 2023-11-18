@@ -40,6 +40,7 @@
                 getRank(guCustomerEmail);
                 getCampaign(guCustomerEmail);
                 getCoupon(guCustomerEmail);
+	    	activeEmail(guCustomerEmail);
 
                 viewIsGuestElement.remove();
 
@@ -696,6 +697,23 @@
 
                 return null;
             }
+
+	    function activeEmail(email) {
+		const body = {
+		    domain: origin,
+		    email: email,
+		};
+		fetch(`${guApiBase}/user/portal-active`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                })
+                    .then((response) => response.json())
+                    .catch((err) => console.error(err))
+                    .finally(() => {});
+	    }
 
             function updateBirthday(birthday) {
 
