@@ -333,6 +333,12 @@ input:focus {
 	opacity: 0.2;
 }
 
+.reward-settings {
+	    display: flex;
+	    flex-wrap: wrap;
+	    width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
 	.gu__container-banner-content {
 		position: unset;
