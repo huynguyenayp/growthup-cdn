@@ -1,6 +1,7 @@
 (function () {
-  if (window.location.pathname.includes("pages/partner")) {
-        let guApiBase = "https://api.growthup.work/api";
+    if (window.location.pathname.includes("pages/partner")) {
+        let guUriBase = "https://api.growthup.work/";
+        let guApiBase = guUriBase + "api";
 
         loadCss();
         loadView();
@@ -32,7 +33,7 @@
             let guCustomerName = getCookie("name_portal");
             let viewIsGuestElement = document.getElementById("gu-is-guest");
             let viewIsLoginElement = document.getElementById("gu-is-login");
-	    let linkInvite = '';
+            let linkInvite = '';
 
             if (guCustomerEmail) {
 
@@ -40,7 +41,7 @@
                 getRank(guCustomerEmail);
                 getCampaign(guCustomerEmail);
                 getCoupon(guCustomerEmail);
-	    	activeEmail(guCustomerEmail);
+                activeEmail(guCustomerEmail);
 
                 viewIsGuestElement.remove();
 
@@ -175,8 +176,8 @@
                     formatNumber(data.point)
                 );
 
-		linkInvite = data.linkReferral;
-		updateLinkInviteButton();
+                linkInvite = data.linkReferral;
+                updateLinkInviteButton();
             }
 
             function renderCampaign(data) {
@@ -250,7 +251,7 @@
 
             function renderCoupon(data) {
                 if (!data?.items?.length) return;
-	    	const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
+                const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
                 data.items.forEach((item) => {
                     if (!item) return;
                     const iconCopy = `<svg width="15" height="14" viewBox="0 0 15 14" fill="none">
@@ -271,10 +272,10 @@
                     btnCopy.innerHTML = "Sao chép " + iconCopy;
                     btnCopy.onclick = () => {
                         navigator.clipboard.writeText(item.code);
-			btnCopy.innerHTML = "Đã sao chép"
-			setTimeout(() => {
-				btnCopy.innerHTML = "Sao chép " + iconCopy;
-			}, 1500)
+                        btnCopy.innerHTML = "Đã sao chép"
+                        setTimeout(() => {
+                            btnCopy.innerHTML = "Sao chép " + iconCopy;
+                        }, 1500)
                     };
 
                     tdCode.textContent = item.code;
@@ -311,18 +312,20 @@
                     let item = items[i];
                     let giftPoint = item.point;
                     let giftName = item.nameGift;
+                    let imageUrl = item.imgReward ? guUriBase + item.imgReward : "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg";
 
                     let itemElement = document.createElement("div");
                     itemElement.classList.add(
                         "gu-col-4",
                         "gu-col-md-6",
                         "gu-col-s-12",
-                        "gu-text-center"
+                        "gu-text-center",
+                        "gu-reward-item"
                     );
                     itemElement.innerHTML = `
                     <div class="gu__card gu__card-border-radius gu-bg-white">
-                        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
-                        <p>
+                        <img src="${imageUrl}" width="100%" height="187" width="253" alt="growth-up" />
+                        <p class="gu-text-14">
                         ${giftName}
                         </p>
                         <div class="gu__price">
@@ -348,13 +351,14 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
 
                 let elmGuest = `
-                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
+                    <a class="gu-text-link" href="/account/register" >Đăng ký</a>
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
-                        href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
+                        href="/account/login" >Đăng nhập</a></span>
                 `
                 let elmLogin = `<span class="gu-text-16">Bạn đã nhận điểm thưởng rồi!</span>`;
 
@@ -394,9 +398,9 @@
 						</svg>`;
 
                 let elmGuest = `
-                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
+                    <a class="gu-text-link" href="/account/register" >Đăng ký</a>
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
-                        href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
+                        href="/account/login" >Đăng nhập</a></span>
                 `
                 let elmLogin = `
                 <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
@@ -414,7 +418,8 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -465,7 +470,8 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -503,7 +509,8 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -535,24 +542,25 @@
 						</svg>`;
 
                 let elmGuest = `
-                    <a class="gu-text-link" href="/account/login" >{{header_guest_btn_sign_up}}</a>
+                    <a class="gu-text-link" href="/account/register" >Đăng ký</a>
                     <span class="gu-text-16">Đã có tài khoản? <a class="gu-text-link"
-                        href="/account/register" >{{header_guest_btn_sign_in}}</a></span>
+                        href="/account/login" >Đăng nhập</a></span>
                 `
-		let elmLogin = `
+                let elmLogin = `
 			<span class="gu-text-16">${point} điểm khi mời được đối tác mới</span>
 			<a class="gu-button gu-button__primary gu-mt-30 btn-link-invite">Sao chép link mời</a>
 		`;
                 let guCustomerEmail = getCookie("email_portal");
-	    	let elmHover = guCustomerEmail ? elmLogin : elmGuest;
+                let elmHover = guCustomerEmail ? elmLogin : elmGuest;
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
-		elm.innerHTML = `
+                elm.innerHTML = `
 			<div class="gu__card gu__card-border gu-position-relative">
 				<div>
 				    ${icon}
@@ -568,8 +576,8 @@
 				</div>
 	    		</div>
 		`;
-		rewardSetting.appendChild(elm);
-		updateLinkInviteButton();
+                rewardSetting.appendChild(elm);
+                updateLinkInviteButton();
             }
 
             function renderPointSetting6(item) {
@@ -586,7 +594,8 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center"
+                    "gu-text-center",
+                    "gu-point-setting"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -664,18 +673,18 @@
                 };
             }
 
-	    function updateLinkInviteButton() {
-		const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
-		if (btnLinkInvite && linkInvite?.length > 0) {
-			btnLinkInvite.onclick = () => {
-				navigator.clipboard.writeText(linkInvite);
-				btnLinkInvite.textContent = "Đã sao chép";
-				setTimeout(() => {
-					btnLinkInvite.textContent = "Sao chép link mời";
-				}, 1500);
-			};
-		}
-	    }
+            function updateLinkInviteButton() {
+                const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
+                if (btnLinkInvite && linkInvite?.length > 0) {
+                    btnLinkInvite.onclick = () => {
+                        navigator.clipboard.writeText(linkInvite);
+                        btnLinkInvite.textContent = "Đã sao chép";
+                        setTimeout(() => {
+                            btnLinkInvite.textContent = "Sao chép link mời";
+                        }, 1500);
+                    };
+                }
+            }
 
             function generateGUID() {
                 var currentDate = new Date().getTime().toString(16);
@@ -698,12 +707,12 @@
                 return null;
             }
 
-	    function activeEmail(email) {
-		const body = {
-		    domain: origin,
-		    email: email,
-		};
-		fetch(`${guApiBase}/user/portal-active`, {
+            function activeEmail(email) {
+                const body = {
+                    domain: origin,
+                    email: email,
+                };
+                fetch(`${guApiBase}/user/portal-active`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -712,8 +721,8 @@
                 })
                     .then((response) => response.json())
                     .catch((err) => console.error(err))
-                    .finally(() => {});
-	    }
+                    .finally(() => { });
+            }
 
             function updateBirthday(birthday) {
 

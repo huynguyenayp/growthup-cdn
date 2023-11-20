@@ -3,6 +3,7 @@
 	color: #495057;
 	font-weight: 400;
 	font-size: 14px;
+	background-color: #F6F1EE;
 }
 
 .gu-body input {
@@ -93,6 +94,7 @@ input:focus {
 
 .gu-text-14 {
 	font-size: 14px;
+	font-weight: 600;
 }
 
 .gu-font-w-700 {
@@ -331,12 +333,6 @@ input:focus {
 	border-right: 1px solid;
 	margin: 0 30px;
 	opacity: 0.2;
-}
-
-.reward-settings {
-	    display: flex;
-	    flex-wrap: wrap;
-	    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -729,4 +725,12 @@ tr:hover {
 
 .gu-width-fit-content {
 	width: fit-content;
+}
+
+.gu-reward-item { 
+	min-width: 280px;
+}
+
+.gu-point-setting {
+	min-width: 280px;
 }
