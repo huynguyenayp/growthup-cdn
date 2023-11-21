@@ -1,4 +1,4 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
     if (window.location.pathname.includes("pages/partner")) {
         let guUriBase = "https://api.growthup.work/";
         let guApiBase = guUriBase + "api";
@@ -754,4 +754,4 @@
         }
 
     }
-})()
+});
