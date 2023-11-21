@@ -1,7 +1,6 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
     if (window.location.pathname.includes("pages/partner")) {
-        let guUriBase = "https://api.growthup.work/";
-        let guApiBase = guUriBase + "api";
+        let guApiBase = "https://api.growthup.work/api";
 
         loadCss();
         loadView();
@@ -312,20 +311,18 @@
                     let item = items[i];
                     let giftPoint = item.point;
                     let giftName = item.nameGift;
-                    let imageUrl = item.imgReward ? guUriBase + item.imgReward : "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg";
 
                     let itemElement = document.createElement("div");
                     itemElement.classList.add(
                         "gu-col-4",
                         "gu-col-md-6",
                         "gu-col-s-12",
-                        "gu-text-center",
-                        "gu-reward-item"
+                        "gu-text-center"
                     );
                     itemElement.innerHTML = `
                     <div class="gu__card gu__card-border-radius gu-bg-white">
-                        <img src="${imageUrl}" width="100%" height="187" width="253" alt="growth-up" />
-                        <p class="gu-text-14">
+                        <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-default.png" width="100%" height="187" width="253" alt="growth-up" />
+                        <p>
                         ${giftName}
                         </p>
                         <div class="gu__price">
@@ -351,8 +348,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
 
                 let elmGuest = `
@@ -418,8 +414,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -470,8 +465,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -509,8 +503,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -557,8 +550,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
                 elm.innerHTML = `
 			<div class="gu__card gu__card-border gu-position-relative">
@@ -594,8 +586,7 @@
                     "gu-col-4",
                     "gu-col-md-6",
                     "gu-col-s-12",
-                    "gu-text-center",
-                    "gu-point-setting"
+                    "gu-text-center"
                 );
                 elm.innerHTML = `
                 <div class="gu__card gu__card-border gu-position-relative">
@@ -754,4 +745,4 @@
         }
 
     }
-})()
+});
