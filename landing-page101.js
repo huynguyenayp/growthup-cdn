@@ -11,7 +11,7 @@
             let link = document.createElement("link");
             link.rel = "stylesheet";
             link.type = "text/css";
-            link.href = "https://api.growthup.work/api/portal-partner/file-css?v=1700580251808";
+            link.href = "###href_css###";
             head.appendChild(link);
 
             let link2 = document.createElement("link");
@@ -312,7 +312,8 @@
                     let item = items[i];
                     let giftPoint = item.point;
                     let giftName = item.nameGift;
-                    let imageUrl = item.imgReward ? guUriBase + item.imgReward : "https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg";
+                    let imageDefault = "data:image/svg+xml;base64,IDxzdmcgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxNTEiIHZpZXdCb3g9IjAgMCAxNTAgMTUxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8cGF0aCBkPSJNMTIxLjg3NSA0OC45Mzc1SDExMy4xMjVDMTE1LjYyNSA0NS45Mzc1IDExNy4xODggNDIuMTg3NSAxMTcuMTg4IDM4QzExNy4xODggMjguNSAxMDkuNSAyMC44MTI1IDEwMCAyMC44MTI1Qzg5LjUgMjAuODEyNSA4MC4yNSAyNi4zNzUgNzUgMzQuNjI1QzY5Ljc1IDI2LjM3NSA2MC41IDIwLjgxMjUgNTAgMjAuODEyNUM0MC41IDIwLjgxMjUgMzIuODEyNSAyOC41IDMyLjgxMjUgMzhDMzIuODEyNSA0Mi4xODc1IDM0LjM3NSA0NS45Mzc1IDM2Ljg3NSA0OC45Mzc1SDI4LjEyNUMyMy44MTI1IDQ4LjkzNzUgMjAuMzEyNSA1Mi40Mzc1IDIwLjMxMjUgNTYuNzVWNzIuMzc1QzIwLjMxMjUgNzYuMTI1IDIzIDc5LjEyNSAyNi41NjI1IDc5Ljg3NVYxMjIuMzc1QzI2LjU2MjUgMTI2LjY4OCAzMC4wNjI1IDEzMC4xODggMzQuMzc1IDEzMC4xODhIMTE1LjYyNUMxMTkuOTM4IDEzMC4xODggMTIzLjQzOCAxMjYuNjg4IDEyMy40MzggMTIyLjM3NVY3OS44NzVDMTI3IDc5LjEyNSAxMjkuNjg4IDc2LjEyNSAxMjkuNjg4IDcyLjM3NVY1Ni43NUMxMjkuNjg4IDUyLjQzNzUgMTI2LjE4OCA0OC45Mzc1IDEyMS44NzUgNDguOTM3NVpNMTIwLjMxMiA3MC44MTI1SDc5LjY4NzVWNTguMzEyNUgxMjAuMzEyVjcwLjgxMjVaTTEwMCAzMC4xODc1QzEwNC4zMTIgMzAuMTg3NSAxMDcuODEyIDMzLjY4NzUgMTA3LjgxMiAzOEMxMDcuODEyIDQyLjMxMjUgMTA0LjMxMiA0NS44MTI1IDEwMCA0NS44MTI1SDgwLjI1QzgyLjM3NSAzNi44NzUgOTAuNDM3NSAzMC4xODc1IDEwMCAzMC4xODc1Wk01MCAzMC4xODc1QzU5LjU2MjUgMzAuMTg3NSA2Ny42MjUgMzYuODc1IDY5Ljc1IDQ1LjgxMjVINTBDNDUuNjg3NSA0NS44MTI1IDQyLjE4NzUgNDIuMzEyNSA0Mi4xODc1IDM4QzQyLjE4NzUgMzMuNjg3NSA0NS42ODc1IDMwLjE4NzUgNTAgMzAuMTg3NVpNMjkuNjg3NSA1OC4zMTI1SDcwLjMxMjVWNzAuODEyNUgyOS42ODc1VjU4LjMxMjVaTTM1LjkzNzUgODAuMTg3NUg3MC4zMTI1VjEyMC44MTJIMzUuOTM3NVY4MC4xODc1Wk0xMTQuMDYyIDEyMC44MTJINzkuNjg3NVY4MC4xODc1SDExNC4wNjJWMTIwLjgxMloiIGZpbGw9IiMzQjgyRjYiLz4gPC9zdmc+Cg==";
+                    let imageUrl = item.imgReward ? guUriBase + item.imgReward : imageDefault;
 
                     let itemElement = document.createElement("div");
                     itemElement.classList.add(
@@ -755,4 +756,3 @@
 
     }
 })();
-1
