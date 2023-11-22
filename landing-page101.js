@@ -410,6 +410,9 @@
                 let strType = item.strType;
                 // let birthday = item.birthday;
 		let birthday = guCustomerBirthday?.split(" ")?.[0] || ""
+		if (birthday?.includes("/")) {
+			birthday = birthday.split("/").toReversed().join("-")
+		}
 
 
                 let point = formatNumber(item.point);
