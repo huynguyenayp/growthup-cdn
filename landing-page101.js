@@ -31,6 +31,7 @@
         function loadView() {
             let guCustomerEmail = getCookie("email_portal");
             let guCustomerName = getCookie("name_portal");
+	    let guCustomerBirthday = getCookie("birthday_portal")
             let viewIsGuestElement = document.getElementById("gu-is-guest");
             let viewIsLoginElement = document.getElementById("gu-is-login");
             let linkInvite = '';
@@ -407,7 +408,8 @@
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
-                let birthday = item.birthday;
+                // let birthday = item.birthday;
+		let birthday = guCustomerBirthday?.split(" ")?.[0] || ""
 
 
                 let point = formatNumber(item.point);
