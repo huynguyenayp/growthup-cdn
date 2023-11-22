@@ -199,8 +199,9 @@
                 var guCampaignDescription = document.getElementsByClassName(
                     "gu-campaign-description"
                 )[0];
-
-                guCampaignDescription.innerHTML = data.description;
+		if (guCampaignDescription) {
+			guCampaignDescription.innerHTML = data.description;
+		}
             }
 
             function renderGift(items) {
@@ -312,7 +313,7 @@
                 let giftSetting2 = items.find((obj) => obj.type === 9);
                 renderPointSetting2(giftSetting2);
                 let giftSetting3 = items.find((obj) => obj.type === 1);
-                renderPointSetting3(giftSetting3);
+                // renderPointSetting3(giftSetting3);
                 renderPointSetting4(giftSetting3);
                 let giftSetting5 = items.find((obj) => obj.type === 5);
                 renderPointSetting5(giftSetting5);
@@ -355,6 +356,7 @@
             }
 
             function renderPointSetting1(item) {
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -401,7 +403,7 @@
             }
 
             function renderPointSetting2(item) {
-
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -473,6 +475,7 @@
             }
 
             function renderPointSetting3(item) {
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -512,6 +515,7 @@
             }
 
             function renderPointSetting4(item) {
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -549,6 +553,7 @@
             }
 
             function renderPointSetting5(item) {
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -597,6 +602,7 @@
             }
 
             function renderPointSetting6(item) {
+		if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
