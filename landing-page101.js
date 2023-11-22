@@ -200,7 +200,7 @@
                     "gu-campaign-description"
                 )[0];
 
-                guCampaignDescription.textContent = data.description;
+                guCampaignDescription.innerHTML = data.description;
             }
 
             function renderGift(items) {
