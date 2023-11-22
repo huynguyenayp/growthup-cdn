@@ -153,6 +153,10 @@ input:focus {
 	line-height: 26px;
 }
 
+a.gu-button {
+	color: #fff;
+}
+
 .gu-button__primary {
 	background-color: #3b82f6;
 }
