@@ -182,7 +182,7 @@
 			const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase")?.[0];
 			if (btnLinkPurchase) {
 				btnLinkPurchase.onclick = () => {
-					navigator.clipboard.writeText(`origin?${partnerRef}`);
+					navigator.clipboard.writeText(`${origin}?${partnerRef}`);
 		                        btnLinkPurchase.textContent = "Đã sao chép";
 		                        setTimeout(() => {
 		                            btnLinkPurchase.textContent = "Sao chép link";
