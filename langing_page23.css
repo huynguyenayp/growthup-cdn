@@ -744,3 +744,7 @@ tr:hover {
 .gu-point-setting {
 	min-width: 280px;
 }
+
+.gu-point-setting a {
+	transition: none;
+}
