@@ -85,6 +85,7 @@
 
             } else {
                 viewIsLoginElement.remove();
+	    	hideCommissionPolicy();
             }
 
             getPointSettings();
@@ -175,6 +176,20 @@
                 document.getElementsByClassName("gu-point")[0].innerText = formatNumber(
                     formatNumber(data.point)
                 );
+
+		const partnerRef = data.linkReferral?.split('?')?.[1] || ''
+		if (partnerRef?.includes('ref=')) {
+			const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase");
+			if (btnLinkPurchase) {
+				btnLinkPurchase.onclick = () => {
+					navigator.clipboard.writeText(`origin?${partnerRef}`);
+		                        btnLinkPurchase.textContent = "Đã sao chép";
+		                        setTimeout(() => {
+		                            btnLinkPurchase.textContent = "Sao chép link";
+		                        }, 1500);
+				}
+			}
+		}
 
                 linkInvite = data.linkReferral;
                 updateLinkInviteButton();
@@ -673,6 +688,13 @@
                         });
                 };
             }
+
+	    function hideCommissionPolicy() {
+		    const accordionEl = document.getElementsByClassName("commission-policy")?.[0]
+		    if (accordionEl) {
+			    accordionEl.style.display = "none"
+		    }
+	    }
 
             function updateLinkInviteButton() {
                 const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
