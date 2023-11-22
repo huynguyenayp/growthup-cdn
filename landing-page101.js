@@ -179,7 +179,7 @@
 
 		const partnerRef = data.linkReferral?.split('?')?.[1] || ''
 		if (partnerRef?.includes('ref=')) {
-			const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase");
+			const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase")?.[0];
 			if (btnLinkPurchase) {
 				btnLinkPurchase.onclick = () => {
 					navigator.clipboard.writeText(`origin?${partnerRef}`);
