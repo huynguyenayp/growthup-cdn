@@ -144,17 +144,13 @@ input:focus {
 
 .gu-button {
 	border-radius: 6px;
-	color: #fff;
+	color: #fff !important;
 	font-weight: 700;
 	padding: 10px;
 	border: none;
 	cursor: pointer;
 	display: block;
 	line-height: 26px;
-}
-
-a.gu-button {
-	color: #fff;
 }
 
 .gu-button__primary {
