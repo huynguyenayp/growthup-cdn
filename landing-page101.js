@@ -411,7 +411,11 @@
                 // let birthday = item.birthday;
 		let birthday = guCustomerBirthday?.split(" ")?.[0] || ""
 		if (birthday?.includes("/")) {
-			birthday = birthday.split("/").toReversed().join("-")
+			let birthdayArr = birthday.split("/");
+			let day = birthdayArr[0];
+			let month = birthdayArr[1];
+			let year = birthdayArr[2];
+			birthday = `${year}-${month}-${day}`;
 		}
 
 
