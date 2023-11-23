@@ -52,7 +52,7 @@
 
                 document.getElementsByClassName(
                     "gu-customer-name"
-                )[0].innerText = guCustomerName;
+                )[0].textContent = ` ${guCustomerName};
 
                 var modal = document.getElementsByClassName("modalGetCoupon")[0];
                 var modal2 = document.getElementsByClassName("modalSendInfo")[0];
