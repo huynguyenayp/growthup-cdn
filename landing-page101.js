@@ -428,11 +428,10 @@
                 let elmLogin = `
                 <span class="gu-text-16">Nhận ${point} điểm khi đến sinh nhật</span>
                                                 <div class="gu-d-flex gu-mt-30">
-                                                    <input id="gu-input-birthday" type="date" value="">
-                                                    <a id="gu-btn-update-birthday" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
+                                                    <input id="gu-input-birthday" type="date" value="" disabled="true">
                                                 </div>
                 `;
-
+		// <a id="gu-btn-update-birthday" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
                 let guCustomerEmail = getCookie("email_portal");
                 let elmHover = guCustomerEmail ? elmLogin : elmGuest;
 
@@ -467,15 +466,15 @@
                 if (inputBirthday)
                     inputBirthday.value = birthday;
 
-                const btnUpdateBirthday = document.getElementById("gu-btn-update-birthday");
+                // const btnUpdateBirthday = document.getElementById("gu-btn-update-birthday");
 
-                if (btnUpdateBirthday) {
-                    btnUpdateBirthday.onclick = () => {
-                        var valueBirthday = document.getElementById("gu-input-birthday").value;
-                        const birthday = new Date(valueBirthday).toISOString();
-                        updateBirthday(birthday);
-                    }
-                }
+                // if (btnUpdateBirthday) {
+                //     btnUpdateBirthday.onclick = () => {
+                //         var valueBirthday = document.getElementById("gu-input-birthday").value;
+                //         const birthday = new Date(valueBirthday).toISOString();
+                //         updateBirthday(birthday);
+                //     }
+                // }
 
             }
 
