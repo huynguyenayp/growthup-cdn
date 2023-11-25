@@ -130,6 +130,7 @@ input:focus {
 
 .gu__card-gift {
 	min-height: 290px;
+	max-width: 320px !important;
 }
 
 .gu__card-border {
