@@ -343,7 +343,7 @@
                     itemElement.innerHTML = `
                     <div class="gu__card gu__card-border-radius gu-bg-white">
                         <img src="${imageUrl}" width="100%" height="187" width="253" alt="growth-up" />
-                        <p class="gu-text-14">
+                        <p class="gu-text-14 gu-text-ellipsis">
                         ${giftName}
                         </p>
                         <div class="gu__price">
