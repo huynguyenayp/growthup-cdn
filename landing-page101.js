@@ -228,7 +228,7 @@
                     <div class="gu__card gu-bg-white gu__card-border-radius gu__card-border-primary gu__card-gift">
                         <img src="https://cdn.jsdelivr.net/gh/huynguyenayp/growthup-cdn@main/landing-page-gift.svg" />
                         <div class="gu-text-16">${reward}</div>
-                        <div class="gu-text-16 gu-text-color-red gu-p-x-10" id="${newGUID}"></div>
+                        <div class="gu-text-16 gu-text-color-red gu-p-x-10" id="${newGUID}">-</div>
                         <div class="gu-p-x-10">
                         <div class="gu-progress-bar">
                             <span class="gu-progress-bar-fill" style="width: ${percent}%;"></span>
