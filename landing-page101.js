@@ -1,6 +1,6 @@
 (function() {
     if (window.location.pathname.includes("pages/partner")) {
-        let guUriBase = "https://api.growthup.work/";
+        let guUriBase = "###api_base###";
         let guApiBase = guUriBase + "api";
 
         loadCss();
