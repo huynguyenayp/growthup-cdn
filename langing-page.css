@@ -130,7 +130,6 @@ input:focus {
 
 .gu__card-gift {
 	min-height: 290px;
-	max-width: 320px !important;
 }
 
 .gu__card-border {
@@ -196,6 +195,10 @@ input:focus {
 	margin-bottom: 30px;
 }
 
+.gu-mb-10 {
+	margin-bottom: 10px;
+}
+
 .gu-d-flex {
 	display: flex;
 }
@@ -216,13 +219,18 @@ input:focus {
 	justify-content: end;
 }
 
-.gu-d-flex-row {
+.gu-flex-ai-center {
+	align-items: center;
+}
+
+.gu-flex-row {
 	flex-direction: row;
 }
 
-.gu-d-flex-column {
+.gu-flex-column {
 	flex-direction: column;
 }
+
 
 .gu-bg-white {
 	background-color: #fff;
@@ -302,6 +310,10 @@ input:focus {
 	padding-bottom: 30px;
 }
 
+.gu-mt-10 {
+	margin-top: 10px;
+}
+
 .gu-min-width-80 {
 	min-width: 80px;
 }
@@ -324,10 +336,6 @@ input:focus {
 	height: 100%;
 }
 
-.gu-ai-center {
-	align-items: center;
-}
-
 .gu-text-success {
 	color: #1ea97c;
 }
@@ -348,9 +356,9 @@ input:focus {
 
 @media only screen and (max-width: 600px) {
 	.gu-row {
-		width: unset;
+		/* width: unset; */
 	}
-	
+
 	.gu__container-banner-content {
 		position: unset;
 		transform: unset;
@@ -362,15 +370,27 @@ input:focus {
 		height: 200px;
 	}
 
-	.gu-d-flex-row-sm {
+	.gu-ml-0-sm {
+		margin-left: 0;
+	}
+
+	.gu-mt-10-sm {
+		margin-top: 10px;
+	}
+
+	.gu-flex-row-sm {
 		flex-direction: row;
+	}
+
+	.gu-flex-colum-sm {
+		flex-direction: column;
 	}
 
 	.gu-pl-30-sm {
 		margin-left: 30px;
 	}
 
-	.gu-ai-center-sm {
+	.gu-flex-ai-center-sm {
 		align-items: center;
 	}
 
@@ -381,7 +401,7 @@ input:focus {
 	.gu__container-banner-content {
 		max-width: unset;
 	}
-	
+
 	.gu-modal-content {
 		width: 100% !important;
 	}
@@ -391,6 +411,7 @@ input:focus {
 	.gu-row {
 		width: 100%;
 	}
+
 	/* For tablets: */
 	.gu-col-s-1 {
 		width: 8.33%;
@@ -436,7 +457,7 @@ input:focus {
 		width: 90.66%;
 	}
 
-	.gu-col-s-12 {
+	.gu-col-sm-12 {
 		width: 100%;
 	}
 
@@ -446,6 +467,7 @@ input:focus {
 	.gu-row {
 		width: 100%;
 	}
+
 	/* For desktop: */
 	.gu-col-md-1 {
 		width: 8.33%;
@@ -628,7 +650,7 @@ details[open] {
  CSS for the main interaction
 */
 
-.accordionTitle {
+.gu-accordion-title {
 	cursor: pointer;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -639,26 +661,27 @@ details[open] {
 	border-radius: 6px;
 }
 
-.accordionTitle + .accordionContent {
+.gu-accordion-title+.gu-accordion-content {
 	display: none;
 }
 
-.accordionContent {
+.gu-accordion-content {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	padding: 15px;
 }
-.accordionTitle .fa {
+
+.gu-accordion-title .fa {
 	margin-right: 10px;
 	transition: transform 0.2s ease-in-out;
 }
 
-.accordionTitle.is-open + .accordionContent {
+.gu-accordion-title.is-open+.gu-accordion-content {
 	display: block;
 }
 
-.accordionTitle.is-open .fa {
+.gu-accordion-title.is-open .fa {
 	transform: rotate(90deg);
 }
 
@@ -680,7 +703,6 @@ details[open] {
 
 table {
 	border-collapse: collapse;
-	margin: 20px 0 40px 0;
 	width: 100%;
 }
 
@@ -748,7 +770,7 @@ tr:hover {
 	width: fit-content;
 }
 
-.gu-reward-item { 
+.gu-reward-item {
 	min-width: 280px;
 }
 
@@ -758,4 +780,40 @@ tr:hover {
 
 .gu-point-setting a {
 	transition: none;
+}
+
+/*----------widget copy ref---------------*/
+.gu-ref-container {
+  background: #ffffff;
+  border: 1px dashed #9c1af6;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+}
+
+.gu-ref-commission {
+  font-size: 16px;
+}
+
+.gu-color-red {
+  color: #ff0000;
+}
+
+.gu-ref-button {
+  background: linear-gradient(268.28deg, #2a07ba -0.19%, #af19fe 103.88%);
+  border-radius: 6px;
+  color: #ffff;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+}
+
+.gu-copyright {
+  color: #495057;
+  font-size: 10.5px;
+} 
+
+.gu-ref-button:hover {
+    box-shadow: inset 0 0 0 100px rgba(0,0,0,.2);
 }

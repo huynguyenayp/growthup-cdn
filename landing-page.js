@@ -1,42 +1,212 @@
-(function() {
-    if (window.location.pathname.includes("pages/partner")) {
-        let guUriBase = "###api_base###";
-        let guApiBase = guUriBase + "api";
+; (async function () {
+    const cssMain = "###href_css###";
+    const guUriBase = "###api_base###";
+    const guCustomerEmail = getCookie("email_portal");
 
-        loadCss();
-        loadView();
+    function formatNumber(number) {
+        return number?.toLocaleString?.("en") ?? 0;
+    }
 
-        function loadCss() {
-            let head = document.getElementsByTagName("head")[0];
-            let link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.type = "text/css";
-            link.href = "###href_css###";
-            head.appendChild(link);
+    function formatToVnd(number) {
+        return (number?.toLocaleString?.("en") ?? 0) + "₫";
+    }
 
-            let link2 = document.createElement("link");
-            link2.rel = "stylesheet";
-            link2.type = "text/css";
-            link2.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
-            head.appendChild(link2);
+    async function copyContent(text) {
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
 
-            let link3 = document.createElement("link");
-            link3.rel = "stylesheet";
-            link3.type = "text/css";
-            link3.href = "https://fonts.googleapis.com/css?family=Inter";
+    function generateGUID() {
+        var currentDate = new Date().getTime().toString(16);
+        var randomPart = Math.random().toString(16).substring(2);
+        var guid = currentDate + randomPart;
+        return guid;
+    }
 
-            head.appendChild(link3);
+    function getCookie(cookieName) {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+
+            if (cookie.startsWith(cookieName + "=")) {
+                return cookie.substring(cookieName.length + 1);
+            }
         }
 
-        function loadView() {
-            let guCustomerEmail = getCookie("email_portal");
-            let guCustomerName = getCookie("name_portal");
-	    let guCustomerBirthday = getCookie("birthday_portal")
+        return null;
+    }
+
+    function loadResource(ref) {
+        let head = document.getElementsByTagName("head")[0];
+        let link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.type = "text/css";
+        link.href = ref;
+        head.appendChild(link);
+    }
+
+    if (window.location.pathname.includes("/products")) {
+
+        if (!guCustomerEmail) return;
+
+        const AFFILIATE = 1;
+        const REFERRAL = 3;
+
+        const DISCOUNT_ORDER_AMOUNT = 1;
+        const DISCOUNT_PRODUCT_AMOUNT = 3;
+        const DISCOUNT_ORDER_PERCENT = 5;
+
+        loadResource(cssMain);
+
+        function renderBannerReferral(campaign, partnerInfo) {
+
+            let unit = "";
+            let permissionValue = 0;
+            const campaignType = campaign?.type;
+            const discountType = campaign?.discountType;
+            const commissionValue = campaign?.rules?.length > 0 ? campaign?.rules[0].commission : 0;
+            let isShowLabelCommission = false;
+
+            if (campaignType === AFFILIATE) {
+                isShowLabelCommission = true;
+                if (discountType === DISCOUNT_ORDER_AMOUNT) {
+                    unit = "₫";
+                    permissionValue = `${formatToVnd(commissionValue)} giá trị đơn hàng`;
+                }
+                if (discountType === DISCOUNT_PRODUCT_AMOUNT) {
+                    unit = "₫";
+                    permissionValue = `${formatToVnd(commissionValue)} trên mỗi sản phẩm`;
+
+                }
+                if (discountType === DISCOUNT_ORDER_PERCENT) {
+                    unit = "%";
+                    permissionValue = `${formatNumber(commissionValue)}${unit} giá trị đơn hàng`;
+                }
+            }
+
+            // Không hiển thị hoa hồng
+            if (campaignType === REFERRAL) {
+                isShowLabelCommission = false;
+            }
+
+            const classNames = ["product-actions", "selector-actions"];
+            let elementActions;
+
+            for (const className of classNames) {
+                const elements = document.getElementsByClassName(className);
+                if (elements.length > 0) {
+                    elementActions = elements[0];
+                    break;
+                }
+            }
+
+            let htmlCommission = isShowLabelCommission ? `<div><span>Hoa hồng:</span>
+                    <span class="gu-color-red">${permissionValue}</span></div>` : "";
+
+            let iconCopy = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11.9058 4.12821L7.93555 0.157949C7.83466 0.0569387 7.6978 0.000125678 7.55503 0H5.7817C5.25807 0 4.75588 0.208012 4.38562 0.578276C4.01535 0.948541 3.80734 1.45073 3.80734 1.97436V2.87179H2.90991C2.38627 2.87179 1.88409 3.07981 1.51382 3.45007C1.14356 3.82034 0.935547 4.32252 0.935547 4.84615V12.0256C0.935547 12.5493 1.14356 13.0515 1.51382 13.4217C1.88409 13.792 2.38627 14 2.90991 14H7.93555C8.45918 14 8.96137 13.792 9.33163 13.4217C9.70189 13.0515 9.90991 12.5493 9.90991 12.0256V11.1282H10.0894C10.613 11.1282 11.1152 10.9202 11.4855 10.5499C11.8557 10.1797 12.0638 9.67748 12.0638 9.15385V4.48718C12.0581 4.35192 12.0017 4.22375 11.9058 4.12821ZM8.11503 1.83795L10.2258 3.94872H8.11503V1.83795ZM8.83298 12.0256C8.83298 12.2637 8.73843 12.4919 8.57013 12.6602C8.40183 12.8285 8.17356 12.9231 7.93555 12.9231H2.90991C2.67189 12.9231 2.44362 12.8285 2.27532 12.6602C2.10702 12.4919 2.01247 12.2637 2.01247 12.0256V4.84615C2.01247 4.60814 2.10702 4.37987 2.27532 4.21157C2.44362 4.04327 2.67189 3.94872 2.90991 3.94872H3.80734V9.15385C3.80734 9.67748 4.01535 10.1797 4.38562 10.5499C4.75588 10.9202 5.25807 11.1282 5.7817 11.1282H8.83298V12.0256ZM10.0894 10.0513H5.7817C5.54369 10.0513 5.31542 9.95673 5.14712 9.78843C4.97882 9.62013 4.88426 9.39186 4.88426 9.15385V1.97436C4.88426 1.73634 4.97882 1.50808 5.14712 1.33978C5.31542 1.17147 5.54369 1.07692 5.7817 1.07692H7.03811V4.48718C7.03997 4.62941 7.0973 4.76529 7.19788 4.86587C7.29846 4.96645 7.43434 5.02378 7.57657 5.02564H10.9868V9.15385C10.9868 9.39186 10.8923 9.62013 10.724 9.78843C10.5557 9.95673 10.3274 10.0513 10.0894 10.0513Z" fill="white" />
+                     </svg>`;;
+            let iconCopySuccess = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M4.86199 11.5948C4.78717 11.5923 4.71366 11.5745 4.64596 11.5426C4.57826 11.5107 4.5178 11.4652 4.46827 11.4091L0.753985 7.69483C0.683167 7.64891 0.623706 7.58751 0.580092 7.51525C0.536478 7.44299 0.509851 7.36177 0.502221 7.27771C0.49459 7.19366 0.506156 7.10897 0.536046 7.03004C0.565935 6.95111 0.613367 6.88 0.674759 6.82208C0.736151 6.76416 0.8099 6.72095 0.890436 6.69571C0.970973 6.67046 1.05619 6.66385 1.13966 6.67635C1.22313 6.68886 1.30266 6.72017 1.37226 6.76792C1.44186 6.81567 1.4997 6.8786 1.54141 6.95197L4.86199 10.2503L12.6397 2.49483C12.7444 2.42694 12.8689 2.39617 12.9932 2.40745C13.1174 2.41873 13.2343 2.47141 13.3251 2.55705C13.4159 2.64268 13.4753 2.75632 13.4938 2.87973C13.5123 3.00315 13.4888 3.1292 13.4271 3.23768L5.2557 11.4091C5.20618 11.4652 5.14571 11.5107 5.07801 11.5426C5.01031 11.5745 4.9368 11.5923 4.86199 11.5948Z" fill="#FFF"/> </svg>`;
+            let elm = document.createElement("div");
+            elm.innerHTML = `
+               <div class="gu-ref-container gu-d-flex gu-flex-jc-center gu-flex-ai-center gu-flex-column gu-mt-10">
+                <div class="gu-d-flex gu-flex-row gu-flex-ai-center gu-flex-colum-sm">
+                    ${htmlCommission}
+                    <button type="button" id="gu-btn-copy-ref" class="gu-ref-button gu-m-x-10 gu-ml-10 gu-ml-0-sm gu-mt-10-sm">Sao chép link giới thiệu 
+                    ${iconCopy}
+                    </button>
+                </div>
+
+                <div class="gu-copyright gu-mt-10">Ứng dụng được phát triển bởi GrowthUP.vn</div>
+                </div>
+                `;
+            if (elementActions) {
+                elementActions.appendChild(elm);
+                let handleCopyClick = document.querySelector('#gu-btn-copy-ref');
+                handleCopyClick.addEventListener('click', async () => {
+
+                    const refCode = partnerInfo?.ref ? partnerInfo.ref : "";
+                    const linkRef = window.location.href + "?ref=" + refCode;
+
+                    handleCopyClick.innerHTML = `
+                            Sao chép link giới thiệu ${iconCopySuccess}
+                        `
+                    setTimeout(() => {
+                        handleCopyClick.innerHTML = `
+                            Sao chép link giới thiệu  ${iconCopy}
+                        `
+                    }, 1500);
+                    await copyContent(linkRef);
+                });
+            }
+        }
+
+        async function getSettingPortal(email) {
+            const response = await fetch(
+                `${guUriBase}/portal-partner/public?domain=${origin}/&email=${email}`
+            );
+            const data = await response.json();
+            return data?.data;
+        }
+
+        async function getPartnerInfo(email) {
+            const response = await fetch(
+                `${guUriBase}/partner/portal?domain=${origin}/&email=${email}`
+            )
+            const data = await response.json();
+            return data?.data;
+        }
+
+        async function getCampaign(email) {
+            const response = await fetch(
+                `${guUriBase}/campaign/portal?domain=${origin}/&email=${email}`
+            )
+            const data = await response.json();
+            return data?.data;
+        }
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+            const settingPortal = await getSettingPortal();
+            const isCopyLink = settingPortal?.isCopyLink;
+
+            if (isCopyLink) {
+                const [partnerInfo, campaign] = await Promise.all(
+                    [
+                        getPartnerInfo(guCustomerEmail),
+                        getCampaign(guCustomerEmail)
+                    ]);
+                renderBannerReferral(campaign, partnerInfo);
+            }
+        });
+
+    }
+
+    if (window.location.pathname.includes("/pages/partner")) {
+
+        let font = "https://fonts.googleapis.com/css?family=Inter";
+        let fontAwesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+
+        loadResource(cssMain);
+        loadResource(font);
+        loadResource(fontAwesome);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            renderPagePartner();
+        });
+
+        async function renderPagePartner() {
+            let guCustomerBirthday = getCookie("birthday_portal")
             let viewIsGuestElement = document.getElementById("gu-is-guest");
             let viewIsLoginElement = document.getElementById("gu-is-login");
             let linkInvite = '';
+            const isLogin = guCustomerEmail != null;
 
-            if (guCustomerEmail) {
+            if (isLogin) {
 
                 getProgress(guCustomerEmail);
                 getRank(guCustomerEmail);
@@ -44,15 +214,26 @@
                 getCoupon(guCustomerEmail);
                 activeEmail(guCustomerEmail);
 
-                viewIsGuestElement.remove();
+                const [partners, orders] = await Promise.all(
+                    [
+                        getPartners(guCustomerEmail),
+                        getOrders(guCustomerEmail)
+                    ]);
 
-                if (viewIsLoginElement) {
+                renderTablePartner(partners);
+                renderTableOrder(orders);
+
+                if (viewIsGuestElement)
+                    viewIsGuestElement.remove();
+
+                if (viewIsLoginElement)
                     viewIsLoginElement.style.display = "block";
-                }
 
-                document.getElementsByClassName(
-                    "gu-customer-name"
-                )[0].textContent = ` ${guCustomerName}`;
+                let customerNameElement = document.getElementsByClassName("gu-customer-name")[0];
+                if (customerNameElement) {
+                    let guCustomerName = getCookie("name_portal");
+                    customerNameElement.textContent = guCustomerName;
+                }
 
                 var modal = document.getElementsByClassName("modalGetCoupon")[0];
                 var modal2 = document.getElementsByClassName("modalSendInfo")[0];
@@ -86,7 +267,7 @@
 
             } else {
                 viewIsLoginElement.remove();
-	    	hideCommissionPolicy();
+                hideCommissionPolicy();
             }
 
             getPointSettings();
@@ -94,7 +275,7 @@
             loadAccordion();
 
             function loadAccordion() {
-                let accordionTitles = document.querySelectorAll(".accordionTitle");
+                let accordionTitles = document.querySelectorAll(".gu-accordion-title");
 
                 accordionTitles.forEach(function (accordionTitle) {
                     accordionTitle.addEventListener("click", function () {
@@ -113,7 +294,7 @@
 
             function getProgress(email) {
                 fetch(
-                    `${guApiBase}/partner/kpi-progress-public?domain=${origin}/&email=${email}`
+                    `${guUriBase}/partner/kpi-progress-public?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderGift(data.data.items))
@@ -122,7 +303,7 @@
 
             function getRank(email) {
                 fetch(
-                    `${guApiBase}/partner/portal?domain=${origin}/&email=${email}`
+                    `${guUriBase}/partner/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderRank(data.data))
@@ -131,7 +312,7 @@
 
             function getCampaign(email) {
                 fetch(
-                    `${guApiBase}/campaign/portal?domain=${origin}/&email=${email}`
+                    `${guUriBase}/campaign/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderCampaign(data.data))
@@ -140,7 +321,7 @@
 
             function getCoupon(email) {
                 fetch(
-                    `${guApiBase}/coupon/portal?domain=${origin}/&email=${email}`
+                    `${guUriBase}/coupon/portal?domain=${origin}/&email=${email}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderCoupon(data.data))
@@ -148,7 +329,7 @@
             }
 
             function getPointSettings() {
-                fetch(`${guApiBase}/point-setting/public?domain=${origin}`)
+                fetch(`${guUriBase}/point-setting/public?domain=${origin}`)
                     .then((response) => response.json())
                     .then((data) => renderPointSettings(data.data.items))
                     .catch((err) => console.error(err));
@@ -156,11 +337,27 @@
 
             function getRewardSettings() {
                 fetch(
-                    `${guApiBase}/reward-setting/public?domain=${origin}`
+                    `${guUriBase}/reward-setting/public?domain=${origin}`
                 )
                     .then((response) => response.json())
                     .then((data) => renderRewardSettings(data.data.items))
                     .catch((err) => console.error(err));
+            }
+
+            async function getOrders(email) {
+                const response = await fetch(
+                    `${guUriBase}/order/portal?domain=${origin}/&email=${email}`
+                )
+                const data = await response.json();
+                return data?.data;
+            }
+
+            async function getPartners(email) {
+                const response = await fetch(
+                    `${guUriBase}/partner/portal-referral?domain=${origin}/&email=${email}`
+                )
+                const data = await response.json();
+                return data?.data;
             }
 
             function renderRank(data) {
@@ -178,19 +375,19 @@
                     formatNumber(data.point)
                 );
 
-		const partnerRef = data.linkReferral?.split('?')?.[1] || ''
-		if (partnerRef?.includes('ref=')) {
-			const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase")?.[0];
-			if (btnLinkPurchase) {
-				btnLinkPurchase.onclick = () => {
-					navigator.clipboard.writeText(`${origin}?${partnerRef}`);
-		                        btnLinkPurchase.textContent = "Đã sao chép";
-		                        setTimeout(() => {
-		                            btnLinkPurchase.textContent = "Sao chép link";
-		                        }, 1500);
-				}
-			}
-		}
+                const partnerRef = data.linkReferral?.split('?')?.[1] || ''
+                if (partnerRef?.includes('ref=')) {
+                    const btnLinkPurchase = document.getElementsByClassName("btn-link-purchase")?.[0];
+                    if (btnLinkPurchase) {
+                        btnLinkPurchase.onclick = () => {
+                            navigator.clipboard.writeText(`${origin}?${partnerRef}`);
+                            btnLinkPurchase.textContent = "Đã sao chép";
+                            setTimeout(() => {
+                                btnLinkPurchase.textContent = "Sao chép link";
+                            }, 1500);
+                        }
+                    }
+                }
 
                 linkInvite = data.linkReferral;
                 updateLinkInviteButton();
@@ -200,9 +397,9 @@
                 var guCampaignDescription = document.getElementsByClassName(
                     "gu-campaign-description"
                 )[0];
-		if (guCampaignDescription) {
-			guCampaignDescription.innerHTML = data.description;
-		}
+                if (guCampaignDescription) {
+                    guCampaignDescription.innerHTML = data.description;
+                }
             }
 
             function renderGift(items) {
@@ -210,18 +407,18 @@
                 for (let i = 0; i < items.length; i++) {
                     let itemGift = items[i];
                     let percent = itemGift.percent;
-                    let rewardTypeStr = itemGift.rewardType === 1 ? " đ" : "";
+                    let rewardTypeStr = itemGift.rewardType === 1 ? "₫" : "";
                     let reward = `${itemGift.strReward}  ${formatNumber(
                         itemGift.reward
                     )}${rewardTypeStr}`;
-                    let remind = `${formatNumber(itemGift.valueRemind)} đ ${itemGift.strType}`;
+                    let remind = `${formatNumber(itemGift.valueRemind)}₫ ${itemGift.strType}`;
                     let newGUID = generateGUID();
 
                     let itemElement = document.createElement("div");
                     itemElement.classList.add(
                         "gu-col-4",
                         "gu-col-md-6",
-                        "gu-col-s-12",
+                        "gu-col-sm-12",
                         "gu-text-center"
                     );
                     itemElement.innerHTML = `
@@ -268,7 +465,7 @@
 
             function renderCoupon(data) {
                 if (!data?.items?.length) return;
-                const tbodyElement = document.getElementsByClassName("coupon-tbody")?.[0];
+                const tbodyElement = document.getElementsByClassName("gu-coupon-tbody")?.[0];
                 data.items.forEach((item) => {
                     if (!item) return;
                     const iconCopy = `<svg width="15" height="14" viewBox="0 0 15 14" fill="none">
@@ -336,7 +533,7 @@
                     itemElement.classList.add(
                         "gu-col-4",
                         "gu-col-md-6",
-                        "gu-col-s-12",
+                        "gu-col-sm-12",
                         "gu-text-center",
                         "gu-reward-item"
                     );
@@ -357,19 +554,19 @@
             }
 
             function renderPointSetting1(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
                 let icon = `<svg width="76" height="76" viewBox="0 0 76 76" fill="none">
-							<path fill-rule="evenodd" clip-rule="evenodd" d="M31.4028 36.7878C33.3556 38.0926 35.6515 38.7891 38.0002 38.7891C41.1496 38.7891 44.1701 37.538 46.3971 35.311C48.6241 33.084 49.8752 30.0635 49.8752 26.9141C49.8752 24.5654 49.1787 22.2695 47.8739 20.3167C46.569 18.3638 44.7144 16.8418 42.5445 15.943C40.3747 15.0442 37.987 14.809 35.6835 15.2672C33.3799 15.7254 31.264 16.8564 29.6033 18.5172C27.9425 20.1779 26.8115 22.2938 26.3533 24.5974C25.8951 26.9009 26.1303 29.2886 27.0291 31.4584C27.9279 33.6283 29.4499 35.4829 31.4028 36.7878ZM34.0417 20.9898C35.2134 20.2069 36.591 19.7891 38.0002 19.7891C39.8898 19.7891 41.7021 20.5397 43.0383 21.8759C44.3745 23.2121 45.1252 25.0244 45.1252 26.9141C45.1252 28.3233 44.7073 29.7008 43.9244 30.8725C43.1415 32.0442 42.0287 32.9574 40.7268 33.4967C39.4249 34.036 37.9923 34.1771 36.6101 33.9022C35.228 33.6272 33.9585 32.9487 32.962 31.9522C31.9656 30.9558 31.287 29.6862 31.0121 28.3041C30.7371 26.922 30.8782 25.4894 31.4175 24.1874C31.9568 22.8855 32.87 21.7728 34.0417 20.9898ZM58.4965 60.251C58.9402 60.6947 59.5395 60.9475 60.1668 60.9557C60.7942 60.9475 61.3935 60.6947 61.8371 60.251C62.2808 59.8074 62.5336 59.2081 62.5418 58.5807C62.5418 43.5391 45.3468 43.5391 38.0002 43.5391C30.6535 43.5391 13.4585 43.5391 13.4585 58.5807C13.4585 59.2106 13.7087 59.8147 14.1541 60.2601C14.5995 60.7055 15.2036 60.9557 15.8335 60.9557C16.4634 60.9557 17.0675 60.7055 17.5129 60.2601C17.9583 59.8147 18.2085 59.2106 18.2085 58.5807C18.2085 52.4057 21.5652 48.2891 38.0002 48.2891C54.4352 48.2891 57.7918 52.4057 57.7918 58.5807C57.8 59.2081 58.0529 59.8074 58.4965 60.251Z" fill="#212121" />
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M31.4028 36.7878C33.3556 38.0926 35.6515 38.7891 38.0002 38.7891C41.1496 38.7891 44.1701 37.538 46.3971 35.311C48.6241 33.084 49.8752 30.0635 49.8752 26.9141C49.8752 24.5654 49.1787 22.2695 47.8739 20.3167C46.569 18.3638 44.7144 16.8418 42.5445 15.943C40.3747 15.0442 37.987 14.809 35.6835 15.2672C33.3799 15.7254 31.264 16.8564 29.6033 18.5172C27.9425 20.1779 26.8115 22.2938 26.3533 24.5974C25.8951 26.9009 26.1303 29.2886 27.0291 31.4584C27.9279 33.6283 29.4499 35.4829 31.4028 36.7878ZM34.0417 20.9898C35.2134 20.2069 36.591 19.7891 38.0002 19.7891C39.8898 19.7891 41.7021 20.5397 43.0383 21.8759C44.3745 23.2121 45.1252 25.0244 45.1252 26.9141C45.1252 28.3233 44.7073 29.7008 43.9244 30.8725C43.1415 32.0442 42.0287 32.9574 40.7268 33.4967C39.4249 34.036 37.9923 34.1771 36.6101 33.9022C35.228 33.6272 33.9585 32.9487 32.962 31.9522C31.9656 30.9558 31.287 29.6862 31.0121 28.3041C30.7371 26.922 30.8782 25.4894 31.4175 24.1874C31.9568 22.8855 32.87 21.7728 34.0417 20.9898ZM58.4965 60.251C58.9402 60.6947 59.5395 60.9475 60.1668 60.9557C60.7942 60.9475 61.3935 60.6947 61.8371 60.251C62.2808 59.8074 62.5336 59.2081 62.5418 58.5807C62.5418 43.5391 45.3468 43.5391 38.0002 43.5391C30.6535 43.5391 13.4585 43.5391 13.4585 58.5807C13.4585 59.2106 13.7087 59.8147 14.1541 60.2601C14.5995 60.7055 15.2036 60.9557 15.8335 60.9557C16.4634 60.9557 17.0675 60.7055 17.5129 60.2601C17.9583 59.8147 18.2085 59.2106 18.2085 58.5807C18.2085 52.4057 21.5652 48.2891 38.0002 48.2891C54.4352 48.2891 57.7918 52.4057 57.7918 58.5807C57.8 59.2081 58.0529 59.8074 58.4965 60.251Z" fill="#FFF" />
 						</svg>`;
 
                 let elm = document.createElement("div");
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -395,7 +592,7 @@
                                 ${strType}
                             </div>
                         </div>
-                        <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                        <div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
                             ${elmHover}
                         </div>
                     </div>
@@ -404,15 +601,15 @@
             }
 
             function renderPointSetting2(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
                 // let birthday = item.birthday;
-		let birthday = guCustomerBirthday?.split(" ")?.[0] || ""
-		if (birthday?.includes("/")) {
-			birthday = birthday.split("/").toReversed().join("-");
-		}
+                let birthday = guCustomerBirthday?.split(" ")?.[0] || ""
+                if (birthday?.includes("/")) {
+                    birthday = birthday.split("/").toReversed().join("-");
+                }
 
 
                 let point = formatNumber(item.point);
@@ -431,7 +628,7 @@
                                                     <input id="gu-input-birthday" class="gu-bg-white" type="date" value="" disabled="true">
                                                 </div>
                 `;
-		// <a id="gu-btn-update-birthday" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
+                // <a id="gu-btn-update-birthday" class="gu-button gu-button__primary gu-ml-10">Gửi <i class="fa fa-check"></i></a>
                 let guCustomerEmail = getCookie("email_portal");
                 let elmHover = guCustomerEmail ? elmLogin : elmGuest;
 
@@ -439,7 +636,7 @@
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -454,7 +651,7 @@
                                             ${strType}
                                     </div>
                                 </div>
-                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                <div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
                                     ${elmHover}
                                 </div>
                             </div>
@@ -479,7 +676,7 @@
             }
 
             function renderPointSetting3(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -492,7 +689,7 @@
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -509,7 +706,7 @@
                                                 ${strType}
                                             </div>
                                         </div>
-                                        <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                        <div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
                                             <span class="gu-text-16">${point} điểm cho 1 đơn hàng bạn giới thiệu</span>
                                             <a href="#gu-guide-referal" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
                                         </div>
@@ -519,7 +716,7 @@
             }
 
             function renderPointSetting4(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -532,7 +729,7 @@
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -547,7 +744,7 @@
                                             ${strType}
                                         </div>
                                     </div>
-                                    <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                    <div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
                                         <span class="gu-text-16">${point} điểm cho 1,000đ trên giá trị đơn hàng bạn giới thiệu</span>
                                         <a href="#gu-guide-referal" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
                                     </div>
@@ -557,7 +754,7 @@
             }
 
             function renderPointSetting5(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -581,7 +778,7 @@
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -596,7 +793,7 @@
 					    ${strType}
 				    </div>
 				</div>
-				<div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+				<div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
 				    ${elmHover}
 				</div>
 	    		</div>
@@ -606,7 +803,7 @@
             }
 
             function renderPointSetting6(item) {
-		if (!item) return
+                if (!item) return
                 let rewardSetting = document.querySelector("#reward-settings");
                 let strPoint = item.strPoint;
                 let strType = item.strType;
@@ -619,7 +816,7 @@
                 elm.classList.add(
                     "gu-col-4",
                     "gu-col-md-6",
-                    "gu-col-s-12",
+                    "gu-col-sm-12",
                     "gu-text-center",
                     "gu-point-setting"
                 );
@@ -634,7 +831,7 @@
                                             ${strType}
                                     </div>
                                 </div>
-                                <div class="gu__card-backdrop gu-d-flex gu-d-flex-column gu-ai-center gu-flex-jc-center">
+                                <div class="gu__card-backdrop gu-d-flex gu-flex-column gu-flex-ai-center gu-flex-jc-center">
                                     <span class="gu-text-16">${point} điểm cho 1,000đ hoa hồng bạn nhận được</span>
                                     <a href="#gu-guide-referal" class="gu-button gu-button__primary gu-mt-30">Xem hướng dẫn</a>
                                 </div>
@@ -646,15 +843,15 @@
             function renderFormPotential() {
                 var guFormInfo = document.getElementsByClassName("gu-form-info")[0];
                 guFormInfo.innerHTML += `
-                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <div class="gu-d-flex gu-flex-column gu-mt-20">
                         <label for="phoneNumber">Số điện thoại*:</label>
                         <input name="phoneNumber" type="text" class="gu-w-100 form-info-input-phone">
                     </div>
-                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <div class="gu-d-flex gu-flex-column gu-mt-20">
                         <label for="fullName">Họ và tên khách hàng:</label>
                         <input name="fullName" type="text" class="gu-w-100 form-info-input-name">
                     </div>
-                    <div class="gu-d-flex gu-d-flex-column gu-mt-20">
+                    <div class="gu-d-flex gu-flex-column gu-mt-20">
                         <label for="txtname">Nhu cầu:</label>
                         <textarea id="txtid" name="txtname" rows="4" cols="50" maxlength="200" class="gu-w-100 form-info-input-note"></textarea>
                     </div>
@@ -684,7 +881,7 @@
 
                     if (!body.phone?.trim()?.length) return;
 
-                    fetch(`${guApiBase}/potential-customer/portal`, {
+                    fetch(`${guUriBase}/potential-customer/portal`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -699,12 +896,109 @@
                 };
             }
 
-	    function hideCommissionPolicy() {
-		    const accordionEl = document.getElementsByClassName("commission-policy")?.[0]
-		    if (accordionEl) {
-			    accordionEl.style.display = "none"
-		    }
-	    }
+            function renderTablePartner(data) {
+
+                const tbodyElement = document.getElementsByClassName("gu-partner-tbody")?.[0];
+                const trElement = document.createElement("tr");
+
+                if (data.items.length > 0) {
+                    data.items.forEach((item) => {
+                        if (!item) return;
+
+                        const tdName = document.createElement("td");
+                        const tdEmail = document.createElement("td");
+                        const tdCreatedAt = document.createElement("td");
+                        const tdLevel = document.createElement("td");
+
+                        tdName.textContent = item.name;
+                        tdEmail.textContent = item.email;
+                        tdCreatedAt.textContent = item.createdAt;
+                        tdLevel.textContent = item.level;
+
+                        const createdAt = new Date(item.createdAt);
+                        tdCreatedAt.textContent = `${createdAt.getHours()}:${createdAt.getMinutes()} ${createdAt.getDate()}/${createdAt.getMonth() + 1
+                            }/${createdAt.getFullYear()}`;
+
+                        trElement.appendChild(tdName);
+                        trElement.appendChild(tdEmail);
+                        trElement.appendChild(tdCreatedAt);
+                        trElement.appendChild(tdLevel);
+
+                    });
+                }
+                else {
+                    tbodyElement.appendChild(trElement);
+                    trElement.textContent = "Không có dữ liệu";
+                }
+            }
+
+            function renderTableOrder(data) {
+
+
+                const ORDER_STATUS_NEW = "Chờ duyệt";
+                const ORDER_STATUS_APPROVE = "Đã duyệt";
+                const ORDER_STATUS_REJECT = "Đã từ chối";
+                const ORDER_STATUS_PAID = "Đã thanh toán";
+
+                const orderStatus = {
+                    [ORDER_STATUS_NEW]: {
+                        value: ORDER_STATUS_NEW,
+                        color: "#F2C94C",
+                    },
+                    [ORDER_STATUS_APPROVE]: {
+                        value: ORDER_STATUS_APPROVE,
+                        color: "#2F80ED",
+                    },
+                    [ORDER_STATUS_REJECT]: {
+                        value: ORDER_STATUS_REJECT,
+                        color: "#EB5757",
+                    },
+                    [ORDER_STATUS_PAID]: {
+                        value: ORDER_STATUS_PAID,
+                        color: "#27AE60",
+                    },
+                };
+
+                const tbodyElement = document.getElementsByClassName("gu-order-tbody")?.[0];
+                const trElement = document.createElement("tr");
+
+                if (data.items.length > 0) {
+                    data.items.forEach((item) => {
+                        if (!item) return;
+
+                        const tdCode = document.createElement("td");
+                        const tdCreatedAt = document.createElement("td");
+                        const tdCommission = document.createElement("td");
+                        const tdStatus = document.createElement("td");
+
+                        tdCode.textContent = item.code;
+                        tdCreatedAt.textContent = item.createdAt;
+                        tdCommission.textContent = formatToVnd(item.commission);
+                        tdStatus.textContent = item.status;
+
+                        const createdAt = new Date(item.createdAt);
+                        tdCreatedAt.textContent = `${createdAt.getHours()}:${createdAt.getMinutes()} ${createdAt.getDate()}/${createdAt.getMonth() + 1
+                            }/${createdAt.getFullYear()}`;
+
+                        trElement.appendChild(tdCode);
+                        trElement.appendChild(tdCreatedAt);
+                        trElement.appendChild(tdCommission);
+                        trElement.appendChild(tdStatus);
+                        tdStatus.style.color = orderStatus[item.status]?.color;
+                        tbodyElement.appendChild(trElement);
+                    });
+                } else {
+                    tbodyElement.appendChild(trElement);
+                    trElement.textContent = "Không có dữ liệu";
+                }
+            }
+
+            function hideCommissionPolicy() {
+                const accordionEl = document.getElementsByClassName("gu-commission-policy")?.[0]
+                if (accordionEl) {
+                    accordionEl.style.display = "none"
+                }
+            }
 
             function updateLinkInviteButton() {
                 const btnLinkInvite = document.getElementsByClassName("btn-link-invite")?.[0];
@@ -719,33 +1013,12 @@
                 }
             }
 
-            function generateGUID() {
-                var currentDate = new Date().getTime().toString(16);
-                var randomPart = Math.random().toString(16).substring(2);
-                var guid = currentDate + randomPart;
-                return guid;
-            }
-
-            function getCookie(cookieName) {
-                const cookies = document.cookie.split(";");
-
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-
-                    if (cookie.startsWith(cookieName + "=")) {
-                        return cookie.substring(cookieName.length + 1);
-                    }
-                }
-
-                return null;
-            }
-
             function activeEmail(email) {
                 const body = {
                     domain: origin,
                     email: email,
                 };
-                fetch(`${guApiBase}/user/portal-active`, {
+                fetch(`${guUriBase}/user/portal-active`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -767,7 +1040,7 @@
                     birthday: birthday
                 };
 
-                fetch(`${guApiBase}/user/portal-update-birthday`, {
+                fetch(`${guUriBase}/user/portal-update-birthday`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -781,9 +1054,6 @@
                     });
             }
 
-            function formatNumber(number) {
-                return number?.toLocaleString?.("en") ?? 0;
-            }
         }
 
     }
